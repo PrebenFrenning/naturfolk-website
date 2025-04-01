@@ -19,7 +19,7 @@ import {
 
 const EventsSection = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const [showAllEvents, setShowAllEvents] = useState(true);
+  const [showAllEvents, setShowAllEvents] = useState(false);
   const isMobile = useIsMobile();
   
   // Sample events data - expanded with more events
@@ -99,16 +99,17 @@ const EventsSection = () => {
   ];
 
   // Sort events by date (most recent first)
-  const sortedEvents = [...events].sort((a, b) => b.date.getTime() - a.date.getTime());
+  const sortedEvents = [...events].sort((a, b) => a.date.getTime() - b.date.getTime());
 
   // Filter events based on selected date
   const filteredEvents = date
     ? events.filter(event => date && event.date.toDateString() === date.toDateString())
     : sortedEvents;
 
-  // Determine how many events to display
-  const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, 1);
-  const hasMoreEvents = filteredEvents.length > 1;
+  // Determine how many events to display - limit to 4 initially
+  const maxInitialEvents = 4;
+  const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, maxInitialEvents);
+  const hasMoreEvents = filteredEvents.length > maxInitialEvents;
 
   // Event card component to avoid duplication
   const EventCard = ({ event }: { event: typeof events[0] }) => (
@@ -212,10 +213,10 @@ const EventsSection = () => {
                 {isMobile ? (
                   <div className="space-y-6">
                     {/* Mobile view with carousel for horizontal swiping */}
-                    <Carousel className="w-full">
+                    <Carousel className="w-full" opts={{ loop: true }}>
                       <CarouselContent>
-                        {filteredEvents.slice(0, showAllEvents ? filteredEvents.length : 1).map(event => (
-                          <CarouselItem key={event.id} className="md:basis-1/2">
+                        {displayedEvents.map(event => (
+                          <CarouselItem key={event.id} className="basis-full">
                             <EventCard event={event} />
                           </CarouselItem>
                         ))}
@@ -228,7 +229,7 @@ const EventsSection = () => {
                     
                     {/* Mobile view more/less button */}
                     {hasMoreEvents && (
-                      <div className="mt-8 text-center">
+                      <div className="mt-6 text-center">
                         <button 
                           className="btn-secondary flex items-center gap-2 mx-auto"
                           onClick={() => setShowAllEvents(!showAllEvents)}
@@ -258,10 +259,10 @@ const EventsSection = () => {
                           className="btn-secondary flex items-center gap-2 mx-auto"
                           onClick={() => setShowAllEvents(!showAllEvents)}
                         >
-                          {showAllEvents && filteredEvents.length > 4 ? (
+                          {showAllEvents ? (
                             <>Show less <ChevronUp size={16} /></>
                           ) : (
-                            <>Show more events <ChevronDown size={16} /></>
+                            <>View more events <ChevronDown size={16} /></>
                           )}
                         </button>
                       </div>
