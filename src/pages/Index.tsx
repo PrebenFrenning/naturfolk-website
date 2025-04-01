@@ -10,6 +10,7 @@ import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import VideoPlayer from '../components/VideoPlayer';
 import ScrollToTop from '../components/ScrollToTop';
+import NewsletterSection from '../components/NewsletterSection';
 
 const Index = () => {
   return (
@@ -17,6 +18,9 @@ const Index = () => {
       <Navbar />
       <Hero />
       <AboutSection />
+      
+      {/* Newsletter Section - Positioned high on the page */}
+      <NewsletterSection />
       
       {/* Featured Video Section */}
       <section className="py-16 bg-nature-offwhite">

@@ -8,10 +8,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useIsMobile } from '../hooks/use-mobile';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const EventsSection = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [showAllEvents, setShowAllEvents] = useState(true);
+  const isMobile = useIsMobile();
   
   // Sample events data - expanded with more events
   const events = [
@@ -89,14 +98,57 @@ const EventsSection = () => {
     }
   ];
 
+  // Sort events by date (most recent first)
+  const sortedEvents = [...events].sort((a, b) => b.date.getTime() - a.date.getTime());
+
   // Filter events based on selected date
   const filteredEvents = date
     ? events.filter(event => date && event.date.toDateString() === date.toDateString())
-    : events;
+    : sortedEvents;
 
   // Determine how many events to display
-  const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, 4);
-  const hasMoreEvents = filteredEvents.length > 4;
+  const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, 1);
+  const hasMoreEvents = filteredEvents.length > 1;
+
+  // Event card component to avoid duplication
+  const EventCard = ({ event }: { event: typeof events[0] }) => (
+    <div className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group h-full flex flex-col">
+      <div className="h-48 overflow-hidden">
+        <img 
+          src={`${event.image}?auto=format&fit=crop&w=600&q=80`} 
+          alt={event.title} 
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-3">
+          <h3 className="text-lg font-serif font-semibold">{event.title}</h3>
+          <span className="bg-nature-sage/20 text-nature-green text-xs px-2 py-1 rounded-full">
+            {format(event.date, 'MMM d')}
+          </span>
+        </div>
+        <p className="text-muted-foreground text-sm mb-4 flex-grow">{event.description}</p>
+        <div className="flex flex-col gap-2 text-sm">
+          <div className="flex items-center gap-2">
+            <Clock size={14} className="text-nature-green" />
+            <span>{event.time}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <MapPin size={14} className="text-nature-green" />
+            <span>{event.location}</span>
+          </div>
+        </div>
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <a 
+            href="#" 
+            className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1"
+          >
+            Learn more <ExternalLink size={14} />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="events" className="section-padding bg-white relative">
@@ -157,61 +209,64 @@ const EventsSection = () => {
           <div className="lg:col-span-2">
             {filteredEvents.length > 0 ? (
               <>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {displayedEvents.map(event => (
-                    <div key={event.id} className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group">
-                      <div className="h-48 overflow-hidden">
-                        <img 
-                          src={`${event.image}?auto=format&fit=crop&w=600&q=80`} 
-                          alt={event.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                {isMobile ? (
+                  <div className="space-y-6">
+                    {/* Mobile view with carousel for horizontal swiping */}
+                    <Carousel className="w-full">
+                      <CarouselContent>
+                        {filteredEvents.slice(0, showAllEvents ? filteredEvents.length : 1).map(event => (
+                          <CarouselItem key={event.id} className="md:basis-1/2">
+                            <EventCard event={event} />
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <div className="flex justify-center mt-4">
+                        <CarouselPrevious className="static translate-y-0 mr-2" />
+                        <CarouselNext className="static translate-y-0 ml-2" />
                       </div>
-                      <div className="p-5">
-                        <div className="flex justify-between items-start mb-3">
-                          <h3 className="text-lg font-serif font-semibold">{event.title}</h3>
-                          <span className="bg-nature-sage/20 text-nature-green text-xs px-2 py-1 rounded-full">
-                            {format(event.date, 'MMM d')}
-                          </span>
-                        </div>
-                        <p className="text-muted-foreground text-sm mb-4">{event.description}</p>
-                        <div className="flex flex-col gap-2 text-sm">
-                          <div className="flex items-center gap-2">
-                            <Clock size={14} className="text-nature-green" />
-                            <span>{event.time}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin size={14} className="text-nature-green" />
-                            <span>{event.location}</span>
-                          </div>
-                        </div>
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                          <a 
-                            href="#" 
-                            className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1"
-                          >
-                            Learn more <ExternalLink size={14} />
-                          </a>
-                        </div>
+                    </Carousel>
+                    
+                    {/* Mobile view more/less button */}
+                    {hasMoreEvents && (
+                      <div className="mt-8 text-center">
+                        <button 
+                          className="btn-secondary flex items-center gap-2 mx-auto"
+                          onClick={() => setShowAllEvents(!showAllEvents)}
+                        >
+                          {showAllEvents ? (
+                            <>Show less <ChevronUp size={16} /></>
+                          ) : (
+                            <>View more events <ChevronDown size={16} /></>
+                          )}
+                        </button>
                       </div>
-                    </div>
-                  ))}
-                </div>
-                
-                {/* "Read more"/"Show less" button */}
-                {hasMoreEvents && (
-                  <div className="mt-8 text-center">
-                    <button 
-                      className="btn-secondary flex items-center gap-2 mx-auto"
-                      onClick={() => setShowAllEvents(!showAllEvents)}
-                    >
-                      {showAllEvents && filteredEvents.length > 4 ? (
-                        <>Show less <ChevronUp size={16} /></>
-                      ) : (
-                        <>Show more events <ChevronDown size={16} /></>
-                      )}
-                    </button>
+                    )}
                   </div>
+                ) : (
+                  <>
+                    {/* Desktop grid view */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {displayedEvents.map(event => (
+                        <EventCard key={event.id} event={event} />
+                      ))}
+                    </div>
+                    
+                    {/* Desktop more/less button */}
+                    {hasMoreEvents && (
+                      <div className="mt-8 text-center">
+                        <button 
+                          className="btn-secondary flex items-center gap-2 mx-auto"
+                          onClick={() => setShowAllEvents(!showAllEvents)}
+                        >
+                          {showAllEvents && filteredEvents.length > 4 ? (
+                            <>Show less <ChevronUp size={16} /></>
+                          ) : (
+                            <>Show more events <ChevronDown size={16} /></>
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </>
                 )}
               </>
             ) : (
