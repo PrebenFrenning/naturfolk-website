@@ -28,7 +28,9 @@ const Navbar = () => {
     <nav 
       className={cn(
         'fixed w-full z-50 transition-all duration-300',
-        isScrolled ? 'bg-white py-3 shadow-md' : 'bg-transparent py-5'
+        isScrolled 
+          ? 'bg-white py-3 shadow-md' 
+          : 'bg-transparent py-5'
       )}
     >
       <div className="container-custom flex justify-between items-center">
@@ -42,7 +44,7 @@ const Navbar = () => {
             <a 
               key={link.name}
               href={link.path}
-              className="font-medium hover:text-nature-green transition-custom underline-custom"
+              className="font-medium text-nature-brown hover:text-nature-green transition-custom underline-custom"
             >
               {link.name}
             </a>
@@ -53,6 +55,7 @@ const Navbar = () => {
         <button
           className="md:hidden text-nature-green"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -67,7 +70,7 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.path}
-                  className="py-2 font-medium hover:text-nature-green transition-custom"
+                  className="py-2 font-medium text-nature-brown hover:text-nature-green transition-custom"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}

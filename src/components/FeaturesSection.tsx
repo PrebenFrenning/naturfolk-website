@@ -6,33 +6,33 @@ const FeaturesSection = () => {
   const programs = [
     {
       icon: <Leaf size={24} />,
-      title: "Conservation Initiatives",
-      description: "Participate in habitat restoration, tree planting, and wildlife protection programs to support local ecosystems."
+      title: "Ecological Restoration",
+      description: "Join us in restoring damaged ecosystems through native plant reintroduction, invasive species removal, and sustainable land management practices."
     },
     {
       icon: <BookOpen size={24} />,
-      title: "Environmental Education",
-      description: "Engaging workshops, courses, and resources that deepen understanding of natural systems and sustainability."
+      title: "Nature Education",
+      description: "Discover our workshops on ecological literacy, regenerative practices, and traditional ecological knowledge that foster a deeper connection with nature."
     },
     {
       icon: <Users size={24} />,
-      title: "Community Programs",
-      description: "Connect with like-minded individuals through regular gatherings, skill-sharing, and collaborative projects."
+      title: "Community Building",
+      description: "Participate in our monthly gatherings, skill-sharing events, and collaborative projects that strengthen social resilience and ecological awareness."
     },
     {
       icon: <Heart size={24} />,
-      title: "Wellness in Nature",
-      description: "Experience the healing benefits of nature through guided forest bathing, mindfulness walks, and outdoor yoga."
+      title: "Wellbeing Practices",
+      description: "Experience the healing benefits of nature through our forest therapy walks, mindfulness sessions, and nature connection exercises for all ages."
     },
     {
       icon: <Map size={24} />,
-      title: "Nature Expeditions",
-      description: "Join expert-led excursions to discover local biodiversity, geology, and ecological wonders."
+      title: "Local Bioregion Awareness",
+      description: "Learn about your local watershed, native species, and ecological systems through guided hikes, mapping exercises, and phenology studies."
     },
     {
       icon: <CalendarDays size={24} />,
       title: "Seasonal Celebrations",
-      description: "Honor natural cycles through seasonal festivals, harvest celebrations, and solstice gatherings."
+      description: "Honor the natural cycles through our solstice gatherings, harvest festivals, and seasonal rituals that reconnect us with earth's rhythms."
     }
   ];
 
@@ -47,7 +47,7 @@ const FeaturesSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Our Programs</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            Discover the many ways you can engage with nature and our community through our diverse range of programs and initiatives.
+            At Naturfolk, we facilitate meaningful connections between people and the natural world through diverse programming designed to build ecological literacy, community resilience, and personal wellbeing.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ const FeaturesSection = () => {
 
         <div className="mt-16 text-center">
           <a href="#contact" className="btn-primary inline-flex items-center gap-2">
-            Get Involved
+            Join Our Community
           </a>
         </div>
       </div>
