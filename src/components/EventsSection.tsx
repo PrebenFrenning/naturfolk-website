@@ -213,10 +213,10 @@ const EventsSection = () => {
                 {isMobile ? (
                   <div className="space-y-6">
                     {/* Mobile view with carousel for horizontal swiping */}
-                    <Carousel className="w-full" opts={{ loop: true }}>
-                      <CarouselContent>
+                    <Carousel className="w-full" opts={{ loop: true, align: "start", containScroll: "trimSnaps" }}>
+                      <CarouselContent className="-ml-2 md:-ml-4">
                         {displayedEvents.map(event => (
-                          <CarouselItem key={event.id} className="basis-full">
+                          <CarouselItem key={event.id} className="pl-2 md:pl-4 w-full">
                             <EventCard event={event} />
                           </CarouselItem>
                         ))}
