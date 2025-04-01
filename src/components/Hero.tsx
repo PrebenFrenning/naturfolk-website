@@ -1,18 +1,51 @@
 
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Play, Pause } from 'lucide-react';
 
 const Hero = () => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
+  const toggleVideo = () => {
+    setShowVideo(!showVideo);
+    setIsVideoPlaying(!isVideoPlaying);
+  };
+
   return (
     <div className="relative w-full h-screen min-h-[600px]">
-      {/* Hero background */}
+      {/* Hero background - conditional based on state */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80" 
-          alt="Nature landscape" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
+        {showVideo ? (
+          <div className="relative w-full h-full">
+            <video 
+              className="w-full h-full object-cover"
+              src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" 
+              autoPlay={isVideoPlaying}
+              loop
+              muted
+              playsInline
+            />
+            <div className="absolute inset-0 bg-black/40"></div>
+            
+            {/* Video controls */}
+            <button 
+              onClick={() => setIsVideoPlaying(!isVideoPlaying)}
+              className="absolute bottom-8 right-8 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all"
+              aria-label={isVideoPlaying ? "Pause video" : "Play video"}
+            >
+              {isVideoPlaying ? <Pause size={24} /> : <Play size={24} />}
+            </button>
+          </div>
+        ) : (
+          <>
+            <img 
+              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80" 
+              alt="Nature landscape" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
+          </>
+        )}
       </div>
 
       {/* Hero content */}
@@ -24,7 +57,7 @@ const Hero = () => {
           <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl animate-fade-in-delay">
             At Naturfolk, we inspire environmental stewardship through education, conservation, and community engagement.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay" style={{ animationDelay: "0.4s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay mb-8" style={{ animationDelay: "0.4s" }}>
             <a href="#about" className="btn-primary flex items-center gap-2">
               Discover Our Mission <ArrowRight size={18} />
             </a>
@@ -32,6 +65,14 @@ const Hero = () => {
               Explore Programs
             </a>
           </div>
+          
+          {/* Video toggle button */}
+          <button 
+            onClick={toggleVideo}
+            className="flex items-center gap-2 text-white bg-nature-green/80 hover:bg-nature-green px-4 py-2 rounded-md transition-all"
+          >
+            {showVideo ? 'View Image' : 'Watch Video'} {showVideo ? null : <Play size={16} />}
+          </button>
         </div>
       </div>
 
