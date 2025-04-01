@@ -1,14 +1,13 @@
 
 import React, { useState } from 'react';
-import { ArrowRight, Play, Pause } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
+import VideoPlayer from './VideoPlayer';
 
 const Hero = () => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
 
   const toggleVideo = () => {
     setShowVideo(!showVideo);
-    setIsVideoPlaying(!isVideoPlaying);
   };
 
   return (
@@ -16,26 +15,11 @@ const Hero = () => {
       {/* Hero background - conditional based on state */}
       <div className="absolute inset-0 z-0">
         {showVideo ? (
-          <div className="relative w-full h-full">
-            <video 
-              className="w-full h-full object-cover"
-              src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" 
-              autoPlay={isVideoPlaying}
-              loop
-              muted
-              playsInline
-            />
-            <div className="absolute inset-0 bg-black/40"></div>
-            
-            {/* Video controls */}
-            <button 
-              onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-              className="absolute bottom-8 right-8 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all"
-              aria-label={isVideoPlaying ? "Pause video" : "Play video"}
-            >
-              {isVideoPlaying ? <Pause size={24} /> : <Play size={24} />}
-            </button>
-          </div>
+          <VideoPlayer 
+            videoSrc="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"
+            autoPlay={true}
+            className="h-full"
+          />
         ) : (
           <>
             <img 

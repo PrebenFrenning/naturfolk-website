@@ -13,7 +13,7 @@ import {
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'no'>('en');
+  const [language, setLanguage] = useState<'en' | 'no'>('no');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +38,7 @@ const Navbar = () => {
         'fixed w-full z-50 transition-all duration-300',
         isScrolled 
           ? 'bg-white py-3 shadow-md' 
-          : 'bg-black/30 backdrop-blur-sm py-5'
+          : 'bg-black/50 backdrop-blur-sm py-5'
       )}
     >
       <div className="container-custom flex justify-between items-center">

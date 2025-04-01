@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Calendar, CalendarDays, MapPin, Clock, ExternalLink } from 'lucide-react';
+import { Calendar, CalendarDays, MapPin, Clock, ExternalLink, ChevronDown } from 'lucide-react';
 import { format } from 'date-fns';
 import { Calendar as CalendarUI } from "@/components/ui/calendar";
 import {
@@ -10,9 +10,10 @@ import {
 } from "@/components/ui/popover";
 
 const EventsSection = () => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [showAllEvents, setShowAllEvents] = useState(false);
   
-  // Sample events data
+  // Sample events data - expanded with more events
   const events = [
     {
       id: 1,
@@ -49,6 +50,42 @@ const EventsSection = () => {
       location: "Oslo Fjord",
       description: "Help restore our local watershed through this community clean-up event.",
       image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1"
+    },
+    {
+      id: 5,
+      title: "Nature Photography Workshop",
+      date: new Date(2023, 7, 25),
+      time: "13:00 - 17:00",
+      location: "Frogner Park",
+      description: "Learn composition techniques for stunning nature photography.",
+      image: "https://images.unsplash.com/photo-1500531279542-fc8490c8ea4d"
+    },
+    {
+      id: 6,
+      title: "Sustainable Living Seminar",
+      date: new Date(2023, 8, 2),
+      time: "18:00 - 20:00",
+      location: "Oslo Community Center",
+      description: "Practical tips for reducing your environmental impact in everyday life.",
+      image: "https://images.unsplash.com/photo-1504387432042-5b51b7c1c3e7"
+    },
+    {
+      id: 7,
+      title: "Bird Watching Expedition",
+      date: new Date(2023, 8, 10),
+      time: "07:00 - 10:00",
+      location: "Maridalen Valley",
+      description: "Join our expert ornithologist to spot and identify local bird species.",
+      image: "https://images.unsplash.com/photo-1522926193341-e9ffd686c60f"
+    },
+    {
+      id: 8,
+      title: "Fall Equinox Nature Retreat",
+      date: new Date(2023, 8, 22),
+      time: "10:00 - 16:00",
+      location: "Østmarka Forest",
+      description: "A full-day retreat to connect with nature during the changing seasons.",
+      image: "https://images.unsplash.com/photo-1475113548554-5a36f1f523d6"
     }
   ];
 
@@ -56,6 +93,10 @@ const EventsSection = () => {
   const filteredEvents = date
     ? events.filter(event => date && event.date.toDateString() === date.toDateString())
     : events;
+
+  // Determine how many events to display
+  const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, 4);
+  const hasMoreEvents = filteredEvents.length > 4;
 
   return (
     <section id="events" className="section-padding bg-white relative">
@@ -115,46 +156,60 @@ const EventsSection = () => {
           {/* Events list */}
           <div className="lg:col-span-2">
             {filteredEvents.length > 0 ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                {filteredEvents.map(event => (
-                  <div key={event.id} className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group">
-                    <div className="h-48 overflow-hidden">
-                      <img 
-                        src={`${event.image}?auto=format&fit=crop&w=600&q=80`} 
-                        alt={event.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-lg font-serif font-semibold">{event.title}</h3>
-                        <span className="bg-nature-sage/20 text-nature-green text-xs px-2 py-1 rounded-full">
-                          {format(event.date, 'MMM d')}
-                        </span>
+              <>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {displayedEvents.map(event => (
+                    <div key={event.id} className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group">
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={`${event.image}?auto=format&fit=crop&w=600&q=80`} 
+                          alt={event.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <p className="text-muted-foreground text-sm mb-4">{event.description}</p>
-                      <div className="flex flex-col gap-2 text-sm">
-                        <div className="flex items-center gap-2">
-                          <Clock size={14} className="text-nature-green" />
-                          <span>{event.time}</span>
+                      <div className="p-5">
+                        <div className="flex justify-between items-start mb-3">
+                          <h3 className="text-lg font-serif font-semibold">{event.title}</h3>
+                          <span className="bg-nature-sage/20 text-nature-green text-xs px-2 py-1 rounded-full">
+                            {format(event.date, 'MMM d')}
+                          </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin size={14} className="text-nature-green" />
-                          <span>{event.location}</span>
+                        <p className="text-muted-foreground text-sm mb-4">{event.description}</p>
+                        <div className="flex flex-col gap-2 text-sm">
+                          <div className="flex items-center gap-2">
+                            <Clock size={14} className="text-nature-green" />
+                            <span>{event.time}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin size={14} className="text-nature-green" />
+                            <span>{event.location}</span>
+                          </div>
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-gray-100">
+                          <a 
+                            href="#" 
+                            className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1"
+                          >
+                            Learn more <ExternalLink size={14} />
+                          </a>
                         </div>
                       </div>
-                      <div className="mt-4 pt-4 border-t border-gray-100">
-                        <a 
-                          href="#" 
-                          className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1"
-                        >
-                          Learn more <ExternalLink size={14} />
-                        </a>
-                      </div>
                     </div>
+                  ))}
+                </div>
+                
+                {/* "Read more" button for showing all events */}
+                {hasMoreEvents && !showAllEvents && (
+                  <div className="mt-8 text-center">
+                    <button 
+                      className="btn-secondary flex items-center gap-2 mx-auto"
+                      onClick={() => setShowAllEvents(true)}
+                    >
+                      Show more events <ChevronDown size={16} />
+                    </button>
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             ) : (
               <div className="bg-nature-offwhite/50 border border-gray-100 rounded-lg p-10 text-center">
                 <CalendarDays size={40} className="mx-auto mb-4 text-gray-300" />
