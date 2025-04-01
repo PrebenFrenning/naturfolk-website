@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Calendar, CalendarDays, MapPin, Clock, ExternalLink, ChevronDown } from 'lucide-react';
+import { Calendar, CalendarDays, MapPin, Clock, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import { format } from 'date-fns';
 import { Calendar as CalendarUI } from "@/components/ui/calendar";
 import {
@@ -11,7 +11,7 @@ import {
 
 const EventsSection = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const [showAllEvents, setShowAllEvents] = useState(false);
+  const [showAllEvents, setShowAllEvents] = useState(true);
   
   // Sample events data - expanded with more events
   const events = [
@@ -198,14 +198,18 @@ const EventsSection = () => {
                   ))}
                 </div>
                 
-                {/* "Read more" button for showing all events */}
-                {hasMoreEvents && !showAllEvents && (
+                {/* "Read more"/"Show less" button */}
+                {hasMoreEvents && (
                   <div className="mt-8 text-center">
                     <button 
                       className="btn-secondary flex items-center gap-2 mx-auto"
-                      onClick={() => setShowAllEvents(true)}
+                      onClick={() => setShowAllEvents(!showAllEvents)}
                     >
-                      Show more events <ChevronDown size={16} />
+                      {showAllEvents && filteredEvents.length > 4 ? (
+                        <>Show less <ChevronUp size={16} /></>
+                      ) : (
+                        <>Show more events <ChevronDown size={16} /></>
+                      )}
                     </button>
                   </div>
                 )}

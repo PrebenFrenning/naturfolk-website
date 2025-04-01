@@ -1,8 +1,17 @@
 
 import React from 'react';
 import { Quote } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 const TestimonialsSection = () => {
+  const isMobile = useIsMobile();
   const testimonials = [
     {
       quote: "Naturfolk has completely transformed my relationship with the outdoors. The guided forest walks taught me to notice the small wonders I'd been missing all my life.",
@@ -23,6 +32,27 @@ const TestimonialsSection = () => {
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     }
   ];
+
+  const renderTestimonialCard = (testimonial, index) => (
+    <div 
+      key={index} 
+      className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-custom h-full"
+    >
+      <Quote className="text-nature-green mb-4" size={28} />
+      <p className="text-white mb-6 italic">"{testimonial.quote}"</p>
+      <div className="flex items-center gap-4">
+        <img 
+          src={testimonial.image} 
+          alt={testimonial.author} 
+          className="w-12 h-12 rounded-full object-cover"
+        />
+        <div>
+          <h4 className="text-white font-medium">{testimonial.author}</h4>
+          <p className="text-white/70 text-sm">{testimonial.title}</p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="impact" className="relative py-32">
@@ -45,28 +75,33 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index} 
-              className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-custom"
+        {isMobile ? (
+          <div className="px-4">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
             >
-              <Quote className="text-nature-green mb-4" size={28} />
-              <p className="text-white mb-6 italic">"{testimonial.quote}"</p>
-              <div className="flex items-center gap-4">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.author} 
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="text-white font-medium">{testimonial.author}</h4>
-                  <p className="text-white/70 text-sm">{testimonial.title}</p>
-                </div>
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    {renderTestimonialCard(testimonial, index)}
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-6">
+                <CarouselPrevious className="static translate-y-0 mr-2" />
+                <CarouselNext className="static translate-y-0 ml-2" />
               </div>
-            </div>
-          ))}
-        </div>
+            </Carousel>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => renderTestimonialCard(testimonial, index))}
+          </div>
+        )}
 
         <div className="mt-16 text-center">
           <div className="inline-block bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">

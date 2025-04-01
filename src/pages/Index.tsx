@@ -9,6 +9,7 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import VideoPlayer from '../components/VideoPlayer';
+import ScrollToTop from '../components/ScrollToTop';
 
 const Index = () => {
   return (
@@ -44,6 +45,7 @@ const Index = () => {
       <TestimonialsSection />
       <ContactSection />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

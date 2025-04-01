@@ -1,8 +1,17 @@
 
 import React from 'react';
 import { Leaf, BookOpen, Users, Heart, Map, CalendarDays } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 const FeaturesSection = () => {
+  const isMobile = useIsMobile();
   const programs = [
     {
       icon: <Leaf size={24} />,
@@ -36,6 +45,17 @@ const FeaturesSection = () => {
     }
   ];
 
+  const renderProgramCard = (program, index) => (
+    <div 
+      key={index} 
+      className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-custom hover:-translate-y-1 h-full"
+    >
+      <div className="text-nature-green mb-4">{program.icon}</div>
+      <h3 className="text-xl font-serif font-semibold mb-3">{program.title}</h3>
+      <p className="text-muted-foreground">{program.description}</p>
+    </div>
+  );
+
   return (
     <section id="programs" className="section-padding bg-nature-offwhite relative overflow-hidden">
       {/* Background decorative elements */}
@@ -51,18 +71,33 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programs.map((program, index) => (
-            <div 
-              key={index} 
-              className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-custom hover:-translate-y-1"
+        {isMobile ? (
+          <div className="px-4">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
             >
-              <div className="text-nature-green mb-4">{program.icon}</div>
-              <h3 className="text-xl font-serif font-semibold mb-3">{program.title}</h3>
-              <p className="text-muted-foreground">{program.description}</p>
-            </div>
-          ))}
-        </div>
+              <CarouselContent>
+                {programs.map((program, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    {renderProgramCard(program, index)}
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-6">
+                <CarouselPrevious className="static translate-y-0 mr-2" />
+                <CarouselNext className="static translate-y-0 ml-2" />
+              </div>
+            </Carousel>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {programs.map((program, index) => renderProgramCard(program, index))}
+          </div>
+        )}
 
         <div className="mt-16 text-center">
           <a href="#contact" className="btn-primary inline-flex items-center gap-2">
