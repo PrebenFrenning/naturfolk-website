@@ -1,11 +1,11 @@
 
 import React from 'react';
-import { Seedling, BookOpen, Users, Heart, Map, CalendarDays } from 'lucide-react';
+import { Leaf, BookOpen, Users, Heart, Map, CalendarDays } from 'lucide-react';
 
 const FeaturesSection = () => {
   const programs = [
     {
-      icon: <Seedling size={24} />,
+      icon: <Leaf size={24} />,
       title: "Conservation Initiatives",
       description: "Participate in habitat restoration, tree planting, and wildlife protection programs to support local ecosystems."
     },
