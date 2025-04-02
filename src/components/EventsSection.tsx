@@ -152,7 +152,7 @@ const EventsSection = () => {
   );
 
   return (
-    <section id="events" className="section-padding bg-white relative">
+    <section id="events" className="section-padding bg-white relative overflow-hidden">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Upcoming Events</h2>
@@ -211,13 +211,19 @@ const EventsSection = () => {
             {filteredEvents.length > 0 ? (
               <>
                 {isMobile ? (
-                  <div className="space-y-6">
+                  <div className="w-full">
                     {/* Mobile view with carousel for horizontal swiping */}
-                    <Carousel className="w-full" opts={{ loop: true, align: "start", containScroll: "trimSnaps" }}>
-                      <CarouselContent className="-ml-2 md:-ml-4">
+                    <Carousel className="w-full" opts={{ 
+                      loop: true, 
+                      align: "start", 
+                      containScroll: "trimSnaps"
+                    }}>
+                      <CarouselContent>
                         {displayedEvents.map(event => (
-                          <CarouselItem key={event.id} className="pl-2 md:pl-4 w-full">
-                            <EventCard event={event} />
+                          <CarouselItem key={event.id} className="md:basis-1/2 lg:basis-1/2">
+                            <div className="p-1">
+                              <EventCard event={event} />
+                            </div>
                           </CarouselItem>
                         ))}
                       </CarouselContent>
