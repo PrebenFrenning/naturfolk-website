@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Calendar, CalendarDays, MapPin, Clock, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import { format } from 'date-fns';
@@ -22,7 +21,6 @@ const EventsSection = () => {
   const [showAllEvents, setShowAllEvents] = useState(false);
   const isMobile = useIsMobile();
   
-  // Sample events data - expanded with more events
   const events = [
     {
       id: 1,
@@ -98,20 +96,16 @@ const EventsSection = () => {
     }
   ];
 
-  // Sort events by date (most recent first)
   const sortedEvents = [...events].sort((a, b) => a.date.getTime() - b.date.getTime());
 
-  // Filter events based on selected date
   const filteredEvents = date
     ? events.filter(event => date && event.date.toDateString() === date.toDateString())
     : sortedEvents;
 
-  // Determine how many events to display - limit to 4 initially
   const maxInitialEvents = 4;
   const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, maxInitialEvents);
   const hasMoreEvents = filteredEvents.length > maxInitialEvents;
 
-  // Event card component to avoid duplication
   const EventCard = ({ event }: { event: typeof events[0] }) => (
     <div className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group h-full flex flex-col">
       <div className="h-48 overflow-hidden">
@@ -153,8 +147,8 @@ const EventsSection = () => {
 
   return (
     <section id="events" className="section-padding bg-white relative overflow-hidden">
-      <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+      <div className="container-custom max-w-full px-0 sm:px-4 md:px-8 lg:px-16 xl:px-24">
+        <div className="max-w-3xl mx-auto text-center mb-16 px-4">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Upcoming Events</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
@@ -162,8 +156,7 @@ const EventsSection = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Calendar sidebar */}
+        <div className="grid lg:grid-cols-3 gap-8 px-4">
           <div className="lg:col-span-1">
             <div className="bg-nature-offwhite p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-serif mb-4 flex items-center gap-2">
@@ -206,24 +199,20 @@ const EventsSection = () => {
             </div>
           </div>
           
-          {/* Events list */}
           <div className="lg:col-span-2">
             {filteredEvents.length > 0 ? (
               <>
                 {isMobile ? (
-                  <div className="w-full">
-                    {/* Mobile view with carousel for horizontal swiping */}
+                  <div className="max-w-full overflow-hidden">
                     <Carousel className="w-full" opts={{ 
                       loop: true, 
-                      align: "start", 
-                      containScroll: "trimSnaps"
+                      align: "center",
+                      containScroll: "keepSnaps"
                     }}>
-                      <CarouselContent>
+                      <CarouselContent className="px-4">
                         {displayedEvents.map(event => (
-                          <CarouselItem key={event.id} className="md:basis-1/2 lg:basis-1/2">
-                            <div className="p-1">
-                              <EventCard event={event} />
-                            </div>
+                          <CarouselItem key={event.id} className="w-full px-1">
+                            <EventCard event={event} />
                           </CarouselItem>
                         ))}
                       </CarouselContent>
@@ -233,7 +222,6 @@ const EventsSection = () => {
                       </div>
                     </Carousel>
                     
-                    {/* Mobile view more/less button */}
                     {hasMoreEvents && (
                       <div className="mt-6 text-center">
                         <button 
@@ -251,14 +239,12 @@ const EventsSection = () => {
                   </div>
                 ) : (
                   <>
-                    {/* Desktop grid view */}
                     <div className="grid md:grid-cols-2 gap-6">
                       {displayedEvents.map(event => (
                         <EventCard key={event.id} event={event} />
                       ))}
                     </div>
                     
-                    {/* Desktop more/less button */}
                     {hasMoreEvents && (
                       <div className="mt-8 text-center">
                         <button 
