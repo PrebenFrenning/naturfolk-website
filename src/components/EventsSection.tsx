@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Calendar, CalendarDays, MapPin, Clock, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import { format } from 'date-fns';
@@ -107,7 +108,7 @@ const EventsSection = () => {
   const hasMoreEvents = filteredEvents.length > maxInitialEvents;
 
   const EventCard = ({ event }: { event: typeof events[0] }) => (
-    <div className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group h-full flex flex-col">
+    <div className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group h-full flex flex-col w-full">
       <div className="h-48 overflow-hidden">
         <img 
           src={`${event.image}?auto=format&fit=crop&w=600&q=80`} 
@@ -146,9 +147,9 @@ const EventsSection = () => {
   );
 
   return (
-    <section id="events" className="section-padding bg-white relative overflow-hidden">
-      <div className="container-custom max-w-full px-0 sm:px-4 md:px-8 lg:px-16 xl:px-24">
-        <div className="max-w-3xl mx-auto text-center mb-16 px-4">
+    <section id="events" className="section-padding bg-white relative">
+      <div className="container-custom max-w-full px-4 sm:px-4 md:px-8 lg:px-16 xl:px-24">
+        <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Upcoming Events</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
@@ -156,7 +157,7 @@ const EventsSection = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8 px-4">
+        <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
             <div className="bg-nature-offwhite p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-serif mb-4 flex items-center gap-2">
@@ -199,33 +200,33 @@ const EventsSection = () => {
             </div>
           </div>
           
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 w-full">
             {filteredEvents.length > 0 ? (
               <>
                 {isMobile ? (
-                  <div className="max-w-full overflow-hidden">
+                  <div className="w-full">
                     <Carousel className="w-full" opts={{ 
-                      loop: true, 
+                      loop: true,
                       align: "center",
-                      containScroll: "keepSnaps"
+                      containScroll: "trimSnaps"
                     }}>
-                      <CarouselContent className="px-4">
+                      <CarouselContent>
                         {displayedEvents.map(event => (
-                          <CarouselItem key={event.id} className="w-full px-1">
+                          <CarouselItem key={event.id} className="p-1 box-border">
                             <EventCard event={event} />
                           </CarouselItem>
                         ))}
                       </CarouselContent>
                       <div className="flex justify-center mt-4">
-                        <CarouselPrevious className="static translate-y-0 mr-2" />
-                        <CarouselNext className="static translate-y-0 ml-2" />
+                        <CarouselPrevious className="static mr-2" />
+                        <CarouselNext className="static ml-2" />
                       </div>
                     </Carousel>
                     
                     {hasMoreEvents && (
                       <div className="mt-6 text-center">
                         <button 
-                          className="btn-secondary flex items-center gap-2 mx-auto"
+                          className="btn-secondary inline-flex items-center gap-2 mx-auto"
                           onClick={() => setShowAllEvents(!showAllEvents)}
                         >
                           {showAllEvents ? (
@@ -248,7 +249,7 @@ const EventsSection = () => {
                     {hasMoreEvents && (
                       <div className="mt-8 text-center">
                         <button 
-                          className="btn-secondary flex items-center gap-2 mx-auto"
+                          className="btn-secondary inline-flex items-center gap-2 mx-auto"
                           onClick={() => setShowAllEvents(!showAllEvents)}
                         >
                           {showAllEvents ? (
