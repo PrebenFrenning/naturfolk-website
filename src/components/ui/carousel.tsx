@@ -136,7 +136,7 @@ const Carousel = React.forwardRef<
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative w-full", className)}
+          className={cn("relative w-full overflow-hidden", className)}
           role="region"
           aria-roledescription="carousel"
           {...props}
@@ -183,8 +183,8 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "w-full" : "pt-4",
+        "min-w-0 shrink-0 grow-0 basis-full w-full box-border",
+        orientation === "horizontal" ? "pl-0" : "pt-4",
         className
       )}
       {...props}

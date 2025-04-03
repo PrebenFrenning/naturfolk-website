@@ -147,8 +147,8 @@ const EventsSection = () => {
   );
 
   return (
-    <section id="events" className="section-padding bg-white relative">
-      <div className="container-custom max-w-full px-4 sm:px-4 md:px-8 lg:px-16 xl:px-24">
+    <section id="events" className="section-padding bg-white relative overflow-hidden">
+      <div className="container-custom max-w-full px-4 mx-auto sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Upcoming Events</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
@@ -200,20 +200,23 @@ const EventsSection = () => {
             </div>
           </div>
           
-          <div className="lg:col-span-2 w-full">
+          <div className="lg:col-span-2 w-full overflow-hidden">
             {filteredEvents.length > 0 ? (
               <>
                 {isMobile ? (
                   <div className="w-full">
                     <Carousel className="w-full" opts={{ 
-                      loop: true,
-                      align: "center",
-                      containScroll: "trimSnaps"
+                      align: "start",
+                      containScroll: "trimSnaps",
+                      dragFree: false,
+                      loop: false
                     }}>
                       <CarouselContent>
                         {displayedEvents.map(event => (
-                          <CarouselItem key={event.id} className="p-1 box-border">
-                            <EventCard event={event} />
+                          <CarouselItem key={event.id} className="w-full max-w-full">
+                            <div className="px-1 box-border w-full">
+                              <EventCard event={event} />
+                            </div>
                           </CarouselItem>
                         ))}
                       </CarouselContent>
