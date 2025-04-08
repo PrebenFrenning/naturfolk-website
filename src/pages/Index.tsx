@@ -6,7 +6,6 @@ import AboutSection from '../components/AboutSection';
 import FeaturesSection from '../components/FeaturesSection';
 import EventsSection from '../components/EventsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
-import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import VideoPlayer from '../components/VideoPlayer';
 import ScrollToTop from '../components/ScrollToTop';
@@ -47,7 +46,6 @@ const Index = () => {
       <FeaturesSection />
       <EventsSection />
       <TestimonialsSection />
-      <ContactSection />
       <Footer />
       <ScrollToTop />
     </div>

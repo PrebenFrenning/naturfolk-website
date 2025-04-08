@@ -24,12 +24,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '#about' },
-    { name: 'Programs', path: '#programs' },
-    { name: 'Events', path: '#events' },
-    { name: 'Impact', path: '#impact' },
-    { name: 'Contact', path: '#contact' },
+    { name: 'Home', path: '/', isExternal: false },
+    { name: 'About', path: '/#about', isExternal: false },
+    { name: 'Programs', path: '/#programs', isExternal: false },
+    { name: 'Events', path: '/#events', isExternal: false },
+    { name: 'Impact', path: '/#impact', isExternal: false },
+    { name: 'Contact', path: '/contact', isExternal: false },
   ];
 
   return (
@@ -49,18 +49,33 @@ const Navbar = () => {
         {/* Desktop navigation */}
         <div className="hidden md:flex gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name}
-              href={link.path}
-              className={cn(
-                "font-medium transition-custom underline-custom",
-                isScrolled 
-                  ? "text-nature-brown hover:text-nature-green" 
-                  : "text-white hover:text-nature-green"
-              )}
-            >
-              {link.name}
-            </a>
+            link.isExternal ? (
+              <a 
+                key={link.name}
+                href={link.path}
+                className={cn(
+                  "font-medium transition-custom underline-custom",
+                  isScrolled 
+                    ? "text-nature-brown hover:text-nature-green" 
+                    : "text-white hover:text-nature-green"
+                )}
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link 
+                key={link.name}
+                to={link.path}
+                className={cn(
+                  "font-medium transition-custom underline-custom",
+                  isScrolled 
+                    ? "text-nature-brown hover:text-nature-green" 
+                    : "text-white hover:text-nature-green"
+                )}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           
           {/* Language Selector */}
@@ -100,14 +115,25 @@ const Navbar = () => {
           <div className="container-custom py-4">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.path}
-                  className="py-2 font-medium text-nature-brown hover:text-nature-green transition-custom"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
+                link.isExternal ? (
+                  <a
+                    key={link.name}
+                    href={link.path}
+                    className="py-2 font-medium text-nature-brown hover:text-nature-green transition-custom"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className="py-2 font-medium text-nature-brown hover:text-nature-green transition-custom"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
               ))}
               
               {/* Mobile Language Selector */}
