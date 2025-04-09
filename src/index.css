@@ -105,3 +105,9 @@
 #impact .meta-numbers{
   display:none!important;
 }
+.logo{
+  height: 84px;
+  padding: 0 !important;
+  margin-top: -24px;
+  margin-bottom: -24px;
+}
