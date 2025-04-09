@@ -55,7 +55,7 @@ const Hero = () => {
             onClick={toggleVideo}
             className="flex items-center gap-2 text-white bg-nature-green/80 hover:bg-nature-green px-4 py-2 rounded-md transition-all"
           >
-            {showVideo ? 'View Image' : 'Watch Video'} {showVideo ? null : <Play size={16} />}
+            {showVideo ? 'Se bilde' : 'Se Video'} {showVideo ? null : <Play size={16} />}
           </button>
         </div>
       </div>
