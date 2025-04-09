@@ -14,34 +14,34 @@ const FeaturesSection = () => {
   const isMobile = useIsMobile();
   const programs = [
     {
-      icon: <Leaf size={24} />,
-      title: "Ecological Restoration",
-      description: "Join us in restoring damaged ecosystems through native plant reintroduction, invasive species removal, and sustainable land management practices."
-    },
-    {
-      icon: <BookOpen size={24} />,
-      title: "Nature Education",
-      description: "Discover our workshops on ecological literacy, regenerative practices, and traditional ecological knowledge that foster a deeper connection with nature."
-    },
-    {
-      icon: <Users size={24} />,
-      title: "Community Building",
-      description: "Participate in our monthly gatherings, skill-sharing events, and collaborative projects that strengthen social resilience and ecological awareness."
-    },
-    {
-      icon: <Heart size={24} />,
-      title: "Wellbeing Practices",
-      description: "Experience the healing benefits of nature through our forest therapy walks, mindfulness sessions, and nature connection exercises for all ages."
-    },
-    {
       icon: <Map size={24} />,
-      title: "Local Bioregion Awareness",
-      description: "Learn about your local watershed, native species, and ecological systems through guided hikes, mapping exercises, and phenology studies."
+      title: "Wilderness Expeditions",
+      description: "Multi-day journey through remote wilderness landscapes. Small groups, authentic challenges, and transformative experiences in wild nature."
     },
     {
       icon: <CalendarDays size={24} />,
-      title: "Seasonal Celebrations",
-      description: "Honor the natural cycles through our solstice gatherings, harvest festivals, and seasonal rituals that reconnect us with earth's rhythms."
+      title: "Weekend Retreats",
+      description: "Short but deep immersions in natural settings. Perfect for busy individuals seeking regular connection with wild places close to home."
+    },
+    {
+      icon: <Users size={24} />,
+      title: "Urban Nature Connection",
+      description: "Programs designed to help city-dwellers find meaningful connection with nature in urban and suburban settings."
+    },
+    {
+      icon: <Leaf size={24} />,
+      title: "Nature Immersion",
+      description: "Guided experiences focused on deepening your relationship with the natural world through sensory awareness practices and mindful exploration."
+    },
+    {
+      icon: <BookOpen size={24} />,
+      title: "Wilderness Skills",
+      description: "Learn practical skills for living in harmony with the natural world, from fire-making and tracking to wild food identification."
+    },
+    {
+      icon: <Heart size={24} />,
+      title: "Custom Programs",
+      description: "Tailored experiences for organizations, families, and groups. We design custom programs to meet your specific goals and needs."
     }
   ];
 
@@ -67,7 +67,7 @@ const FeaturesSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Our Programs</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            At Naturfolk, we facilitate meaningful connections between people and the natural world through diverse programming designed to build ecological literacy, community resilience, and personal wellbeing.
+            We offer a variety of nature connection experiences designed to meet you where you are on your journey. Whether you're seeking adventure, skill-building, or quiet contemplation, our programs provide meaningful ways to deepen your relationship with the natural world.
           </p>
         </div>
 

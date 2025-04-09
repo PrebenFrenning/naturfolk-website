@@ -10,20 +10,14 @@ const Footer = () => {
           <div>
             <h3 className="font-serif text-2xl font-semibold mb-4">Naturfolk</h3>
             <p className="mb-6 opacity-80">
-              Connecting people with nature for a sustainable future through education, conservation, and community engagement.
+              Reconnect with wild nature. Transformative wilderness experiences that foster a deeper connection with the natural world, yourself, and others.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-white hover:text-nature-green transition-custom">
+              <a href="https://www.facebook.com/naturfolk" className="text-white hover:text-nature-green transition-custom">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white hover:text-nature-green transition-custom">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-nature-green transition-custom">
+              <a href="https://www.instagram.com/naturfolk/" className="text-white hover:text-nature-green transition-custom">
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-nature-green transition-custom">
-                <Youtube size={20} />
               </a>
             </div>
           </div>
@@ -31,22 +25,22 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">Programs</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="#" className="hover:text-nature-green transition-custom">Conservation</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Education</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Community</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Wellness</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Expeditions</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Wilderness Expeditions</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Weekend Retreats</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Urban Nature Connection</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Nature Immersion</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Wilderness Skills</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">About</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="#" className="hover:text-nature-green transition-custom">Our Story</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Our Vision</a></li>
               <li><a href="#" className="hover:text-nature-green transition-custom">Team</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Partners</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Locations</a></li>
               <li><a href="#" className="hover:text-nature-green transition-custom">Testimonials</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Careers</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Journal</a></li>
             </ul>
           </div>
           
@@ -55,8 +49,8 @@ const Footer = () => {
             <ul className="space-y-2 opacity-80">
               <li><a href="#" className="hover:text-nature-green transition-custom">Contact</a></li>
               <li><a href="#" className="hover:text-nature-green transition-custom">FAQ</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Donate</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Volunteer</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Gift Cards</a></li>
+              <li><a href="#" className="hover:text-nature-green transition-custom">Partnerships</a></li>
               <li><a href="#" className="hover:text-nature-green transition-custom">Newsletter</a></li>
             </ul>
           </div>
@@ -69,7 +63,6 @@ const Footer = () => {
           <div className="flex gap-6 text-sm opacity-70">
             <a href="#" className="hover:text-nature-green transition-custom">Privacy Policy</a>
             <a href="#" className="hover:text-nature-green transition-custom">Terms of Service</a>
-            <a href="#" className="hover:text-nature-green transition-custom">Sitemap</a>
           </div>
         </div>
       </div>

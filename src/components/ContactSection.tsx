@@ -74,7 +74,7 @@ const ContactSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Get In Touch</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            Have questions about our programs or want to get involved? Reach out to us using the form below or contact us directly.
+            Interested in our wilderness programs or have questions about Naturfolk? Reach out to us using the form below or contact us directly.
           </p>
         </div>
 
@@ -88,7 +88,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium mb-1">Email</h4>
-                  <p className="text-muted-foreground">info@naturfolk.org</p>
+                  <p className="text-muted-foreground">hello@naturfolk.org</p>
                 </div>
               </div>
               
@@ -98,7 +98,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium mb-1">Phone</h4>
-                  <p className="text-muted-foreground">(123) 456-7890</p>
+                  <p className="text-muted-foreground">Contact us via email for phone details</p>
                 </div>
               </div>
               
@@ -107,15 +107,15 @@ const ContactSection = () => {
                   <MapPin className="text-nature-green" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Location</h4>
-                  <p className="text-muted-foreground">123 Nature Way, Greenville, CA 95501</p>
+                  <h4 className="font-medium mb-1">Programs</h4>
+                  <p className="text-muted-foreground">Worldwide locations - Norway, Denmark, Portugal, USA, and more</p>
                 </div>
               </div>
             </div>
 
             <Card className="mt-12 p-6 border-nature-sage">
               <h3 className="text-2xl font-serif font-semibold mb-4">Join Our Newsletter</h3>
-              <p className="mb-4">Stay updated with our latest programs, events, and conservation efforts.</p>
+              <p className="mb-4">Stay updated with upcoming wilderness programs and nature connection resources.</p>
               <form onSubmit={handleSubscribe} className="flex">
                 <Input 
                   type="email" 
@@ -197,7 +197,7 @@ const ContactSection = () => {
                       <FormLabel>Subject</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="Message subject" 
+                          placeholder="What is your inquiry about?" 
                           {...field} 
                         />
                       </FormControl>
@@ -215,7 +215,7 @@ const ContactSection = () => {
                       <FormControl>
                         <Textarea 
                           rows={5}
-                          placeholder="Your message" 
+                          placeholder="Tell us about your interest in Naturfolk programs" 
                           {...field} 
                         />
                       </FormControl>

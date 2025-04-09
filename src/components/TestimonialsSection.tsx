@@ -14,21 +14,21 @@ const TestimonialsSection = () => {
   const isMobile = useIsMobile();
   const testimonials = [
     {
-      quote: "Naturfolk has completely transformed my relationship with the outdoors. The guided forest walks taught me to notice the small wonders I'd been missing all my life.",
-      author: "Sarah Johnson",
-      title: "Community Member",
+      quote: "The wilderness expedition with Naturfolk was truly life-changing. I developed a deeper connection with myself and gained a greater appreciation for wild places. The guides were exceptional.",
+      author: "Sara Johnson",
+      title: "Wilderness Expedition Participant",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     },
     {
-      quote: "The conservation workshops gave me practical skills to apply in my own garden. Now it's a thriving habitat for pollinators and birds!",
+      quote: "The weekend retreat provided exactly what I needed - time to disconnect from technology and reconnect with nature. I left feeling rejuvenated and with practical tools to maintain that connection.",
       author: "Michael Chen",
-      title: "Workshop Participant",
+      title: "Weekend Retreat Participant",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     },
     {
-      quote: "My children have developed a deep appreciation for nature through Naturfolk's youth programs. It's amazing to see them identify plants and understand ecosystems.",
+      quote: "After participating in the Urban Nature Connection program, I'm amazed at how much wild nature exists right in our city. I now notice and appreciate the natural world around me every day.",
       author: "Emma Rodriguez",
-      title: "Parent",
+      title: "Urban Nature Connection Participant",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     }
   ];
@@ -68,10 +68,10 @@ const TestimonialsSection = () => {
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16 text-white">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Our Impact</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Transformative Experiences</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg opacity-90 text-balance">
-            Hear from members of our community about how connecting with nature has transformed their lives.
+            Hear from past participants about how our wilderness programs have impacted their lives and relationships with the natural world.
           </p>
         </div>
 
@@ -107,16 +107,16 @@ const TestimonialsSection = () => {
           <div className="inline-block bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
             <div className="grid grid-cols-3 gap-8 md:gap-16 items-center text-white">
               <div className="text-center">
-                <p className="font-serif text-4xl font-semibold text-nature-green">5,000+</p>
+                <p className="font-serif text-4xl font-semibold text-nature-green">1,500+</p>
                 <p className="text-white/80">Program Participants</p>
               </div>
               <div className="text-center">
-                <p className="font-serif text-4xl font-semibold text-nature-green">12,000</p>
-                <p className="text-white/80">Trees Planted</p>
+                <p className="font-serif text-4xl font-semibold text-nature-green">25+</p>
+                <p className="text-white/80">Wilderness Locations</p>
               </div>
               <div className="text-center">
-                <p className="font-serif text-4xl font-semibold text-nature-green">20+</p>
-                <p className="text-white/80">Community Partners</p>
+                <p className="font-serif text-4xl font-semibold text-nature-green">8+</p>
+                <p className="text-white/80">Countries</p>
               </div>
             </div>
           </div>

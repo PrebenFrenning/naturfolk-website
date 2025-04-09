@@ -10,18 +10,18 @@ const AboutSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">About Naturfolk</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            Naturfolk is a community-driven organization dedicated to fostering deeper connections between people and the natural world. Through education, advocacy, and hands-on experiences, we inspire environmental stewardship and sustainable practices.
+            Naturfolk is a global movement inspiring people to reimagine their relationship with nature through authentic wilderness experiences and transformative adventures that foster a deeper connection with the natural world.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <h3 className="text-2xl md:text-3xl font-serif font-semibold mb-6">Our Mission</h3>
+            <h3 className="text-2xl md:text-3xl font-serif font-semibold mb-6">Our Vision</h3>
             <p className="mb-6">
-              We believe that a meaningful connection with nature is essential for personal wellbeing and environmental sustainability. Our mission is to inspire a new generation of nature stewards through immersive experiences, education, and community building.
+              We envision a world where humans live in deep connection with nature, themselves, and each other. Our programs are designed to facilitate meaningful experiences in wild places, empowering individuals to build genuine relationships with the natural world.
             </p>
             <p className="mb-8">
-              Founded in 2010, we've helped thousands of people rediscover their relationship with the natural world and take action to protect it for future generations.
+              Through our immersive nature connection programs, we're cultivating a global community of people who value and protect wild places, while developing the skills and awareness to live in harmony with nature.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -29,7 +29,7 @@ const AboutSection = () => {
                 <div className="w-16 h-16 bg-nature-sage rounded-full flex items-center justify-center mb-4">
                   <Leaf className="text-nature-green" size={24} />
                 </div>
-                <h4 className="font-semibold mb-2">Environmental Education</h4>
+                <h4 className="font-semibold mb-2">Nature Connection</h4>
               </div>
               
               <div className="flex flex-col items-center text-center">
@@ -43,7 +43,7 @@ const AboutSection = () => {
                 <div className="w-16 h-16 bg-nature-sage rounded-full flex items-center justify-center mb-4">
                   <Globe className="text-nature-green" size={24} />
                 </div>
-                <h4 className="font-semibold mb-2">Sustainable Practices</h4>
+                <h4 className="font-semibold mb-2">Wilderness Experiences</h4>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@ const AboutSection = () => {
                 className="w-full h-full object-cover rounded-lg shadow-lg"
               />
               <div className="absolute -bottom-8 -left-8 bg-nature-green p-6 rounded-lg shadow-lg hidden md:block">
-                <p className="text-white font-serif text-xl">"Connecting people with the rhythms of nature."</p>
+                <p className="text-white font-serif text-xl">"Connecting people with wild nature."</p>
               </div>
             </div>
           </div>

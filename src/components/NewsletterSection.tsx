@@ -13,9 +13,9 @@ const NewsletterSection = () => {
             </div>
             
             <div className="flex-grow text-center md:text-left">
-              <h3 className="text-2xl font-serif font-semibold mb-2">Stay Connected with Nature</h3>
+              <h3 className="text-2xl font-serif font-semibold mb-2">Join Our Community</h3>
               <p className="text-muted-foreground mb-0">
-                Join our newsletter for seasonal updates, event notifications, and nature connection tips.
+                Sign up for our newsletter to receive updates on upcoming wilderness programs, nature connection resources, and community events.
               </p>
             </div>
             
