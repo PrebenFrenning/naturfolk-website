@@ -25,10 +25,10 @@ const Index = () => {
       <section className="py-16 bg-nature-offwhite">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Experience Wild Nature</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Vår natur er hellig</h2>
             <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
             <p className="text-lg">
-              Immerse yourself in the beauty and transformative power of wilderness landscapes.
+            Vi er et trossamfunn for dem som lever av, i og for naturen.
             </p>
           </div>
           
