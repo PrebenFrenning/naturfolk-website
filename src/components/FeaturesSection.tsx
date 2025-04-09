@@ -26,7 +26,7 @@ const FeaturesSection = () => {
     {
       icon: <Users size={24} />,
       title: "Natursamfunn",
-      description: "Programs designed to help city-dwellers find meaningful connection with nature in urban and suburban settings."
+      description: "Mål for gruppen: Øke bevissthet omkring samfunnsbygging basert på Naturfolks kjerneverdier, inspirere til naturnært levesett og skape en visjon for natursamfunn for fremtiden. Vi ønsker og å trekke inn kunnskap og fakta i den grad det er mulig.  Tidsrommet vil være 2024-2025, men vi tar den tiden vi behøver."
     },
     {
       icon: <Leaf size={24} />,

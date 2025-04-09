@@ -35,8 +35,8 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             <VideoPlayer 
               videoSrc="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-pine-forest-48213-large.mp4"
-              title="Wilderness Immersion"
-              description="Our programs create space for meaningful connection with wild places and authentic relationships with yourself and others."
+              title="Bli en del av naturen"
+              description="Bli en del av naturen i og omkring deg. Menneske, natur og ånd er deler av ett større hele, hvor din plass og dine handlinger har betydning."
               posterSrc="https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
             />
           </div>

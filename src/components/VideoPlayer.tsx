@@ -57,7 +57,7 @@ const VideoPlayer = ({
           <button
             onClick={togglePlayback}
             className="absolute bottom-4 right-4 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all"
-            aria-label={isPlaying ? "Pause video" : "Play video"}
+            aria-label={isPlaying ? "Pause video" : "Spill av video"}
           >
             {isPlaying ? <Pause size={24} /> : <Play size={24} />}
           </button>
