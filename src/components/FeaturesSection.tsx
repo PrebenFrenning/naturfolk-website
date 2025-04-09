@@ -32,17 +32,17 @@ const FeaturesSection = () => {
       icon: <Leaf size={24} />,
       title: "Ritualer",
       description: "Guided experiences focused on deepening your relationship with the natural world through sensory awareness practices and mindful exploration."
-    },
-    {
-      icon: <BookOpen size={24} />,
-      title: "Wilderness Skills",
-      description: "Learn practical skills for living in harmony with the natural world, from fire-making and tracking to wild food identification."
-    },
-    {
-      icon: <Heart size={24} />,
-      title: "Custom Programs",
-      description: "Tailored experiences for organizations, families, and groups. We design custom programs to meet your specific goals and needs."
-    }
+    }//,
+    //{
+    //  icon: <BookOpen size={24} />,
+    //  title: "Wilderness Skills",
+     // description: "Learn practical skills for living in harmony with the natural world, from fire-making and tracking to wild food identification."
+    //},
+    //{
+    //  icon: <Heart size={24} />,
+    //  title: "Custom Programs",
+    //  description: "Tailored experiences for organizations, families, and groups. We design custom programs to meet your specific goals and needs."
+   // }
   ];
 
   const renderProgramCard = (program, index) => (
