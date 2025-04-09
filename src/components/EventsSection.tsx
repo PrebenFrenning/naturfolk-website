@@ -16,10 +16,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import EventDialog from './EventDialog';
 
 const EventsSection = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [showAllEvents, setShowAllEvents] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<typeof events[0] | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const isMobile = useIsMobile();
   
   const events = [
@@ -30,7 +33,23 @@ const EventsSection = () => {
       time: "10:00 - 12:00",
       location: "Nordmarka",
       description: "Experience the healing power of nature with our certified forest therapy guide.",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+      detailedDescription: "Bli med på en guidet tur gjennom Nordmarka hvor vi praktiserer skogsbading, en japansk tradisjon kjent som 'shinrin-yoku'. Dette er en mulighet til å koble av fra hverdagens stress og finne ro i naturen. Vår erfarne guide vil lede deg gjennom en rekke mindfulness-øvelser som hjelper deg å åpne sansene og oppleve skogen på en ny måte.",
+      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+      maxParticipants: 15,
+      registeredParticipants: [
+        { name: "Kari Nordmann" },
+        { name: "Ola Nordmann" },
+        { name: "Erik Hansen" },
+        { name: "Maria Johansen" },
+        { name: "Lars Olsen" }
+      ],
+      requirements: [
+        "Komfortable sko",
+        "Vannflaske",
+        "Værpassende klær",
+        "Sitteunderlag"
+      ],
+      organizer: "Anne Naturguide"
     },
     {
       id: 2,
@@ -39,7 +58,20 @@ const EventsSection = () => {
       time: "19:00 - 22:00",
       location: "Botanisk hage",
       description: "Join us for a community gathering to honor the longest day of the year.",
-      image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8"
+      detailedDescription: "Sommersolverv er en spesiell tid på året, og vi inviterer deg til å feire denne dagen med et fellesskap av naturelskere i den vakre Botanisk hage. Vi vil lære om gamle tradisjoner knyttet til sommersolverv, dele historier, og sammen reflektere over naturens sykluser. Arrangementet inkluderer en guidet vandring gjennom hagen, felles måltid, og en spesiell solnedgangsseremoni.",
+      image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8",
+      maxParticipants: 30,
+      registeredParticipants: [
+        { name: "Morten Berg" },
+        { name: "Silje Bakken" },
+        { name: "Thomas Lund" }
+      ],
+      requirements: [
+        "Noe å sitte på",
+        "Egen mat og drikke",
+        "Varme klær for kvelden"
+      ],
+      organizer: "Botanisk Hages Venner"
     },
     {
       id: 3,
@@ -48,7 +80,21 @@ const EventsSection = () => {
       time: "14:00 - 16:30",
       location: "Community Garden Center",
       description: "Learn about local plant species and their ecological importance.",
-      image: "https://images.unsplash.com/photo-1485067801970-70573e3f77d0"
+      detailedDescription: "Dette praktiske verkstedet fokuserer på stedegne planter og deres betydning for det lokale økosystemet. Du vil lære hvordan du kan identifisere, dyrke og bruke stedegne planter i din egen hage eller balkong, og hvorfor det er viktig for biologisk mangfold. Hver deltaker vil få med seg en stedegen plante hjem, samt ressurser for videre læring.",
+      image: "https://images.unsplash.com/photo-1485067801970-70573e3f77d0",
+      maxParticipants: 20,
+      registeredParticipants: [
+        { name: "Ida Nilsen" },
+        { name: "Johan Kristiansen" },
+        { name: "Marit Solheim" },
+        { name: "Petter Johansen" }
+      ],
+      requirements: [
+        "Hagehandsker hvis du har",
+        "Notatblokk",
+        "Kamera (valgfritt)"
+      ],
+      organizer: "Community Garden Center"
     },
     {
       id: 4,
@@ -57,7 +103,20 @@ const EventsSection = () => {
       time: "09:00 - 13:00",
       location: "Oslofjorden",
       description: "Help restore our local watershed through this community clean-up event.",
-      image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1"
+      detailedDescription: "Bli med oss for en dag med praktisk miljøvern! Vi samles for å rydde søppel langs Oslofjorden og lære om hvordan plastavfall påvirker våre vannveier og maritimt liv. Dette er en flott mulighet for å gjøre en konkret innsats for miljøet, samtidig som du blir kjent med andre miljøbevisste mennesker. Hansker, søppelsekker og enkle forfriskninger vil bli tilbudt.",
+      image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1",
+      maxParticipants: 50,
+      registeredParticipants: [
+        { name: "Kristin Johnsen" },
+        { name: "Vegard Larsen" }
+      ],
+      requirements: [
+        "Solide sko",
+        "Solkrem",
+        "Vannflaske",
+        "Hansker (vi har ekstra)"
+      ],
+      organizer: "Clean Ocean Initiative"
     },
     {
       id: 5,
@@ -107,6 +166,11 @@ const EventsSection = () => {
   const displayedEvents = showAllEvents ? filteredEvents : filteredEvents.slice(0, maxInitialEvents);
   const hasMoreEvents = filteredEvents.length > maxInitialEvents;
 
+  const handleEventClick = (event: typeof events[0]) => {
+    setSelectedEvent(event);
+    setDialogOpen(true);
+  };
+
   const EventCard = ({ event }: { event: typeof events[0] }) => (
     <div className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-custom group h-full flex flex-col w-full">
       <div className="h-48 overflow-hidden">
@@ -135,12 +199,12 @@ const EventsSection = () => {
           </div>
         </div>
         <div className="mt-4 pt-4 border-t border-gray-100">
-          <a 
-            href="#" 
+          <button 
+            onClick={() => handleEventClick(event)}
             className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1"
           >
             Les mer <ExternalLink size={14} />
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -282,6 +346,12 @@ const EventsSection = () => {
           </a>
         </div>
       </div>
+      
+      <EventDialog 
+        event={selectedEvent} 
+        open={dialogOpen} 
+        onOpenChange={setDialogOpen} 
+      />
     </section>
   );
 };
