@@ -25,10 +25,10 @@ const EventsSection = () => {
   const events = [
     {
       id: 1,
-      title: "Forest Therapy Walk",
+      title: "Skogsbading på Østlandet",
       date: new Date(2023, 6, 15),
       time: "10:00 - 12:00",
-      location: "Nordmarka Forest",
+      location: "Nordmarka",
       description: "Experience the healing power of nature with our certified forest therapy guide.",
       image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
     },
@@ -37,7 +37,7 @@ const EventsSection = () => {
       title: "Summer Solstice Celebration",
       date: new Date(2023, 5, 21),
       time: "19:00 - 22:00",
-      location: "Botanical Gardens",
+      location: "Botanisk hage",
       description: "Join us for a community gathering to honor the longest day of the year.",
       image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8"
     },
@@ -55,7 +55,7 @@ const EventsSection = () => {
       title: "Watershed Clean-up Day",
       date: new Date(2023, 7, 19),
       time: "09:00 - 13:00",
-      location: "Oslo Fjord",
+      location: "Oslofjorden",
       description: "Help restore our local watershed through this community clean-up event.",
       image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1"
     },
@@ -64,7 +64,7 @@ const EventsSection = () => {
       title: "Nature Photography Workshop",
       date: new Date(2023, 7, 25),
       time: "13:00 - 17:00",
-      location: "Frogner Park",
+      location: "Frognerparken",
       description: "Learn composition techniques for stunning nature photography.",
       image: "https://images.unsplash.com/photo-1500531279542-fc8490c8ea4d"
     },
@@ -82,7 +82,7 @@ const EventsSection = () => {
       title: "Bird Watching Expedition",
       date: new Date(2023, 8, 10),
       time: "07:00 - 10:00",
-      location: "Maridalen Valley",
+      location: "Maridalen",
       description: "Join our expert ornithologist to spot and identify local bird species.",
       image: "https://images.unsplash.com/photo-1522926193341-e9ffd686c60f"
     },
@@ -91,7 +91,7 @@ const EventsSection = () => {
       title: "Fall Equinox Nature Retreat",
       date: new Date(2023, 8, 22),
       time: "10:00 - 16:00",
-      location: "Østmarka Forest",
+      location: "Østmarka i Oslo",
       description: "A full-day retreat to connect with nature during the changing seasons.",
       image: "https://images.unsplash.com/photo-1475113548554-5a36f1f523d6"
     }
@@ -235,7 +235,7 @@ const EventsSection = () => {
                           {showAllEvents ? (
                             <>Vis færre <ChevronUp size={16} /></>
                           ) : (
-                            <>Vis flere events <ChevronDown size={16} /></>
+                            <>Vis flere eventer <ChevronDown size={16} /></>
                           )}
                         </button>
                       </div>
@@ -258,7 +258,7 @@ const EventsSection = () => {
                           {showAllEvents ? (
                             <>Vis færre <ChevronUp size={16} /></>
                           ) : (
-                            <>Vis flere events <ChevronDown size={16} /></>
+                            <>Vis flere eventer <ChevronDown size={16} /></>
                           )}
                         </button>
                       </div>
