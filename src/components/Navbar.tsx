@@ -44,7 +44,19 @@ const Navbar = () => {
     >
       <div className="container-custom flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <span className="font-serif text-2xl font-semibold text-nature-green">Naturfolk</span>
+          {isScrolled ? (
+            <img 
+              src="/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png" 
+              alt="Naturfolk" 
+              className="h-12 md:h-14"
+            />
+          ) : (
+            <img 
+              src="/lovable-uploads/5a0d04c1-33b5-4628-841d-d6c3346896b0.png" 
+              alt="Naturfolk" 
+              className="h-12 md:h-14"
+            />
+          )}
         </Link>
 
         {/* Desktop navigation */}
