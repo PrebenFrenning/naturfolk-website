@@ -13,9 +13,9 @@ const NewsletterSection = () => {
             </div>
             
             <div className="flex-grow text-center md:text-left">
-              <h3 className="text-2xl font-serif font-semibold mb-2">Join Our Community</h3>
+              <h3 className="text-2xl font-serif font-semibold mb-2">Bli med i vårt fellesskap</h3>
               <p className="text-muted-foreground mb-0">
-                Sign up for our newsletter to receive updates on upcoming wilderness programs, nature connection resources, and community events.
+                Meld deg på vårt nyhetsbrev for å motta oppdateringer om kommende villmarksprogrammer, ressurser for naturkontakt og fellesarrangementer.
               </p>
             </div>
             
@@ -23,7 +23,7 @@ const NewsletterSection = () => {
               <div className="flex">
                 <input 
                   type="email" 
-                  placeholder="Your email address" 
+                  placeholder="Din e-postadresse" 
                   className="flex-grow px-4 py-3 border border-gray-200 focus:border-nature-green focus:ring-1 focus:ring-nature-green outline-none rounded-l"
                 />
                 <button className="bg-nature-green text-white px-4 py-3 rounded-r hover:bg-nature-green/90 transition-custom">
