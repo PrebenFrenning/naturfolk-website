@@ -103,5 +103,5 @@
   }
 }
 #impact .meta-numbers{
-  display:none;
+  display:none!important;
 }
