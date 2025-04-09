@@ -4,9 +4,17 @@ import { Send, Mail } from 'lucide-react';
 
 const NewsletterSection = () => {
   return (
-    <section className="py-16 bg-nature-sage/30">
+    <section className="py-20 bg-nature-sage/30">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Hold deg oppdatert</h2>
+            <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+            <p className="text-lg max-w-2xl mx-auto">
+              Få de siste oppdateringene om våre arrangementer, temaer og fellesskapsaktiviteter direkte i din innboks.
+            </p>
+          </div>
+          
           <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-lg shadow-sm p-8">
             <div className="w-16 h-16 bg-nature-sage/50 rounded-full flex items-center justify-center flex-shrink-0 mx-auto md:mx-0">
               <Mail className="text-nature-green" size={28} />

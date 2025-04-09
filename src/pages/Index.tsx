@@ -18,9 +18,6 @@ const Index = () => {
       <Hero />
       <AboutSection />
       
-      {/* Newsletter Section - Positioned high on the page */}
-      <NewsletterSection />
-      
       {/* Featured Video Section */}
       <section className="py-16 bg-nature-offwhite">
         <div className="container-custom">
@@ -46,6 +43,10 @@ const Index = () => {
       <FeaturesSection />
       <EventsSection />
       <TestimonialsSection />
+      
+      {/* Moved NewsletterSection to bottom, right before the footer */}
+      <NewsletterSection />
+      
       <Footer />
       <ScrollToTop />
     </div>
