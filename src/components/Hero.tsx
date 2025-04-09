@@ -36,17 +36,17 @@ const Hero = () => {
       <div className="relative z-10 container-custom h-full flex flex-col justify-center">
         <div className="max-w-3xl text-white">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-tight mb-6 animate-fade-in">
-            Reconnect with Wild Nature
+          Vår natur er hellig
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl animate-fade-in-delay">
-            Naturfolk offers transformative wilderness experiences that foster deeper connection with the natural world, yourself, and others.
+          Vi er et trossamfunn for dem som lever av, i og for naturen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay mb-8" style={{ animationDelay: "0.4s" }}>
             <a href="#about" className="btn-primary flex items-center gap-2">
-              Discover Our Vision <ArrowRight size={18} />
+              Les vår trosberetning <ArrowRight size={18} />
             </a>
             <a href="#programs" className="btn-secondary">
-              Explore Programs
+              Meld deg inn
             </a>
           </div>
           
