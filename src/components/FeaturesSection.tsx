@@ -14,12 +14,12 @@ const FeaturesSection = () => {
   const isMobile = useIsMobile();
   const programs = [
     {
-      icon: <Map size={24} />,
+      icon: <Leaf size={24} />,
       title: "Dyrking og sanking",
       description: "Multi-day journey through remote wilderness landscapes. Small groups, authentic challenges, and transformative experiences in wild nature."
     },
     {
-      icon: <CalendarDays size={24} />,
+      icon: <Map size={24} />,
       title: "Hellige steder",
       description: "Short but deep immersions in natural settings. Perfect for busy individuals seeking regular connection with wild places close to home."
     },
@@ -29,7 +29,7 @@ const FeaturesSection = () => {
       description: "Mål for gruppen: Øke bevissthet omkring samfunnsbygging basert på Naturfolks kjerneverdier, inspirere til naturnært levesett og skape en visjon for natursamfunn for fremtiden. Vi ønsker og å trekke inn kunnskap og fakta i den grad det er mulig.  Tidsrommet vil være 2024-2025, men vi tar den tiden vi behøver."
     },
     {
-      icon: <Leaf size={24} />,
+      icon: <Star size={24} />,
       title: "Ritualer",
       description: "Guided experiences focused on deepening your relationship with the natural world through sensory awareness practices and mindful exploration."
     }//,
