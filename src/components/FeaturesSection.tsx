@@ -15,22 +15,22 @@ const FeaturesSection = () => {
   const programs = [
     {
       icon: <Map size={24} />,
-      title: "Wilderness Expeditions",
+      title: "Dyrking og sanking",
       description: "Multi-day journey through remote wilderness landscapes. Small groups, authentic challenges, and transformative experiences in wild nature."
     },
     {
       icon: <CalendarDays size={24} />,
-      title: "Weekend Retreats",
+      title: "Hellige steder",
       description: "Short but deep immersions in natural settings. Perfect for busy individuals seeking regular connection with wild places close to home."
     },
     {
       icon: <Users size={24} />,
-      title: "Urban Nature Connection",
+      title: "Natursamfunn",
       description: "Programs designed to help city-dwellers find meaningful connection with nature in urban and suburban settings."
     },
     {
       icon: <Leaf size={24} />,
-      title: "Nature Immersion",
+      title: "Ritualer",
       description: "Guided experiences focused on deepening your relationship with the natural world through sensory awareness practices and mindful exploration."
     },
     {
@@ -67,7 +67,7 @@ const FeaturesSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Our Programs</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            We offer a variety of nature connection experiences designed to meet you where you are on your journey. Whether you're seeking adventure, skill-building, or quiet contemplation, our programs provide meaningful ways to deepen your relationship with the natural world.
+            Vi tilbyr en hel del ulike undergrupper for våre medlemmer, hvor vi kan dykke dypere inn i flere ulike, spennende temaer. Temagruppene våre har regelmessige møter og events for medlemmene. Enten du er interessert i ritualer eller heller mer mot biologien, har vi noe for deg. 
           </p>
         </div>
 
@@ -101,7 +101,7 @@ const FeaturesSection = () => {
 
         <div className="mt-16 text-center">
           <a href="#contact" className="btn-primary inline-flex items-center gap-2">
-            Join Our Community
+            Bli med i vårt trossamfunn
           </a>
         </div>
       </div>
