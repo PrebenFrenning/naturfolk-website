@@ -24,12 +24,13 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/', isExternal: false },
-    { name: 'About', path: '/#about', isExternal: false },
-    { name: 'Programs', path: '/#programs', isExternal: false },
-    { name: 'Events', path: '/#events', isExternal: false },
-    { name: 'Impact', path: '/#impact', isExternal: false },
-    { name: 'Contact', path: '/contact', isExternal: false },
+    { name: 'Hjem', path: '/', isExternal: false },
+    { name: 'Om Oss', path: '/#about', isExternal: false },
+    { name: 'Trosgrunnlag', path: '/#programs', isExternal: false },
+    { name: 'Medlemskap', path: '/#medlemskap', isExternal: false },
+    { name: 'Kalender', path: '/#events', isExternal: false },
+    { name: 'Aktuelt', path: '/#impact', isExternal: false },
+    { name: 'Kontakt', path: '/contact', isExternal: false },
   ];
 
   return (
