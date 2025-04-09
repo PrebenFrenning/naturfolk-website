@@ -29,7 +29,7 @@ const FeaturesSection = () => {
       description: "Mål for gruppen: Øke bevissthet omkring samfunnsbygging basert på Naturfolks kjerneverdier, inspirere til naturnært levesett og skape en visjon for natursamfunn for fremtiden. Vi ønsker og å trekke inn kunnskap og fakta i den grad det er mulig.  Tidsrommet vil være 2024-2025, men vi tar den tiden vi behøver."
     },
     {
-      icon: <Star size={24} />,
+      icon: <Leaf size={24} />,
       title: "Ritualer",
       description: "Guided experiences focused on deepening your relationship with the natural world through sensory awareness practices and mindful exploration."
     }//,
