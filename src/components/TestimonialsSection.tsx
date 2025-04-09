@@ -15,19 +15,19 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       quote: "The wilderness expedition with Naturfolk was truly life-changing. I developed a deeper connection with myself and gained a greater appreciation for wild places. The guides were exceptional.",
-      author: "Sara Johnson",
+      author: "Aina Mumbi",
       title: "Wilderness Expedition Participant",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     },
     {
       quote: "The weekend retreat provided exactly what I needed - time to disconnect from technology and reconnect with nature. I left feeling rejuvenated and with practical tools to maintain that connection.",
-      author: "Michael Chen",
+      author: "André Fagerheim",
       title: "Weekend Retreat Participant",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     },
     {
       quote: "After participating in the Urban Nature Connection program, I'm amazed at how much wild nature exists right in our city. I now notice and appreciate the natural world around me every day.",
-      author: "Emma Rodriguez",
+      author: "Sturla Ellingvåg",
       title: "Urban Nature Connection Participant",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80"
     }
@@ -68,10 +68,10 @@ const TestimonialsSection = () => {
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16 text-white">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Transformative Experiences</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Våre medlemmer</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg opacity-90 text-balance">
-            Hear from past participants about how our wilderness programs have impacted their lives and relationships with the natural world.
+            Hør hva våre medlemmer har å si om sine erfaringer med Naturfolk, og hvordan det påvirker deres liv.
           </p>
         </div>
 
