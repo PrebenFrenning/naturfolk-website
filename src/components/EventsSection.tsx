@@ -139,7 +139,7 @@ const EventsSection = () => {
             href="#" 
             className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1"
           >
-            Learn more <ExternalLink size={14} />
+            Les mer <ExternalLink size={14} />
           </a>
         </div>
       </div>
@@ -162,14 +162,14 @@ const EventsSection = () => {
             <div className="bg-nature-offwhite p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-serif mb-4 flex items-center gap-2">
                 <CalendarDays size={20} className="text-nature-green" />
-                Event Calendar
+                Eventkalender
               </h3>
               <Popover>
                 <PopoverTrigger asChild>
                   <button className="w-full flex items-center justify-between bg-white border border-gray-200 p-3 rounded-md text-left">
                     <span className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 opacity-50" />
-                      {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                      {date ? format(date, 'PPP') : <span>Velg dato</span>}
                     </span>
                     <span className="text-sm text-muted-foreground">
                       {date && filteredEvents.length > 0 
@@ -194,7 +194,7 @@ const EventsSection = () => {
                   onClick={() => setDate(undefined)}
                   className="text-sm text-nature-green hover:text-nature-green/80 transition-custom"
                 >
-                  View all events
+                  Vis all eventer
                 </button>
               </div>
             </div>
@@ -233,9 +233,9 @@ const EventsSection = () => {
                           onClick={() => setShowAllEvents(!showAllEvents)}
                         >
                           {showAllEvents ? (
-                            <>Show less <ChevronUp size={16} /></>
+                            <>Vis færre <ChevronUp size={16} /></>
                           ) : (
-                            <>View more events <ChevronDown size={16} /></>
+                            <>Vis flere events <ChevronDown size={16} /></>
                           )}
                         </button>
                       </div>
@@ -256,9 +256,9 @@ const EventsSection = () => {
                           onClick={() => setShowAllEvents(!showAllEvents)}
                         >
                           {showAllEvents ? (
-                            <>Show less <ChevronUp size={16} /></>
+                            <>Vis færre <ChevronUp size={16} /></>
                           ) : (
-                            <>View more events <ChevronDown size={16} /></>
+                            <>Vis flere events <ChevronDown size={16} /></>
                           )}
                         </button>
                       </div>
@@ -269,8 +269,8 @@ const EventsSection = () => {
             ) : (
               <div className="bg-nature-offwhite/50 border border-gray-100 rounded-lg p-10 text-center">
                 <CalendarDays size={40} className="mx-auto mb-4 text-gray-300" />
-                <h3 className="text-xl font-serif mb-2">No events on this date</h3>
-                <p className="text-muted-foreground">Try selecting another date or view all upcoming events.</p>
+                <h3 className="text-xl font-serif mb-2">Ingen eventer på dene datoen</h3>
+                <p className="text-muted-foreground">Prøv å velge en annen dato eller se alle fremtidige eventer.</p>
               </div>
             )}
           </div>
@@ -278,7 +278,7 @@ const EventsSection = () => {
         
         <div className="mt-16 text-center">
           <a href="#contact" className="btn-primary inline-flex items-center gap-2">
-            Request Event Information
+            Be om informasjon
           </a>
         </div>
       </div>

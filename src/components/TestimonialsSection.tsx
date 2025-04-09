@@ -103,7 +103,7 @@ const TestimonialsSection = () => {
           </div>
         )}
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center meta-numbers">
           <div className="inline-block bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
             <div className="grid grid-cols-3 gap-8 md:gap-16 items-center text-white">
               <div className="text-center">
