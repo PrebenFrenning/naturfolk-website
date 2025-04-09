@@ -16,12 +16,12 @@ const FeaturesSection = () => {
     {
       icon: <Leaf size={24} />,
       title: "Dyrking og sanking",
-      description: "Multi-day journey through remote wilderness landscapes. Small groups, authentic challenges, and transformative experiences in wild nature."
+      description: "Temagruppen for dyrking og sanking deler kunnskap og erfaringer rundt alt man kan spise og gjøre nytte av ellers. "
     },
     {
       icon: <Map size={24} />,
       title: "Hellige steder",
-      description: "Short but deep immersions in natural settings. Perfect for busy individuals seeking regular connection with wild places close to home."
+      description: "Her jobber vi med å kartlegge og dokumentere hellige steder vi kjenner til, med mål om å gi de et hellig vern gjennom bruk og glede."
     },
     {
       icon: <Users size={24} />,
@@ -31,7 +31,7 @@ const FeaturesSection = () => {
     {
       icon: <Star size={24} />,
       title: "Ritualer",
-      description: "Guided experiences focused on deepening your relationship with the natural world through sensory awareness practices and mindful exploration."
+      description: "Her lærer vi om, og utvikler ulike ritualer for enhver anledning og begivenhet. "
     }//,
     //{
     //  icon: <BookOpen size={24} />,
