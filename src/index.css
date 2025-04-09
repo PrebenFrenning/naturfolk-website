@@ -102,3 +102,6 @@
     transform: scaleX(1);
   }
 }
+#impact .meta-numbers{
+  display:none;
+}
