@@ -11,7 +11,6 @@ const Trosgrunnlag = () => {
 
   const sections = [
     { id: 'erklaring', title: 'Erklaring' },
-    { id: 'naturfolkets-ed', title: 'Naturfolkets Ed' },
     { id: 'trosgrunnlag', title: '1. Trosgrunnlag' },
     { id: 'verdensbilde', title: '2. Verdensbilde og landskapets betydning' },
     { id: 'religioss-praksis', title: '3. Religiøs praksis - Åndereiser og kontakt' },
@@ -131,18 +130,6 @@ const Trosgrunnlag = () => {
             </div>
           </section>
 
-          {/* Naturfolkets Ed */}
-          <section id="naturfolkets-ed" className="mb-16">
-            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">Naturfolkets Ed</h2>
-            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
-              <p>
-                Trossamfunnet Naturfolk bekjenner seg til en urnordisk andelig vei der livskraften og åndskraften er kjernen i vår tro. Livskraften er den iboende, selvopprettholdende kraften i alt levende. Åndskraften er den universelle, gjennomstrømmende kraften som forbinder alt med alt. Disse kreftene er likeverdige og utfyller hverandre. Vår tro bygger på dualiteten mellom disse kreftene, uttrykt gjennom naturens sykluser av liv, død og gjenfødelse. Vi er forankret i et verdensbilde der mennesket er en del av en større kosmisk helhet, og vår religiøse praksis skjer i samspill med naturen, dens ånder og våre forfedre.
-              </p>
-              <p>
-                Vår åndelige arv har gjennom århundrer vært marginalisert og undertrykt, men lever videre gjennom oss. Den praktiseres nå i fellesskap, i en form som er tro mot kjernen, men tilpasset vår tid og våre omgivelser.
-              </p>
-            </div>
-          </section>
 
           {/* 1. Trosgrunnlag */}
           <section id="trosgrunnlag" className="mb-16">
