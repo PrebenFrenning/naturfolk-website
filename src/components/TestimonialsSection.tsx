@@ -125,7 +125,7 @@ const TestimonialsSection = () => {
         {/* Added "Bli medlem" button */}
         <div className="mt-12 text-center">
           <a href="#contact" className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4">
-            Bli medlem -->
+            Bli medlem &rarr;
           </a>
         </div>
       </div>
