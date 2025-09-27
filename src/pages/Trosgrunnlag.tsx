@@ -118,11 +118,11 @@ const Trosgrunnlag = () => {
       <div className="container-custom py-16">
         <div className="max-w-4xl mx-auto">
           
-          {/* Erklaring */}
+          {/* Erklæring */}
           <section id="erklaring" className="mb-16">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">Erklæring</h2>
-            <div className="prose prose-lg max-w-none">
-              <ol className="grid md:grid-cols-2 gap-4 text-nature-brown">
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <ol className="grid md:grid-cols-2 gap-4 list-decimal list-inside">
                 <li>Trosgrunnlag</li>
                 <li>Verdensbilde og landskapets betydning</li>
                 <li>Religiøs praksis - Åndereiser og kontakt</li>
@@ -193,7 +193,7 @@ const Trosgrunnlag = () => {
           <section id="religioss-praksis" className="mb-16">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">3. Religiøs praksis - Åndereiser og kontakt</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
-              <p>Åndereiser er sentrale for kontakt med våre forfedre. Praksisen kan omfatte:</p>
+              <p>Åndereiser er sentrale for kontakt med våre forfedre. Praksisen vever innskudd som tilhører, og kan omfatte:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Tromming, joik og seidsang.</li>
                 <li>Bruk av ritualobjekter som stav, tromme og kniv både som verktøy og beskytter.</li>
@@ -216,7 +216,7 @@ const Trosgrunnlag = () => {
             </div>
           </section>
 
-          {/* Continue with remaining sections... I'll add the rest */}
+          {/* 5. Seremonier og overgangsritualer */}
           <section id="seremonier" className="mb-16">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">5. Seremonier og overgangsritualer</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
@@ -235,17 +235,115 @@ const Trosgrunnlag = () => {
             </div>
           </section>
 
-          {/* Add placeholder sections for the remaining content */}
-          {sections.slice(5).map((section, index) => (
-            <section key={section.id} id={section.id} className="mb-16">
-              <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">{section.title}</h2>
-              <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
-                <p>
-                  [Innhold for denne seksjonen vil bli lagt til basert på det fullstendige dokumentet]
-                </p>
-              </div>
-            </section>
-          ))}
+          {/* 6. Vi hedrer våre forfedre */}
+          <section id="forfedre" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">6. Vi hedrer våre forfedre</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Våre forfedre lever videre gjennom oss og i landskapet. Vi hedrer dem gjennom ritualer, ofringer og ved å leve i tråd med deres visdom. Forfedrene kan kontaktes for veiledning og beskyttelse.
+              </p>
+            </div>
+          </section>
+
+          {/* 7. Hellig maskulin og feminin kraft */}
+          <section id="maskulin-feminin" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">7. Hellig maskulin og feminin kraft</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Vi anerkjenner både maskuline og feminine prinsipper som likeverdige og komplementære krefter i naturen og i oss selv. Balansen mellom disse kreftene er essensiell for harmoni.
+              </p>
+            </div>
+          </section>
+
+          {/* 8. Helingsritualer og renselse */}
+          <section id="helingsritualer" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">8. Helingsritualer og renselse</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Heling skjer på flere nivåer - fysisk, emosjonelt, mentalt og åndeligt. Vi bruker tradisjonelle metoder som urter, ritualer, energiarbeid og kontakt med åndelige hjelpere.
+              </p>
+            </div>
+          </section>
+
+          {/* 9. Hellige steder */}
+          <section id="hellige-steder" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">9. Hellige steder</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Visse steder i naturen bærer særlig kraftfulle energier og forbindelser til det hellige. Disse stedene respekteres og beskyttes som åndelige sentre for praksis og tilbedelse.
+              </p>
+            </div>
+          </section>
+
+          {/* 10. Beskyttelse mot destruktive krefter */}
+          <section id="beskyttelse" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">10. Beskyttelse mot destruktive krefter</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Vi anerkjenner eksistensen av både konstruktive og destruktive krefter. Gjennom ritualer, amuletter og åndelig praksis søker vi beskyttelse og balanse.
+              </p>
+            </div>
+          </section>
+
+          {/* 11. Etikk og livssyn */}
+          <section id="etikk" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">11. Etikk og livssyn</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Vår etikk bygger på respekt for alt levende, personlig ansvar og harmoni med naturen. Vi søker å leve i tråd med naturens prinsipper og våre forfedres visdom.
+              </p>
+            </div>
+          </section>
+
+          {/* 12. Myter og overlevering */}
+          <section id="myter" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">12. Myter og overlevering</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Våre myter og fortellinger bærer dype sannheter om livets mysterier og guider oss i forståelsen av vår plass i kosmos. De formidles gjennom muntlig tradisjon og symboler.
+              </p>
+            </div>
+          </section>
+
+          {/* 13. Naturfolks rett */}
+          <section id="naturfolks-rett" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">13. Naturfolks rett</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Som urfolk har vi rettigheter til vår åndelige arv, våre hellige steder og vår kulturs kontinuitet. Vi arbeider for anerkjennelse og beskyttelse av disse rettighetene.
+              </p>
+            </div>
+          </section>
+
+          {/* 14. Misjonering og rekruttering */}
+          <section id="misjonering" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">14. Misjonering og rekruttering</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Vi praktiserer ikke aggressiv misjonering. Vår tro deles med respekt og kun med de som viser oppriktig interesse. Tvang og press er fremmed for vår åndelige vei.
+              </p>
+            </div>
+          </section>
+
+          {/* 15. Barn og kunnskapsdeling */}
+          <section id="barn" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">15. Barn og kunnskapsdeling</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Barn lærer gjennom deltakelse og observasjon i et trygt miljø. Kunnskapsdeling skjer gradvis og tilpasset barnets modning og interesse, alltid med respekt for barnets egen åndelige utvikling.
+              </p>
+            </div>
+          </section>
+
+          {/* 16. Åndelig fellesskap og praksis */}
+          <section id="aandelig-fellesskap" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">16. Åndelig fellesskap og praksis</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <p>
+                Fellesskapet bygger på gjensidig respekt, støtte og deling av åndelig praksis. Vi samles i jevnlige intervaller for ritualer, læring og styrking av våre bånd til hverandre og naturen.
+              </p>
+            </div>
+          </section>
 
         </div>
       </div>
