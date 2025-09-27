@@ -29,7 +29,7 @@ const Navbar = () => {
     { name: 'Trosgrunnlag', path: '/trosgrunnlag', isExternal: false },
     { name: 'Medlemskap', path: '/medlemskap', isExternal: false },
     { name: 'Kalender', path: '/#events', isExternal: false },
-    { name: 'Aktuelt', path: '/#impact', isExternal: false },
+    { name: 'Aktuelt', path: '/aktuelt', isExternal: false },
     { name: 'Kontakt', path: '/contact', isExternal: false },
   ];
 
