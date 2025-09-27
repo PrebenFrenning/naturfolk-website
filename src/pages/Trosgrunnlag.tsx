@@ -65,7 +65,7 @@ const Trosgrunnlag = () => {
       <Navbar />
       
       {/* Header */}
-      <div className="bg-nature-green text-white py-24 mt-20">
+      <div className="bg-nature-green text-white py-16 mt-20">
         <div className="container-custom">
           <div className="flex items-center gap-4 mb-6">
             <Link to="/" className="flex items-center gap-2 text-white/80 hover:text-white transition-custom">
@@ -122,24 +122,12 @@ const Trosgrunnlag = () => {
           <section id="erklaring" className="mb-16">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">Erklæring</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
-              <ol className="grid md:grid-cols-2 gap-4 list-decimal list-inside">
-                <li>Trosgrunnlag</li>
-                <li>Verdensbilde og landskapets betydning</li>
-                <li>Religiøs praksis - Åndereiser og kontakt</li>
-                <li>Naturens hellighet</li>
-                <li>Seremonier og overgangsritualer</li>
-                <li>Vi hedrer våre forfedre</li>
-                <li>Hellig maskulin og feminin kraft</li>
-                <li>Helingsritualer og renselse</li>
-                <li>Hellige steder</li>
-                <li>Beskyttelse mot destruktive krefter</li>
-                <li>Etikk og livssyn</li>
-                <li>Myter og overlevering</li>
-                <li>Naturfolks rett</li>
-                <li>Misjonering og rekruttering</li>
-                <li>Barn og kunnskapsdeling</li>
-                <li>Åndelig fellesskap og praksis</li>
-              </ol>
+              <p>
+                Trossamfunnet Naturfolk bekjenner seg til en urnordisk åndelig vei der livskraften og åndskraften er kjernen i vår tro. Livskraften er den iboende, selvopprettholdende kraften i alt levende. Åndskraften er den universelle, gjennomstrømmende kraften som forbinder alt med alt. Disse kreftene er likeverdige og utfyller hverandre. Vår tro bygger på dualiteten mellom disse kreftene, uttrykt gjennom naturens sykluser av liv, død og gjenfødelse. Vi er forankret i et verdensbilde der mennesket er en del av en større kosmisk helhet, og vår religiøse praksis skjer i samspill med naturen, dens ånder og våre forfedre.
+              </p>
+              <p>
+                Vår åndelige arv har gjennom århundrer vært marginalisert og undertrykt, men lever videre gjennom oss. Den praktiseres nå i fellesskap, i en form som er tro mot kjernen, men tilpasset vår tid og våre omgivelser.
+              </p>
             </div>
           </section>
 
@@ -161,14 +149,14 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">1. Trosgrunnlag</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Vi tror at verden er lagdelt med flere nivåer av virkelighet. Vi tror at verden er besjelet, at naturen er hellig, og at mennesket er en del av et større kosmisk kretsløp.
+                Vi tror at verden er lagdelt – med flere nivåer av virkelighet. Vi tror at verden er besjelet, at naturen er hellig, og at mennesket er en del av et større kosmisk kretsløp.
               </p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Besjelet:</strong> Vesener, steder, planter og dyr har egenverdi og iboende livskraft.</li>
                 <li><strong>Hellig:</strong> Alt levende er innvevd i en større sammenheng, der universelle mønstre speiles i det enkelte.</li>
               </ul>
               <p>
-                Troen er rotfestet i direkte erfaring med Nordens landskap, årstider og åndelige nærvær. Vi praktiserer gammel tro og væremåte i en moderne kontekst, med felles ritualer som gjenkjennes på tvers av landskap, men der verktøy, symboler og uttrykk tilpasses lokale tradisjoner, natur og kultur.
+                Troen er rotfestet i direkte erfaring med Nordens landskap, årstider og åndelige nærvær. Vi praktiserer gammel tro og væremåte i en moderne kontekst, med felles ritualer som gjenkjennes på tvers av landskap – men der verktøy, symboler og uttrykk tilpasses lokale tradisjoner, natur og kultur.
               </p>
             </div>
           </section>
@@ -191,17 +179,18 @@ const Trosgrunnlag = () => {
 
           {/* 3. Religiøs praksis */}
           <section id="religioss-praksis" className="mb-16">
-            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">3. Religiøs praksis - Åndereiser og kontakt</h2>
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">3. Religiøs praksis – Åndereiser og kontakt</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
-              <p>Åndereiser er sentrale for kontakt med våre forfedre. Praksisen vever innskudd som tilhører, og kan omfatte:</p>
+              <p>Åndereiser er sentrale for kontakt med ånder, guder og forfedre. Praksisene veves inn i landskapet de tilhører, og kan omfatte:</p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Tromming, joik og seidsang.</li>
-                <li>Bruk av ritualobjekter som stav, tromme og kniv både som verktøy og beskytter.</li>
-                <li>Bruk av runer og hellige symboler som bærere av åndelig kraft og budskap.</li>
-                <li>Utesitting, stillhet og visjonssøk.</li>
+                <li>Tromming, joik og seidsang</li>
+                <li>Kontakt med planteånder og dyreånder</li>
+                <li>Bruk av ritualobjekter som stav, tromme og kniv – både som verktøy og beskytter</li>
+                <li>Bruk av runer og hellige symboler som bærere av åndelig kraft og budskap</li>
+                <li>Utesitting, stillhet og visjonssøk</li>
               </ul>
               <p>
-                Åndereiser veileder, varsler og styrker, og er verktøy for heling, transformasjon, visjon og beslutningstaking.
+                Åndereisen gir veiledning, varsler og styrke – og er et verktøy for heling, transformative overganger, visjon og beslutningstaking.
               </p>
             </div>
           </section>
@@ -211,7 +200,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">4. Naturens hellighet</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Naturen er også gudenes, forfedrenes og åndenes hjem. Våre forfedres ånder vandrer fortsatt i landskapet. Hellige steder inkluderer blant annet fjell, gamle trær, offersteiner, gravhauger, kilder, og samspill med naturåndene. Stedene har kraft fordi åndene bor der, fordi forfedres graver finnes der, eller fordi de er blitt styrket gjennom åndelig praksis over lang tid.
+                Naturen er også gudenes, forfedrenes og åndenes hjem. Våre forfedres ånder vandrer fortsatt i landskapet. Hellige steder inkluderer blant annet fjell, gamle trær, offersteiner, gravhauger, kilder, lunder, innsjøer og holmer. Vi utfører ofringer, seremonier og åndereiser på slike steder, i respekt og samspill med naturåndene. Stedene har kraft fordi åndene bor der, fordi forfedres graver finnes der, eller fordi de er blitt styrket gjennom åndelig praksis over lang tid.
               </p>
             </div>
           </section>
@@ -240,7 +229,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">6. Vi hedrer våre forfedre</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Våre forfedre lever videre gjennom oss og i landskapet. Vi hedrer dem gjennom ritualer, ofringer og ved å leve i tråd med deres visdom. Forfedrene kan kontaktes for veiledning og beskyttelse.
+                Forfedres ånder kan gi veiledning og beskyttelse, og er til stede i våre landskap. Forbindelse oppnås blant annet gjennom utesitting/haugsitting, åndereiser og ritualer i tråd med urnordiske tradisjoner – for rådføring, overføring av immateriell kunnskap og liv i balanse mellom fortid og nåtid.
               </p>
             </div>
           </section>
@@ -250,7 +239,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">7. Hellig maskulin og feminin kraft</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Vi anerkjenner både maskuline og feminine prinsipper som likeverdige og komplementære krefter i naturen og i oss selv. Balansen mellom disse kreftene er essensiell for harmoni.
+                Livskraften (feminin) og åndskraften (maskulin) er nødvendige, likeverdige og komplementære. Balansen mellom dem søker vi å opprettholde i vår praksis for helhet og harmoni.
               </p>
             </div>
           </section>
@@ -260,7 +249,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">8. Helingsritualer og renselse</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Heling skjer på flere nivåer - fysisk, emosjonelt, mentalt og åndeligt. Vi bruker tradisjonelle metoder som urter, ritualer, energiarbeid og kontakt med åndelige hjelpere.
+                Heling skjer blant annet ved hjelp av ild, urter, ville vekster, damp, røyk, symboler og kniv som verktøy og beskytter. Rituell damp og varme – som i sauna eller laugarhus – brukes for renselse, fødsel og visjon. I disse hellige rommene søker vi kontakt med åndene, og lar kropp og sjel helbredes.
               </p>
             </div>
           </section>
@@ -270,7 +259,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">9. Hellige steder</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Visse steder i naturen bærer særlig kraftfulle energier og forbindelser til det hellige. Disse stedene respekteres og beskyttes som åndelige sentre for praksis og tilbedelse.
+                Hellige steder er naturlige kraftsentre, noen med iboende kraft forsterket av samspillet mellom kosmos, sol, måne og himmelvelvingens bevegelser. Stedene er ikke løsrevet fra sine landskap – naturen selv former våre hellige rom.
               </p>
             </div>
           </section>
@@ -280,7 +269,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">10. Beskyttelse mot destruktive krefter</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Vi anerkjenner eksistensen av både konstruktive og destruktive krefter. Gjennom ritualer, amuletter og åndelig praksis søker vi beskyttelse og balanse.
+                Ikke alle åndskrefter er hjelpsomme. Ritualer for beskyttelse kan omfatte besvergelser, symboler, ild og allianser med hjelpende ånder. Vi lærer våre medlemmer å skille mellom veiledende og villedende krefter, beskytte seg og sine – og å bruke sin egen kraft med visdom og respekt.
               </p>
             </div>
           </section>
@@ -290,7 +279,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">11. Etikk og livssyn</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Vår etikk bygger på respekt for alt levende, personlig ansvar og harmoni med naturen. Vi søker å leve i tråd med naturens prinsipper og våre forfedres visdom.
+                Vår etikk bygger på gjensidighet, respekt for naturen, forvaltning av åndelig og kulturell arv, ansvar for kommende generasjoner og vern av hellige steder. Handlingene våre bør bygge fred og harmoni mellom dimensjoner, mennesker og ånder. Samtykke og valgfrihet står sentralt, sammen med personlig ansvar for eget liv, fellesskapet og relasjonene vi inngår i.
               </p>
             </div>
           </section>
@@ -300,7 +289,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">12. Myter og overlevering</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Våre myter og fortellinger bærer dype sannheter om livets mysterier og guider oss i forståelsen av vår plass i kosmos. De formidles gjennom muntlig tradisjon og symboler.
+                Mytene er ikke historisk avgrenset, men levende og relevante. De overleverer åndelige erfaringer, etiske rettesnorer og gir form til vår forståelse av hvordan ånds- og livskraften utspiller seg i menneskenes verden. Myter og eventyr er også verktøy for å gjøre vår tro levende og inkluderende for barn og kommende generasjoner.
               </p>
             </div>
           </section>
@@ -309,9 +298,14 @@ const Trosgrunnlag = () => {
           <section id="naturfolks-rett" className="mb-16">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">13. Naturfolks rett</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
-              <p>
-                Som urfolk har vi rettigheter til vår åndelige arv, våre hellige steder og vår kulturs kontinuitet. Vi arbeider for anerkjennelse og beskyttelse av disse rettighetene.
-              </p>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>Retten til å samles og utøve ritualer og seremonier i naturen</li>
+                <li>Tilgang til hellige steder og gravplasser</li>
+                <li>Bruk av våre åndelige verktøy og symboler</li>
+                <li>Fri formidling av vår tro</li>
+                <li>Retten til å leve i tråd med vår åndelige overbevisning og naturtilhørighet</li>
+                <li>Velge fødsels- og dødsritualer i samsvar med naturfolks tradisjoner</li>
+              </ul>
             </div>
           </section>
 
@@ -320,7 +314,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">14. Misjonering og rekruttering</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Vi praktiserer ikke aggressiv misjonering. Vår tro deles med respekt og kun med de som viser oppriktig interesse. Tvang og press er fremmed for vår åndelige vei.
+                Vi deler troen vår gjennom jevnlige bålsamlinger, naturvandringer og åpne ritualer, også for ikke-medlemmer. Vi tilgjengeliggjør ritualer, myter og tradisjonskunnskap digitalt for å styrke fellesskapet. Vi er et aktivt misjonerende trossamfunn med tilstedeværelse på festivaler og arrangementer, lokale rekrutteringssamlinger, nasjonale digitale møter, personlig rekruttering, kommunikasjon i egne og lånte kanaler – og samarbeid med relevante organisasjoner.
               </p>
             </div>
           </section>
@@ -330,7 +324,7 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">15. Barn og kunnskapsdeling</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Barn lærer gjennom deltakelse og observasjon i et trygt miljø. Kunnskapsdeling skjer gradvis og tilpasset barnets modning og interesse, alltid med respekt for barnets egen åndelige utvikling.
+                Barn og ungdom inkluderes i alle aktiviteter sammen med sine foresatte. Læring skjer i takt med alder og modning, med vekt på lek, naturferdigheter og nærvær i hel og hellig natur. Gjennom myter og fortellinger får de ta del i naturfolks etiske og åndelige grunnlag, og gjennom seremonier får de selv erfare natur- og åndskrefter slik de utspiller seg i Nordens naturlandskap. Familien er hellig, og kunnskapsdeling på tvers av generasjoner er grunnleggende.
               </p>
             </div>
           </section>
@@ -340,8 +334,27 @@ const Trosgrunnlag = () => {
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">16. Åndelig fellesskap og praksis</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
-                Fellesskapet bygger på gjensidig respekt, støtte og deling av åndelig praksis. Vi samles i jevnlige intervaller for ritualer, læring og styrking av våre bånd til hverandre og naturen.
+                Likeverd og fellesskap er viktige verdier. Sirkelen er både symbol og verktøy for å sikre at alles stemmer blir hørt. Praksisen vår henter næring fra førkristen, urnordisk åndelighet – med rik variasjon, men felles kjerne: respekt for naturen og kontakt med åndskrefter gjennom direkte erfaring. Vi forener disse uttrykkene i ett åndelig fellesskap som praktiserer et enhetlig sett av ritualer tilpasset de unike naturlandskapene vi lever i.
               </p>
+            </div>
+          </section>
+
+          {/* Naturfolkets Ed */}
+          <section id="naturfolkets-ed-full" className="mb-16">
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">Naturfolkets Ed</h2>
+            <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
+              <div className="text-center italic text-lg">
+                <p>Med føttene på jorda</p>
+                <p>med hodet i himmelen</p>
+                <p>med hånda på hjertet</p>
+                <p className="font-semibold">Jeg lover!</p>
+                <br />
+                <p>Å holde vannet friskt og rennende</p>
+                <p>å holde ilden varm og brennende</p>
+                <p>å holde lufta klar og svevende</p>
+                <p>å holde jorda rik og levende</p>
+                <p className="font-semibold">Jeg lover!</p>
+              </div>
             </div>
           </section>
 
