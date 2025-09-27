@@ -346,11 +346,6 @@ const Trosgrunnlag = () => {
 
         </div>
       </div>
-       <style>
-      .py-16{
-        padding-top:7rem;
-        }
-      </style>
 
       <Footer />
      
