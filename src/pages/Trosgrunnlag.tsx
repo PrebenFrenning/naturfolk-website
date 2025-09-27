@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 const Trosgrunnlag = () => {
   const [activeSection, setActiveSection] = useState('');
   const [showToc, setShowToc] = useState(false);
-
   const sections = [
     { id: 'erklaring', title: 'Erklaring' },
     { id: 'trosgrunnlag', title: '1. Trosgrunnlag' },
@@ -64,7 +63,7 @@ const Trosgrunnlag = () => {
       <Navbar />
       
       {/* Header */}
-      <div className="bg-nature-green text-white py-16 mt-20">
+      <div className="bg-nature-green text-white py-16">
         <div className="container-custom">
           <div className="flex items-center gap-4 mb-6">
             <Link to="/" className="flex items-center gap-2 text-white/80 hover:text-white transition-custom">
