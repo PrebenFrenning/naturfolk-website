@@ -14,7 +14,7 @@ const Aktuelt = () => {
         <title>Aktuelt - Naturfolk | Nyheter og arrangementer</title>
         <meta name="description" content="De nyeste nyhetene og arrangementene fra Trossamfunnet Naturfolk. Oppdag kommende seremonier, utesittinger og fellesskapsaktiviteter." />
         <meta name="keywords" content="Naturfolk, aktuelt, nyheter, arrangementer, seremonier, utesitting, trossamfunn" />
-        <link rel="canonical" href={`${window.location.origin}/aktuelt`} />
+        <link rel="canonical" href={typeof window !== 'undefined' ? `${window.location.origin}/aktuelt` : '/aktuelt'} />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-nature-light to-white">
