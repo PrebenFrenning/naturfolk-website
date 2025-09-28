@@ -45,6 +45,17 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Naturfolk custom colors */
+    --nature-green: 150 24% 40%;
+    --nature-green-light: 85 23% 57%;
+    --nature-beige: 42 31% 89%;
+    --nature-brown: 29 23% 31%;
+    --nature-sage: 68 15% 74%;
+    --nature-offwhite: 40 33% 96%;
+    --nature-primary: 150 24% 40%;
+    --nature-secondary: 85 23% 57%;
+    --nature-light: 42 31% 89%;
   }
 
   * {

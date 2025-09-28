@@ -65,14 +65,15 @@ export default {
 				},
 				// Naturfolk custom colors
 				nature: {
-					green: {
-						DEFAULT: '#4D7C5F',
-						light: '#85A676',
-					},
-					beige: '#E6DFD5',
-					brown: '#5C4B3E',
-					sage: '#C5CAAF',
-					offwhite: '#F9F7F3',
+					green: 'hsl(var(--nature-green))',
+					'green-light': 'hsl(var(--nature-green-light))',
+					beige: 'hsl(var(--nature-beige))',
+					brown: 'hsl(var(--nature-brown))',
+					sage: 'hsl(var(--nature-sage))',
+					offwhite: 'hsl(var(--nature-offwhite))',
+					primary: 'hsl(var(--nature-primary))',
+					secondary: 'hsl(var(--nature-secondary))',
+					light: 'hsl(var(--nature-light))',
 				}
 			},
 			borderRadius: {

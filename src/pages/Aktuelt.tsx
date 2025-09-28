@@ -17,7 +17,7 @@ const Aktuelt = () => {
         <link rel="canonical" href={typeof window !== 'undefined' ? `${window.location.origin}/aktuelt` : '/aktuelt'} />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-b from-nature-light to-white">
+      <div className="min-h-screen bg-gradient-to-b from-nature-light to-background">
         <Navbar />
         
         <main className="pt-20">
@@ -58,11 +58,11 @@ const Aktuelt = () => {
                     <CardTitle className="text-nature-brown">Alveblot og Utesitting</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      Trossamfunnet Naturfolk inviterer deg til felles utesitting fredag den 1. november, 
-                      kjent som Allehelgensdag og Samhain, med røtter i tradisjonen om alveblot. 
-                      Bli med oss i naturen for å ære åndelige krefter og forfedres tradisjoner.
-                    </p>
+                     <p className="text-muted-foreground leading-relaxed mb-4">
+                       Trossamfunnet Naturfolk inviterer deg til felles utesitting fredag den 1. november, 
+                       kjent som Allehelgensdag og Samhain, med røtter i tradisjonen om alveblot. 
+                       Bli med oss i naturen for å ære åndelige krefter og forfedres tradisjoner.
+                     </p>
                   </CardContent>
                 </Card>
 
@@ -83,10 +83,10 @@ const Aktuelt = () => {
                     <CardTitle className="text-nature-brown">Kommende Seremoni – Vårjevndøgn 2025</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      Bli med på vår årlige seremoni i skogen for å feire vårens ankomst. 
-                      Mer informasjon kommer snart!
-                    </p>
+                     <p className="text-muted-foreground leading-relaxed mb-4">
+                       Bli med på vår årlige seremoni i skogen for å feire vårens ankomst. 
+                       Mer informasjon kommer snart!
+                     </p>
                   </CardContent>
                 </Card>
               </div>
@@ -118,10 +118,10 @@ const Aktuelt = () => {
                     <CardTitle className="text-nature-brown">Naturfolk Vekst i 2025</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      Vi nærmer oss 400 medlemmer og fortsetter å bygge et sterkt fellesskap for å 
-                      beskytte naturens hellighet. Les mer om vår reise og planer for fremtiden.
-                    </p>
+                     <p className="text-muted-foreground leading-relaxed mb-4">
+                       Vi nærmer oss 400 medlemmer og fortsetter å bygge et sterkt fellesskap for å 
+                       beskytte naturens hellighet. Les mer om vår reise og planer for fremtiden.
+                     </p>
                   </CardContent>
                 </Card>
 
@@ -142,9 +142,9 @@ const Aktuelt = () => {
                     <CardTitle className="text-nature-brown">Ny Medlemsdag i Oslo</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      Åpent hus 15. mars i Oslo. Kom og møt oss for å lære mer om Naturfolk!
-                    </p>
+                     <p className="text-muted-foreground leading-relaxed mb-4">
+                       Åpent hus 15. mars i Oslo. Kom og møt oss for å lære mer om Naturfolk!
+                     </p>
                   </CardContent>
                 </Card>
               </div>
