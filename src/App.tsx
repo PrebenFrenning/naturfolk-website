@@ -15,9 +15,12 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Create a new context instance for react-helmet-async
+const helmetContext = {};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
