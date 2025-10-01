@@ -178,6 +178,7 @@ export default function Posts() {
         open={dialogOpen}
         onClose={handleDialogClose}
         post={editingPost}
+        user={user}
       />
     </>
   );

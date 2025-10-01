@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
@@ -32,6 +33,7 @@ export default function Events() {
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+  const { user } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -177,6 +179,7 @@ export default function Events() {
         open={dialogOpen}
         onClose={handleDialogClose}
         event={editingEvent}
+        user={user}
       />
     </>
   );

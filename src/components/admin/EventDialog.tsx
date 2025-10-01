@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
+import { User } from '@supabase/supabase-js';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -33,9 +33,10 @@ interface EventDialogProps {
   open: boolean;
   onClose: (refresh: boolean) => void;
   event: any | null;
+  user: User | null;
 }
 
-export function EventDialog({ open, onClose, event }: EventDialogProps) {
+export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState<Date>();
@@ -43,7 +44,6 @@ export function EventDialog({ open, onClose, event }: EventDialogProps) {
   const [location, setLocation] = useState('');
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
   const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {

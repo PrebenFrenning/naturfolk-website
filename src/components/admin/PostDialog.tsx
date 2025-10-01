@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
+import { User } from '@supabase/supabase-js';
 import {
   Dialog,
   DialogContent,
@@ -24,16 +24,16 @@ interface PostDialogProps {
   open: boolean;
   onClose: (refresh: boolean) => void;
   post: any | null;
+  user: User | null;
 }
 
-export function PostDialog({ open, onClose, post }: PostDialogProps) {
+export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
   const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
   const { toast } = useToast();
 
   useEffect(() => {
