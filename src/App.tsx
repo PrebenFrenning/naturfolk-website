@@ -24,7 +24,7 @@ import Categories from "./pages/admin/Categories";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Events from "./pages/Events";
-import Kalender from "./pages/Kalender";
+import Kalender from "./pages/Kalender.tsx";
 
 const queryClient = new QueryClient();
 
