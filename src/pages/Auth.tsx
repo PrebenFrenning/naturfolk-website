@@ -14,14 +14,19 @@ export default function Auth() {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, signUp, signOut, user, isAdmin, isEditor } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already logged in
-  if (user) {
+  // Only redirect if user is logged in AND has proper access
+  if (user && (isAdmin || isEditor)) {
     navigate('/admin');
     return null;
   }
+
+  const handleSignOut = async () => {
+    await signOut();
+    window.location.reload();
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,6 +60,16 @@ export default function Auth() {
             <CardDescription>
               Sign in to manage your content
             </CardDescription>
+            {user && (
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleSignOut}
+                className="mt-4"
+              >
+                Clear Session & Start Fresh
+              </Button>
+            )}
           </CardHeader>
           <CardContent>
             <Tabs value={isLogin ? 'login' : 'signup'} onValueChange={(v) => setIsLogin(v === 'login')}>
