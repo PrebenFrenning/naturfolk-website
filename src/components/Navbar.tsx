@@ -28,7 +28,7 @@ const Navbar = () => {
     { name: 'Om Oss', path: '/about', isExternal: false },
     { name: 'Trosgrunnlag', path: '/trosgrunnlag', isExternal: false },
     { name: 'Medlemskap', path: '/medlemskap', isExternal: false },
-    { name: 'Kalender', path: '/#events', isExternal: false },
+    { name: 'Kalender', path: '/kalender', isExternal: false },
     { name: 'Aktuelt', path: '/aktuelt', isExternal: false },
     { name: 'Kontakt', path: '/contact', isExternal: false },
   ];

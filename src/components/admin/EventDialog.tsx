@@ -30,10 +30,28 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+interface Event {
+  id?: string;
+  title: string;
+  description: string;
+  start_date: string;
+  end_date?: string;
+  location?: string;
+  image_url?: string;
+  max_participants?: number;
+  price?: string;
+  ticket_link?: string;
+  facebook_link?: string;
+  organized_by?: string;
+  what_to_bring?: string;
+  status: 'draft' | 'published' | 'scheduled';
+  author_id?: string;
+}
+
 interface EventDialogProps {
   open: boolean;
   onClose: (refresh: boolean) => void;
-  event: any | null;
+  event: Event | null;
   user: User | null;
 }
 
@@ -44,7 +62,16 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
   const [endDate, setEndDate] = useState<Date>();
   const [location, setLocation] = useState('');
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState('');
+  const [maxParticipants, setMaxParticipants] = useState('');
+  const [price, setPrice] = useState('');
+  const [ticketLink, setTicketLink] = useState('');
+  const [facebookLink, setFacebookLink] = useState('');
+  const [organizedBy, setOrganizedBy] = useState('Naturfolk');
+  const [whatToBring, setWhatToBring] = useState('');
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -55,6 +82,13 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       setEndDate(event.end_date ? new Date(event.end_date) : undefined);
       setLocation(event.location || '');
       setStatus(event.status || 'draft');
+      setImageUrl(event.image_url || '');
+      setMaxParticipants(event.max_participants?.toString() || '');
+      setPrice(event.price || '');
+      setTicketLink(event.ticket_link || '');
+      setFacebookLink(event.facebook_link || '');
+      setOrganizedBy(event.organized_by || 'Naturfolk');
+      setWhatToBring(event.what_to_bring || '');
     } else {
       resetForm();
     }
@@ -67,6 +101,44 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
     setEndDate(undefined);
     setLocation('');
     setStatus('draft');
+    setImageFile(null);
+    setImageUrl('');
+    setMaxParticipants('');
+    setPrice('');
+    setTicketLink('');
+    setFacebookLink('');
+    setOrganizedBy('Naturfolk');
+    setWhatToBring('');
+  };
+
+  const handleImageUpload = async (file: File) => {
+    setUploading(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError, data } = await supabase.storage
+        .from('event-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('event-images')
+        .getPublicUrl(filePath);
+
+      setImageUrl(publicUrl);
+      toast({ title: 'Image uploaded successfully' });
+    } catch (error: any) {
+      toast({
+        title: 'Error uploading image',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -90,6 +162,13 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       end_date: endDate?.toISOString() || null,
       location,
       status,
+      image_url: imageUrl || null,
+      max_participants: maxParticipants ? parseInt(maxParticipants) : null,
+      price: price || null,
+      ticket_link: ticketLink || null,
+      facebook_link: facebookLink || null,
+      organized_by: organizedBy,
+      what_to_bring: whatToBring || null,
       author_id: user?.id,
     };
 
@@ -130,8 +209,36 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="image">Event Image</Label>
+            <div className="space-y-2">
+              <Input
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    setImageFile(file);
+                    handleImageUpload(file);
+                  }
+                }}
+                disabled={uploading}
+              />
+              {uploading && <p className="text-sm text-muted-foreground">Uploading...</p>}
+              {imageUrl && (
+                <img src={imageUrl} alt="Preview" className="w-full h-48 object-cover rounded-md" />
+              )}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">About the Event</Label>
             <RichTextEditor content={description} onChange={setDescription} />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="what_to_bring">What to Bring</Label>
+            <RichTextEditor content={whatToBring} onChange={setWhatToBring} />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -190,13 +297,70 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="location">Location</Label>
-            <Input
-              id="location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="location">Location</Label>
+              <Input
+                id="location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="organized_by">Arranged By</Label>
+              <Input
+                id="organized_by"
+                value={organizedBy}
+                onChange={(e) => setOrganizedBy(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="max_participants">Max Participants</Label>
+              <Input
+                id="max_participants"
+                type="number"
+                value={maxParticipants}
+                onChange={(e) => setMaxParticipants(e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="price">Price</Label>
+              <Input
+                id="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                placeholder="e.g., Free, 100 kr, or 50-100 kr"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="ticket_link">Ticket Link (Optional)</Label>
+              <Input
+                id="ticket_link"
+                type="url"
+                value={ticketLink}
+                onChange={(e) => setTicketLink(e.target.value)}
+                placeholder="https://..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="facebook_link">Facebook Event (Optional)</Label>
+              <Input
+                id="facebook_link"
+                type="url"
+                value={facebookLink}
+                onChange={(e) => setFacebookLink(e.target.value)}
+                placeholder="https://facebook.com/..."
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
