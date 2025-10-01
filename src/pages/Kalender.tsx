@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet-async';
 import { Calendar, MapPin, Users, DollarSign, Facebook, Ticket } from 'lucide-react';
 import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface Event {
   id: string;
@@ -132,7 +133,7 @@ export default function Kalender() {
                                 <h3 className="font-semibold mb-2">Om arrangementet</h3>
                                 <div 
                                   className="prose prose-sm max-w-none"
-                                  dangerouslySetInnerHTML={{ __html: event.description }}
+                                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
                                 />
                               </div>
                             )}
@@ -142,7 +143,7 @@ export default function Kalender() {
                                 <h3 className="font-semibold mb-2">Det bør du ha med</h3>
                                 <div 
                                   className="prose prose-sm max-w-none"
-                                  dangerouslySetInnerHTML={{ __html: event.what_to_bring }}
+                                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.what_to_bring) }}
                                 />
                               </div>
                             )}

@@ -5,6 +5,8 @@ import { User } from '@supabase/supabase-js';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { eventSchema } from '@/lib/validation';
+import { sanitizeUrl } from '@/lib/sanitize';
 import {
   Dialog,
   DialogContent,
@@ -153,22 +155,45 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       return;
     }
 
+    // Validate input
+    const validation = eventSchema.safeParse({
+      title,
+      description,
+      location,
+      organizedBy,
+      price,
+      ticketLink: ticketLink || undefined,
+      facebookLink: facebookLink || undefined,
+      whatToBring,
+      maxParticipants: maxParticipants ? parseInt(maxParticipants) : undefined,
+    });
+
+    if (!validation.success) {
+      const errors = validation.error.errors;
+      toast({
+        title: 'Validation Error',
+        description: errors[0]?.message || 'Please check your input',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setLoading(true);
 
     const eventData = {
-      title,
-      description,
+      title: validation.data.title,
+      description: validation.data.description,
       start_date: startDate.toISOString(),
       end_date: endDate?.toISOString() || null,
-      location,
+      location: validation.data.location,
       status,
       image_url: imageUrl || null,
-      max_participants: maxParticipants ? parseInt(maxParticipants) : null,
-      price: price || null,
-      ticket_link: ticketLink || null,
-      facebook_link: facebookLink || null,
-      organized_by: organizedBy,
-      what_to_bring: whatToBring || null,
+      max_participants: validation.data.maxParticipants || null,
+      price: validation.data.price || null,
+      ticket_link: validation.data.ticketLink ? sanitizeUrl(validation.data.ticketLink) : null,
+      facebook_link: validation.data.facebookLink ? sanitizeUrl(validation.data.facebookLink) : null,
+      organized_by: validation.data.organizedBy,
+      what_to_bring: validation.data.whatToBring || null,
       author_id: user?.id,
     };
 

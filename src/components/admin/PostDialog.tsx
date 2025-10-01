@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
+import { postSchema } from '@/lib/validation';
 import {
   Dialog,
   DialogContent,
@@ -73,13 +74,32 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
 
-    const postData = {
+    // Validate input
+    const validation = postSchema.safeParse({
       title,
       slug,
       excerpt,
       content,
+    });
+
+    if (!validation.success) {
+      const errors = validation.error.errors;
+      toast({
+        title: 'Validation Error',
+        description: errors[0]?.message || 'Please check your input',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    const postData = {
+      title: validation.data.title,
+      slug: validation.data.slug,
+      excerpt: validation.data.excerpt,
+      content: validation.data.content,
       status,
       author_id: user?.id,
       publish_date: status === 'published' ? new Date().toISOString() : null,

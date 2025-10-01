@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, MapPin } from 'lucide-react';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface Event {
   id: string;
@@ -99,7 +100,7 @@ export default function Events() {
                       <CardContent>
                         <div 
                           className="prose prose-sm max-w-none line-clamp-3"
-                          dangerouslySetInnerHTML={{ __html: event.description }}
+                          dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
                         />
                       </CardContent>
                     </Card>

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowLeft } from 'lucide-react';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface Post {
   id: string;
@@ -113,7 +114,7 @@ export default function BlogPost() {
 
               <div 
                 className="prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
               />
             </div>
           </article>
