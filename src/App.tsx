@@ -14,6 +14,11 @@ import Aktuelt from "./pages/Aktuelt";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./hooks/useAuth";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { AdminLayout } from "./components/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import Posts from "./pages/admin/Posts";
+import Events from "./pages/admin/Events";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +41,24 @@ const App = () => (
               <Route path="/trosgrunnlag" element={<Trosgrunnlag />} />
               <Route path="/aktuelt" element={<Aktuelt />} />
               <Route path="/auth" element={<Auth />} />
+              
+              {/* Admin Routes */}
+              <Route path="/admin" element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout><Dashboard /></AdminLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/posts" element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout><Posts /></AdminLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/events" element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout><Events /></AdminLayout>
+                </ProtectedRoute>
+              } />
+              
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
