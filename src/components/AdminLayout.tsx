@@ -77,28 +77,27 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <Sidebar />
       </aside>
 
-      {/* Mobile Sidebar */}
-      <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="w-64 p-0">
-          <Sidebar />
-        </SheetContent>
-
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col">
-          <header className="h-16 border-b bg-card flex items-center px-4 md:hidden">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Mobile Header with Menu */}
+        <header className="h-16 border-b bg-card flex items-center px-4 md:hidden">
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <h1 className="ml-4 text-lg font-semibold">CMS Admin</h1>
-          </header>
-        
-          <main className="flex-1 overflow-auto p-6">
-            {children}
-          </main>
-        </div>
-      </Sheet>
+            <SheetContent side="left" className="w-64 p-0">
+              <Sidebar />
+            </SheetContent>
+          </Sheet>
+          <h1 className="ml-4 text-lg font-semibold">CMS Admin</h1>
+        </header>
+      
+        <main className="flex-1 overflow-auto p-6">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
