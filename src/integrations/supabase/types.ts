@@ -47,39 +47,57 @@ export type Database = {
           created_at: string
           description: string | null
           end_date: string | null
+          facebook_link: string | null
           id: string
           image_url: string | null
           location: string | null
+          max_participants: number | null
+          organized_by: string | null
+          price: string | null
           start_date: string
           status: Database["public"]["Enums"]["content_status"]
+          ticket_link: string | null
           title: string
           updated_at: string
+          what_to_bring: string | null
         }
         Insert: {
           author_id: string
           created_at?: string
           description?: string | null
           end_date?: string | null
+          facebook_link?: string | null
           id?: string
           image_url?: string | null
           location?: string | null
+          max_participants?: number | null
+          organized_by?: string | null
+          price?: string | null
           start_date: string
           status?: Database["public"]["Enums"]["content_status"]
+          ticket_link?: string | null
           title: string
           updated_at?: string
+          what_to_bring?: string | null
         }
         Update: {
           author_id?: string
           created_at?: string
           description?: string | null
           end_date?: string | null
+          facebook_link?: string | null
           id?: string
           image_url?: string | null
           location?: string | null
+          max_participants?: number | null
+          organized_by?: string | null
+          price?: string | null
           start_date?: string
           status?: Database["public"]["Enums"]["content_status"]
+          ticket_link?: string | null
           title?: string
           updated_at?: string
+          what_to_bring?: string | null
         }
         Relationships: [
           {
