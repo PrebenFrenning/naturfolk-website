@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { RichTextEditor } from '@/components/RichTextEditor';
 import { Calendar } from '@/components/ui/calendar';
 import {
   Popover,
@@ -130,12 +131,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
 
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={4}
-            />
+            <RichTextEditor content={description} onChange={setDescription} />
           </div>
 
           <div className="grid grid-cols-2 gap-4">

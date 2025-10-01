@@ -18,7 +18,12 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminLayout } from "./components/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Posts from "./pages/admin/Posts";
-import Events from "./pages/admin/Events";
+import AdminEvents from "./pages/admin/Events";
+import Pages from "./pages/admin/Pages";
+import Categories from "./pages/admin/Categories";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import Events from "./pages/Events";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +45,9 @@ const App = () => (
               <Route path="/medlemskap" element={<Medlemskap />} />
               <Route path="/trosgrunnlag" element={<Trosgrunnlag />} />
               <Route path="/aktuelt" element={<Aktuelt />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/events" element={<Events />} />
               <Route path="/auth" element={<Auth />} />
               
               {/* Admin Routes */}
@@ -55,7 +63,17 @@ const App = () => (
               } />
               <Route path="/admin/events" element={
                 <ProtectedRoute requireAdmin>
-                  <AdminLayout><Events /></AdminLayout>
+                  <AdminLayout><AdminEvents /></AdminLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/pages" element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout><Pages /></AdminLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/categories" element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout><Categories /></AdminLayout>
                 </ProtectedRoute>
               } />
               

@@ -11,6 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RichTextEditor } from '@/components/RichTextEditor';
 import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
@@ -142,13 +143,7 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
 
           <div className="space-y-2">
             <Label htmlFor="content">Content</Label>
-            <Textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              rows={10}
-              required
-            />
+            <RichTextEditor content={content} onChange={setContent} />
           </div>
 
           <div className="space-y-2">
