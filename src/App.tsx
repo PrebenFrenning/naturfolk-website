@@ -11,7 +11,9 @@ import About from "./pages/About";
 import Medlemskap from "./pages/Medlemskap";
 import Trosgrunnlag from "./pages/Trosgrunnlag";
 import Aktuelt from "./pages/Aktuelt";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import { AuthProvider } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
 
@@ -25,17 +27,20 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/medlemskap" element={<Medlemskap />} />
-          <Route path="/trosgrunnlag" element={<Trosgrunnlag />} />
-          <Route path="/aktuelt" element={<Aktuelt />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/medlemskap" element={<Medlemskap />} />
+              <Route path="/trosgrunnlag" element={<Trosgrunnlag />} />
+              <Route path="/aktuelt" element={<Aktuelt />} />
+              <Route path="/auth" element={<Auth />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
       </TooltipProvider>
     </HelmetProvider>
   </QueryClientProvider>
