@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -18,10 +18,11 @@ export default function Auth() {
   const navigate = useNavigate();
 
   // Only redirect if user is logged in AND has proper access
-  if (user && (isAdmin || isEditor)) {
-    navigate('/admin');
-    return null;
-  }
+  useEffect(() => {
+    if (user && (isAdmin || isEditor)) {
+      navigate('/admin');
+    }
+  }, [user, isAdmin, isEditor, navigate]);
 
   const handleSignOut = async () => {
     await signOut();

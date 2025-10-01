@@ -35,9 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         // Check user roles when session changes
         if (session?.user) {
-          setTimeout(() => {
-            checkUserRoles(session.user.id);
-          }, 0);
+          checkUserRoles(session.user.id);
         } else {
           setIsAdmin(false);
           setIsEditor(false);
@@ -71,7 +69,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error, data } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -83,6 +81,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         variant: 'destructive',
       });
       throw error;
+    }
+
+    // Wait for roles to be loaded before navigating
+    if (data.user) {
+      await checkUserRoles(data.user.id);
     }
 
     toast({
