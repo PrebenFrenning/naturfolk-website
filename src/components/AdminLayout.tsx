@@ -82,23 +82,23 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <SheetContent side="left" className="w-64 p-0">
           <Sidebar />
         </SheetContent>
-      </Sheet>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        <header className="h-16 border-b bg-card flex items-center px-4 md:hidden">
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <h1 className="ml-4 text-lg font-semibold">CMS Admin</h1>
-        </header>
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col">
+          <header className="h-16 border-b bg-card flex items-center px-4 md:hidden">
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <h1 className="ml-4 text-lg font-semibold">CMS Admin</h1>
+          </header>
         
-        <main className="flex-1 overflow-auto p-6">
-          {children}
-        </main>
-      </div>
+          <main className="flex-1 overflow-auto p-6">
+            {children}
+          </main>
+        </div>
+      </Sheet>
     </div>
   );
 }
