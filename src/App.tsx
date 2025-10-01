@@ -48,8 +48,8 @@ const App = () => (
               <Route path="/aktuelt" element={<Aktuelt />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/kalender" element={<Kalender />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/kalender" element={<Kalender />} />
             <Route path="/auth" element={<Auth />} />
               
               {/* Admin Routes */}
