@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Helmet } from 'react-helmet-async';
-import { Calendar, MapPin, Users, DollarSign, Facebook, Ticket } from 'lucide-react';
+import { Calendar, MapPin, Users, Facebook, Ticket } from 'lucide-react';
 import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { sanitizeHtml } from '@/lib/sanitize';
@@ -114,7 +114,7 @@ export default function Kalender() {
 
                               {event.price && (
                                 <div className="flex items-center gap-2">
-                                  <DollarSign className="h-4 w-4 flex-shrink-0" />
+                                  <span className="font-semibold">Pris:</span>
                                   {event.price}
                                 </div>
                               )}
