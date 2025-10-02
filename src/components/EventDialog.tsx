@@ -31,6 +31,7 @@ type EventType = {
   facebook_link: string | null;
   organized_by: string | null;
   what_to_bring: string | null;
+  registration_deadline: string | null;
 };
 
 interface EventDialogProps {
@@ -85,6 +86,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
   
   const eventDate = new Date(event.start_date);
   const endTime = event.end_date ? new Date(event.end_date) : null;
+  const deadline = event.registration_deadline ? new Date(event.registration_deadline) : null;
   const registeredCount = 0; // TODO: Track registrations in database
   const availableSpots = event.max_participants 
     ? event.max_participants - registeredCount 
@@ -140,6 +142,18 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                   <div className="flex items-center gap-2">
                     <Info size={16} className="text-nature-green" />
                     <span>Arrangør: {event.organized_by}</span>
+                  </div>
+                )}
+                {event.price && (
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Pris:</span>
+                    <span>{event.price}</span>
+                  </div>
+                )}
+                {deadline && (
+                  <div className="flex items-center gap-2">
+                    <CalendarDays size={16} className="text-nature-green" />
+                    <span>Påmeldingsfrist: {format(deadline, 'PPP')}</span>
                   </div>
                 )}
               </div>

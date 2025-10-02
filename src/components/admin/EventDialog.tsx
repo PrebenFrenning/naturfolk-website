@@ -46,6 +46,7 @@ interface Event {
   facebook_link?: string;
   organized_by?: string;
   what_to_bring?: string;
+  registration_deadline?: string;
   status: 'draft' | 'published' | 'scheduled';
   author_id?: string;
 }
@@ -62,6 +63,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
+  const [registrationDeadline, setRegistrationDeadline] = useState<Date>();
   const [location, setLocation] = useState('');
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -82,6 +84,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       setDescription(event.description || '');
       setStartDate(event.start_date ? new Date(event.start_date) : undefined);
       setEndDate(event.end_date ? new Date(event.end_date) : undefined);
+      setRegistrationDeadline(event.registration_deadline ? new Date(event.registration_deadline) : undefined);
       setLocation(event.location || '');
       setStatus(event.status || 'draft');
       setImageUrl(event.image_url || '');
@@ -101,6 +104,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
     setDescription('');
     setStartDate(undefined);
     setEndDate(undefined);
+    setRegistrationDeadline(undefined);
     setLocation('');
     setStatus('draft');
     setImageFile(null);
@@ -166,6 +170,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       facebookLink: facebookLink || undefined,
       whatToBring,
       maxParticipants: maxParticipants ? parseInt(maxParticipants) : undefined,
+      registrationDeadline: registrationDeadline?.toISOString(),
     });
 
     if (!validation.success) {
@@ -185,6 +190,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       description: validation.data.description,
       start_date: startDate.toISOString(),
       end_date: endDate?.toISOString() || null,
+      registration_deadline: validation.data.registrationDeadline || null,
       location: validation.data.location,
       status,
       image_url: imageUrl || null,
@@ -266,7 +272,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
             <RichTextEditor content={whatToBring} onChange={setWhatToBring} />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label>Start Date</Label>
               <Popover>
@@ -314,6 +320,33 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
                     mode="single"
                     selected={endDate}
                     onSelect={setEndDate}
+                    initialFocus
+                    className="pointer-events-auto"
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Påmeldingsfrist</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      'w-full justify-start text-left font-normal',
+                      !registrationDeadline && 'text-muted-foreground'
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {registrationDeadline ? format(registrationDeadline, 'PPP') : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={registrationDeadline}
+                    onSelect={setRegistrationDeadline}
                     initialFocus
                     className="pointer-events-auto"
                   />

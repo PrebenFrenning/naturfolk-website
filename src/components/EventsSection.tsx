@@ -33,6 +33,7 @@ interface Event {
   facebook_link: string | null;
   organized_by: string | null;
   what_to_bring: string | null;
+  registration_deadline: string | null;
 }
 
 const EventsSection = () => {

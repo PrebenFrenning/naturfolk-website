@@ -53,4 +53,5 @@ export const eventSchema = z.object({
     .positive()
     .max(10000, { message: "Max participants must be less than 10,000" })
     .optional(),
+  registrationDeadline: z.string().optional(),
 });

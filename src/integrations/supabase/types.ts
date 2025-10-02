@@ -54,6 +54,7 @@ export type Database = {
           max_participants: number | null
           organized_by: string | null
           price: string | null
+          registration_deadline: string | null
           start_date: string
           status: Database["public"]["Enums"]["content_status"]
           ticket_link: string | null
@@ -73,6 +74,7 @@ export type Database = {
           max_participants?: number | null
           organized_by?: string | null
           price?: string | null
+          registration_deadline?: string | null
           start_date: string
           status?: Database["public"]["Enums"]["content_status"]
           ticket_link?: string | null
@@ -92,6 +94,7 @@ export type Database = {
           max_participants?: number | null
           organized_by?: string | null
           price?: string | null
+          registration_deadline?: string | null
           start_date?: string
           status?: Database["public"]["Enums"]["content_status"]
           ticket_link?: string | null
