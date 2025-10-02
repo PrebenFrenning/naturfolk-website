@@ -18,21 +18,19 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 
 type EventType = {
-  id: number;
+  id: string;
   title: string;
-  date: Date;
-  time: string;
-  location: string;
   description: string;
-  image: string;
-  maxParticipants?: number;
-  registeredParticipants?: {
-    name: string;
-    email?: string;
-  }[];
-  detailedDescription?: string;
-  requirements?: string[];
-  organizer?: string;
+  start_date: string;
+  end_date: string | null;
+  location: string | null;
+  image_url: string | null;
+  max_participants: number | null;
+  price: string | null;
+  ticket_link: string | null;
+  facebook_link: string | null;
+  organized_by: string | null;
+  what_to_bring: string | null;
 };
 
 interface EventDialogProps {
@@ -85,9 +83,11 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
   
   if (!event) return null;
   
-  const registeredCount = event.registeredParticipants?.length || 0;
-  const availableSpots = event.maxParticipants 
-    ? event.maxParticipants - registeredCount 
+  const eventDate = new Date(event.start_date);
+  const endTime = event.end_date ? new Date(event.end_date) : null;
+  const registeredCount = 0; // TODO: Track registrations in database
+  const availableSpots = event.max_participants 
+    ? event.max_participants - registeredCount 
     : 'Ubegrenset';
   
   return (
@@ -97,89 +97,74 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
           <DialogTitle className="text-2xl font-serif">{event.title}</DialogTitle>
           <DialogDescription className="flex items-center gap-2 text-sm text-nature-green">
             <CalendarDays size={14} />
-            {format(event.date, 'PPP')} - {event.time}
+            {format(eventDate, 'PPP')} {endTime && `- ${format(eventDate, 'HH:mm')} - ${format(endTime, 'HH:mm')}`}
           </DialogDescription>
         </DialogHeader>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
           <div>
-            <div className="rounded-lg overflow-hidden mb-4">
-              <img 
-                src={`${event.image}?auto=format&fit=crop&w=800&q=80`} 
-                alt={event.title} 
-                className="w-full h-52 object-cover"
-              />
-            </div>
+            {event.image_url && (
+              <div className="rounded-lg overflow-hidden mb-4">
+                <img 
+                  src={`${event.image_url}?auto=format&fit=crop&w=800&q=80`} 
+                  alt={event.title} 
+                  className="w-full h-52 object-cover"
+                />
+              </div>
+            )}
             
             <div className="space-y-4">
               <div className="flex flex-col gap-2 text-sm">
                 <div className="flex items-center gap-2">
                   <Clock size={16} className="text-nature-green" />
-                  <span>{event.time}</span>
+                  <span>
+                    {format(eventDate, 'HH:mm')}
+                    {endTime && ` - ${format(endTime, 'HH:mm')}`}
+                  </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={16} className="text-nature-green" />
-                  <span>{event.location}</span>
-                </div>
-                {event.maxParticipants && (
+                {event.location && (
+                  <div className="flex items-center gap-2">
+                    <MapPin size={16} className="text-nature-green" />
+                    <span>{event.location}</span>
+                  </div>
+                )}
+                {event.max_participants && (
                   <div className="flex items-center gap-2">
                     <Users size={16} className="text-nature-green" />
                     <span>
-                      {registeredCount}/{event.maxParticipants} påmeldte
-                      {availableSpots !== 'Ubegrenset' && availableSpots <= 3 && (
-                        <span className="ml-2 text-orange-500 font-medium">
-                          Kun {availableSpots} plasser igjen!
-                        </span>
-                      )}
+                      Maks {event.max_participants} deltakere
                     </span>
                   </div>
                 )}
-                {event.organizer && (
+                {event.organized_by && (
                   <div className="flex items-center gap-2">
                     <Info size={16} className="text-nature-green" />
-                    <span>Arrangør: {event.organizer}</span>
+                    <span>Arrangør: {event.organized_by}</span>
                   </div>
                 )}
               </div>
               
               <Separator />
               
-              <div>
-                <h3 className="font-medium mb-2">Om arrangementet</h3>
-                <p className="text-muted-foreground text-sm">
-                  {event.detailedDescription || event.description}
-                </p>
-              </div>
+              {event.description && (
+                <div>
+                  <h3 className="font-medium mb-2">Om arrangementet</h3>
+                  <div 
+                    className="text-muted-foreground text-sm prose prose-sm max-w-none"
+                    dangerouslySetInnerHTML={{ __html: event.description }}
+                  />
+                </div>
+              )}
               
-              {event.requirements && event.requirements.length > 0 && (
+              {event.what_to_bring && (
                 <>
                   <Separator />
                   <div>
                     <h3 className="font-medium mb-2">Det bør du ha med</h3>
-                    <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                      {event.requirements.map((req, index) => (
-                        <li key={index}>{req}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              )}
-              
-              {event.registeredParticipants && event.registeredParticipants.length > 0 && (
-                <>
-                  <Separator />
-                  <div>
-                    <h3 className="font-medium mb-2">Påmeldte deltakere</h3>
-                    <div className="max-h-32 overflow-y-auto">
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        {event.registeredParticipants.map((person, index) => (
-                          <li key={index} className="flex items-center gap-2">
-                            <Users size={14} className="text-nature-green" />
-                            {person.name}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <div 
+                      className="text-muted-foreground text-sm prose prose-sm max-w-none"
+                      dangerouslySetInnerHTML={{ __html: event.what_to_bring }}
+                    />
                   </div>
                 </>
               )}
@@ -203,7 +188,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <h3 className="font-serif text-lg mb-2">Meld deg på</h3>
                     
-                    {event.maxParticipants && availableSpots !== 'Ubegrenset' && availableSpots <= 0 ? (
+                    {event.max_participants && availableSpots !== 'Ubegrenset' && availableSpots <= 0 ? (
                       <div className="bg-orange-100 border border-orange-200 text-orange-800 p-4 rounded-md flex items-start gap-3">
                         <AlertCircle size={20} className="mt-0.5" />
                         <div>
