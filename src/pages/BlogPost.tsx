@@ -19,14 +19,24 @@ interface Post {
   created_at: string;
 }
 
+interface RecentPost {
+  id: string;
+  title: string;
+  slug: string;
+  publish_date: string;
+  created_at: string;
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const [post, setPost] = useState<Post | null>(null);
+  const [recentPosts, setRecentPosts] = useState<RecentPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (slug) {
       loadPost();
+      loadRecentPosts();
     }
   }, [slug]);
 
@@ -42,6 +52,20 @@ export default function BlogPost() {
       setPost(data);
     }
     setLoading(false);
+  };
+
+  const loadRecentPosts = async () => {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('id, title, slug, publish_date, created_at')
+      .eq('status', 'published')
+      .neq('slug', slug)
+      .order('publish_date', { ascending: false })
+      .limit(5);
+
+    if (!error && data) {
+      setRecentPosts(data);
+    }
   };
 
   if (loading) {
@@ -78,46 +102,85 @@ export default function BlogPost() {
         <Navbar />
         
         <main className="flex-1">
-          <article className="py-12 px-4">
-            <div className="container mx-auto max-w-4xl">
-              <Link to="/blog">
-                <Button variant="ghost" className="mb-8">
+          <div className="py-12 px-4">
+            <div className="container mx-auto max-w-7xl">
+              <Link to="/blog" className="inline-block mb-8">
+                <Button variant="outline" size="lg" className="bg-background hover:bg-accent">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Blog
+                  Tilbake til blog
                 </Button>
               </Link>
 
-              {post.featured_image && (
-                <img 
-                  src={post.featured_image} 
-                  alt={post.title}
-                  className="w-full h-96 object-cover rounded-lg mb-8"
-                />
-              )}
+              <div className="grid lg:grid-cols-3 gap-8">
+                {/* Main Content */}
+                <article className="lg:col-span-2">
+                  {post.featured_image && (
+                    <img 
+                      src={post.featured_image} 
+                      alt={post.title}
+                      className="w-full h-96 object-cover rounded-lg mb-8"
+                    />
+                  )}
 
-              <div className="flex items-center gap-2 text-muted-foreground mb-4">
-                <Calendar className="h-4 w-4" />
-                {new Date(post.publish_date || post.created_at).toLocaleDateString('nb-NO', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
+                  <div className="flex items-center gap-2 text-muted-foreground mb-4">
+                    <Calendar className="h-4 w-4" />
+                    {new Date(post.publish_date || post.created_at).toLocaleDateString('nb-NO', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </div>
+
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
+
+                  {post.excerpt && (
+                    <p className="text-xl text-muted-foreground mb-8 italic">
+                      {post.excerpt}
+                    </p>
+                  )}
+
+                  <div 
+                    className="prose prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
+                  />
+                </article>
+
+                {/* Sidebar */}
+                <aside className="lg:col-span-1">
+                  <div className="sticky top-24">
+                    <div className="bg-muted/30 rounded-lg p-6 border border-border">
+                      <h3 className="text-lg font-bold mb-4">Siste artikler</h3>
+                      {recentPosts.length > 0 ? (
+                        <ul className="space-y-4">
+                          {recentPosts.map((recentPost) => (
+                            <li key={recentPost.id}>
+                              <Link 
+                                to={`/blog/${recentPost.slug}`}
+                                className="group block"
+                              >
+                                <h4 className="font-medium text-sm group-hover:text-nature-green transition-colors line-clamp-2">
+                                  {recentPost.title}
+                                </h4>
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  {new Date(recentPost.publish_date || recentPost.created_at).toLocaleDateString('nb-NO', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                  })}
+                                </p>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-sm text-muted-foreground">Ingen flere artikler</p>
+                      )}
+                    </div>
+                  </div>
+                </aside>
               </div>
-
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
-
-              {post.excerpt && (
-                <p className="text-xl text-muted-foreground mb-8 italic">
-                  {post.excerpt}
-                </p>
-              )}
-
-              <div 
-                className="prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
-              />
             </div>
-          </article>
+          </div>
         </main>
 
         <Footer />
