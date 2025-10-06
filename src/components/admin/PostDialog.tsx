@@ -39,6 +39,7 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
   const [categories, setCategories] = useState<any[]>([]);
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -84,6 +85,60 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
     setTitle(value);
     if (!post) {
       setSlug(generateSlug(value));
+    }
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: 'Invalid file type',
+        description: 'Please upload an image file',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: 'File too large',
+        description: 'Please upload an image smaller than 5MB',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+      const filePath = `post-images/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('event-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data } = supabase.storage
+        .from('event-images')
+        .getPublicUrl(filePath);
+
+      setFeaturedImage(data.publicUrl);
+      toast({ title: 'Image uploaded successfully' });
+    } catch (error: any) {
+      toast({
+        title: 'Upload failed',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -179,13 +234,36 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="featured-image">Featured Image URL</Label>
-            <Input
-              id="featured-image"
-              value={featuredImage}
-              onChange={(e) => setFeaturedImage(e.target.value)}
-              placeholder="https://example.com/image.jpg"
-            />
+            <Label htmlFor="featured-image">Featured Image</Label>
+            <div className="space-y-2">
+              <Input
+                id="featured-image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                disabled={uploading}
+              />
+              {uploading && (
+                <p className="text-sm text-muted-foreground">Uploading...</p>
+              )}
+              {featuredImage && (
+                <div className="space-y-2">
+                  <img
+                    src={featuredImage}
+                    alt="Featured"
+                    className="w-full h-48 object-cover rounded-md"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setFeaturedImage('')}
+                  >
+                    Remove Image
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
