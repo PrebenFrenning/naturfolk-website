@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -14,6 +14,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [language, setLanguage] = useState<'en' | 'no'>('no');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,9 +69,11 @@ const Navbar = () => {
                 href={link.path}
                 className={cn(
                   "font-medium transition-custom underline-custom",
-                  isScrolled 
-                    ? "text-nature-brown hover:text-nature-green" 
-                    : "text-white hover:text-nature-green"
+                  location.pathname === link.path
+                    ? "text-nature-green"
+                    : isScrolled 
+                      ? "text-nature-brown hover:text-nature-green" 
+                      : "text-white hover:text-nature-green"
                 )}
               >
                 {link.name}
@@ -81,9 +84,11 @@ const Navbar = () => {
                 to={link.path}
                 className={cn(
                   "font-medium transition-custom underline-custom",
-                  isScrolled 
-                    ? "text-nature-brown hover:text-nature-green" 
-                    : "text-white hover:text-nature-green"
+                  location.pathname === link.path
+                    ? "text-nature-green"
+                    : isScrolled 
+                      ? "text-nature-brown hover:text-nature-green" 
+                      : "text-white hover:text-nature-green"
                 )}
               >
                 {link.name}
@@ -132,7 +137,12 @@ const Navbar = () => {
                   <a
                     key={link.name}
                     href={link.path}
-                    className="py-2 font-medium text-nature-brown hover:text-nature-green transition-custom"
+                    className={cn(
+                      "py-2 font-medium transition-custom",
+                      location.pathname === link.path
+                        ? "text-nature-green"
+                        : "text-nature-brown hover:text-nature-green"
+                    )}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
@@ -141,7 +151,12 @@ const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className="py-2 font-medium text-nature-brown hover:text-nature-green transition-custom"
+                    className={cn(
+                      "py-2 font-medium transition-custom",
+                      location.pathname === link.path
+                        ? "text-nature-green"
+                        : "text-nature-brown hover:text-nature-green"
+                    )}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
