@@ -113,14 +113,6 @@ const Navbar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          
-          {/* Bli medlem CTA button */}
-          <Link 
-            to="/bli-medlem"
-            className="px-4 py-2 bg-nature-green text-white rounded-md font-medium hover:bg-nature-green/90 transition-colors"
-          >
-            Bli medlem
-          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -191,15 +183,6 @@ const Navbar = () => {
                   Norsk
                 </button>
               </div>
-              
-              {/* Mobile Bli medlem button */}
-              <Link 
-                to="/bli-medlem"
-                className="mt-4 px-4 py-2 bg-nature-green text-white rounded-md font-medium hover:bg-nature-green/90 transition-colors text-center"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Bli medlem
-              </Link>
             </div>
           </div>
         </div>
