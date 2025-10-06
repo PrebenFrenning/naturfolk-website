@@ -1,20 +1,12 @@
-
-import React from 'react';
-import { Mail, Send } from 'lucide-react';
+import React from "react";
+import { Mail, Send } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 
@@ -74,7 +66,8 @@ const ContactSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Ta kontakt</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            Har du spørsmål om Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss direkte.
+            Har du spørsmål om eller til Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss
+            direkte på mail.
           </p>
         </div>
 
@@ -88,7 +81,10 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium mb-1">E-post</h4>
-                  <a href="mailto:post@naturfolk.org" className="text-muted-foreground hover:text-nature-green transition-colors">
+                  <a
+                    href="mailto:post@naturfolk.org"
+                    className="text-muted-foreground hover:text-nature-green transition-colors"
+                  >
                     post@naturfolk.org
                   </a>
                 </div>
@@ -99,9 +95,9 @@ const ContactSection = () => {
               <h3 className="text-2xl font-serif font-semibold mb-4">Abonner på vårt nyhetsbrev</h3>
               <p className="mb-4">Hold deg oppdatert med kommende arrangementer og nyheter fra Naturfolk.</p>
               <form onSubmit={handleSubscribe} className="flex">
-                <Input 
-                  type="email" 
-                  placeholder="Din e-postadresse" 
+                <Input
+                  type="email"
+                  placeholder="Din e-postadresse"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -126,10 +122,7 @@ const ContactSection = () => {
                       <FormItem>
                         <FormLabel>Fornavn</FormLabel>
                         <FormControl>
-                          <Input 
-                            placeholder="Ditt fornavn" 
-                            {...field} 
-                          />
+                          <Input placeholder="Ditt fornavn" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -142,17 +135,14 @@ const ContactSection = () => {
                       <FormItem>
                         <FormLabel>Etternavn</FormLabel>
                         <FormControl>
-                          <Input 
-                            placeholder="Ditt etternavn" 
-                            {...field} 
-                          />
+                          <Input placeholder="Ditt etternavn" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                
+
                 <FormField
                   control={form.control}
                   name="email"
@@ -160,17 +150,13 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel>E-post</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="email" 
-                          placeholder="Din e-postadresse" 
-                          {...field} 
-                        />
+                        <Input type="email" placeholder="Din e-postadresse" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="subject"
@@ -178,16 +164,13 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Emne</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="Hva gjelder henvendelsen?" 
-                          {...field} 
-                        />
+                        <Input placeholder="Hva gjelder henvendelsen?" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="message"
@@ -195,21 +178,14 @@ const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Melding</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          rows={5}
-                          placeholder="Skriv din melding her" 
-                          {...field} 
-                        />
+                        <Textarea rows={5} placeholder="Skriv din melding her" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-nature-green hover:bg-nature-green/90"
-                >
+
+                <Button type="submit" className="w-full bg-nature-green hover:bg-nature-green/90">
                   Send melding
                 </Button>
               </form>
