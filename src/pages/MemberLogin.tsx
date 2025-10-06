@@ -89,7 +89,7 @@ export default function MemberLogin() {
                 Medlemsinnlogging
               </CardTitle>
               <CardDescription className="text-center">
-                Skriv inn din e-postadresse for å logge inn
+                Skriv inn eposten du registrerte deg med
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -177,7 +177,13 @@ export default function MemberLogin() {
                 )}
               </form>
 
-              <div className="mt-6 text-center">
+              <div className="mt-6 space-y-2 text-center">
+                <p className="text-sm text-muted-foreground">
+                  Ikke medlem ennå?{' '}
+                  <a href="/medlemskap" className="text-nature-green hover:underline">
+                    Meld deg inn her
+                  </a>
+                </p>
                 <p className="text-sm text-muted-foreground">
                   Er du admin?{' '}
                   <a href="/auth" className="text-nature-green hover:underline">
