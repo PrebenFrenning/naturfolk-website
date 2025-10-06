@@ -9,8 +9,8 @@ const corsHeaders = {
 
 // Membership prices in NOK (stored as øre - multiply by 100)
 const MEMBERSHIP_PRICES = {
-  Hovedmedlem: 50000, // 500 NOK
-  Støttemedlem: 30000, // 300 NOK
+  Hovedmedlem: 20000, // 200 NOK
+  Støttemedlem: 20000, // 200 NOK
 };
 
 serve(async (req) => {

@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import { toast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { CreditCard, Smartphone, ArrowLeft } from 'lucide-react';
@@ -11,8 +12,8 @@ import type { MembershipSignupData } from '@/lib/membershipValidation';
 
 // Membership prices
 const MEMBERSHIP_PRICES = {
-  Hovedmedlem: 500, // NOK per year
-  Støttemedlem: 300, // NOK per year
+  Hovedmedlem: 200, // NOK innmeldingsavgift
+  Støttemedlem: 200, // NOK innmeldingsavgift
 };
 
 export default function Betaling() {
@@ -140,13 +141,22 @@ export default function Betaling() {
             Tilbake til skjema
           </Button>
 
+          {/* Progress Bar */}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-muted-foreground">Steg 2 av 2</span>
+              <span className="text-sm font-medium text-muted-foreground">100%</span>
+            </div>
+            <Progress value={100} className="h-2" />
+          </div>
+
           <div className="mb-8 text-center">
             <h1 className="text-4xl font-bold mb-2">Velg betalingsmetode</h1>
             <p className="text-muted-foreground">
               Du registrerer deg som <strong>{membershipData.membership_type}</strong>
             </p>
             <p className="text-2xl font-bold text-nature-green mt-4">
-              {price} NOK / år
+              {price} NOK innmeldingsavgift
             </p>
           </div>
 

@@ -13,6 +13,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from '@/hooks/use-toast';
 import { membershipSignupSchema, type MembershipSignupData } from '@/lib/membershipValidation';
 import { Users } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
 
 const COUNTRIES = [
   'Norge', 'Sverige', 'Danmark', 'Finland', 'Island',
@@ -73,6 +74,15 @@ export default function BliMedlem() {
       
       <main className="flex-1 pt-24 pb-12">
         <div className="container mx-auto px-4 max-w-3xl">
+          {/* Progress Bar */}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-muted-foreground">Steg 1 av 2</span>
+              <span className="text-sm font-medium text-muted-foreground">50%</span>
+            </div>
+            <Progress value={50} className="h-2" />
+          </div>
+
           <div className="mb-8 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-nature-green/10 rounded-full mb-4">
               <Users className="w-8 h-8 text-nature-green" />
