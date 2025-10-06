@@ -34,9 +34,20 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
   const [slug, setSlug] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
+  const [featuredImage, setFeaturedImage] = useState('');
+  const [categoryId, setCategoryId] = useState<string>('');
+  const [categories, setCategories] = useState<any[]>([]);
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await supabase.from('categories').select('*').order('name');
+      setCategories(data || []);
+    };
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     if (post) {
@@ -44,6 +55,8 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
       setSlug(post.slug || '');
       setExcerpt(post.excerpt || '');
       setContent(post.content || '');
+      setFeaturedImage(post.featured_image || '');
+      setCategoryId(post.category_id || '');
       setStatus(post.status || 'draft');
     } else {
       resetForm();
@@ -55,6 +68,8 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
     setSlug('');
     setExcerpt('');
     setContent('');
+    setFeaturedImage('');
+    setCategoryId('');
     setStatus('draft');
   };
 
@@ -100,6 +115,8 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
       slug: validation.data.slug,
       excerpt: validation.data.excerpt,
       content: validation.data.content,
+      featured_image: featuredImage || null,
+      category_id: categoryId || null,
       status,
       author_id: user?.id,
       publish_date: status === 'published' ? new Date().toISOString() : null,
@@ -159,6 +176,33 @@ export function PostDialog({ open, onClose, post, user }: PostDialogProps) {
               onChange={(e) => setExcerpt(e.target.value)}
               rows={3}
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="featured-image">Featured Image URL</Label>
+            <Input
+              id="featured-image"
+              value={featuredImage}
+              onChange={(e) => setFeaturedImage(e.target.value)}
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <Select value={categoryId} onValueChange={setCategoryId}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">No category</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-2">
