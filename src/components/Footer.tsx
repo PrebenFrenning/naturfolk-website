@@ -23,24 +23,22 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">Programs</h4>
+            <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">Temagrupper</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="#" className="hover:text-nature-green transition-custom">Wilderness Expeditions</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Weekend Retreats</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Urban Nature Connection</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Nature Immersion</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Wilderness Skills</a></li>
+              <li><a href="/temagrupper" className="hover:text-nature-green transition-custom">Dyrking & sanking</a></li>
+              <li><a href="/temagrupper" className="hover:text-nature-green transition-custom">Hellige steder</a></li>
+              <li><a href="/temagrupper" className="hover:text-nature-green transition-custom">Natursamfunn</a></li>
+              <li><a href="/temagrupper" className="hover:text-nature-green transition-custom">Ritualer</a></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">About</h4>
+            <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">Om Naturfolk</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="#" className="hover:text-nature-green transition-custom">Our Vision</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Team</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Locations</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Testimonials</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Journal</a></li>
+              <li><a href="/trosgrunnlag" className="hover:text-nature-green transition-custom">Trosgrunnlag</a></li>
+              <li><a href="/about" className="hover:text-nature-green transition-custom">Om oss</a></li>
+              <li><a href="/medlemskap" className="hover:text-nature-green transition-custom">Medlemskap</a></li>
+              <li><a href="/kontakt" className="hover:text-nature-green transition-custom">Kontakt</a></li>
             </ul>
           </div>
           
@@ -61,8 +59,8 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Naturfolk. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm opacity-70">
-            <a href="#" className="hover:text-nature-green transition-custom">Privacy Policy</a>
-            <a href="#" className="hover:text-nature-green transition-custom">Terms of Service</a>
+            <a href="#" className="hover:text-nature-green transition-custom">Personvern</a>
+            <a href="#" className="hover:text-nature-green transition-custom">Vilkår</a>
           </div>
         </div>
       </div>
