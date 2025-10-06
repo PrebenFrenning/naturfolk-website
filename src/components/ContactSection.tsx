@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -20,11 +20,11 @@ import { toast } from "@/hooks/use-toast";
 
 // Define form validation schema
 const formSchema = z.object({
-  firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
-  lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  firstName: z.string().min(2, { message: "Fornavn må være minst 2 tegn." }),
+  lastName: z.string().min(2, { message: "Etternavn må være minst 2 tegn." }),
+  email: z.string().email({ message: "Vennligst oppgi en gyldig e-postadresse." }),
+  subject: z.string().min(5, { message: "Emne må være minst 5 tegn." }),
+  message: z.string().min(10, { message: "Melding må være minst 10 tegn." }),
 });
 
 type ContactFormValues = z.infer<typeof formSchema>;
@@ -50,8 +50,8 @@ const ContactSection = () => {
     // For demonstration purposes - would connect to an API in production
     console.log(data);
     toast({
-      title: "Message sent!",
-      description: "Thank you for contacting us. We'll respond shortly.",
+      title: "Melding sendt!",
+      description: "Takk for at du kontaktet oss. Vi svarer kort.",
     });
     form.reset();
   };
@@ -61,8 +61,8 @@ const ContactSection = () => {
     e.preventDefault();
     // For demonstration purposes - would connect to an API in production
     toast({
-      title: "Subscribed!",
-      description: "You've been added to our newsletter.",
+      title: "Abonnert!",
+      description: "Du er nå lagt til i vårt nyhetsbrev.",
     });
     setEmail("");
   };
@@ -71,55 +71,37 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Ta kontakt</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            Interested in our wilderness programs or have questions about Naturfolk? Reach out to us using the form below or contact us directly.
+            Har du spørsmål om Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss direkte.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-serif font-semibold mb-6">Contact Information</h3>
+            <h3 className="text-2xl font-serif font-semibold mb-6">Kontaktinformasjon</h3>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-nature-sage rounded-full flex items-center justify-center flex-shrink-0">
                   <Mail className="text-nature-green" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Email</h4>
-                  <p className="text-muted-foreground">hello@naturfolk.org</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-nature-sage rounded-full flex items-center justify-center flex-shrink-0">
-                  <Phone className="text-nature-green" size={18} />
-                </div>
-                <div>
-                  <h4 className="font-medium mb-1">Phone</h4>
-                  <p className="text-muted-foreground">Contact us via email for phone details</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-nature-sage rounded-full flex items-center justify-center flex-shrink-0">
-                  <MapPin className="text-nature-green" size={18} />
-                </div>
-                <div>
-                  <h4 className="font-medium mb-1">Programs</h4>
-                  <p className="text-muted-foreground">Worldwide locations - Norway, Denmark, Portugal, USA, and more</p>
+                  <h4 className="font-medium mb-1">E-post</h4>
+                  <a href="mailto:post@naturfolk.org" className="text-muted-foreground hover:text-nature-green transition-colors">
+                    post@naturfolk.org
+                  </a>
                 </div>
               </div>
             </div>
 
             <Card className="mt-12 p-6 border-nature-sage">
-              <h3 className="text-2xl font-serif font-semibold mb-4">Join Our Newsletter</h3>
-              <p className="mb-4">Stay updated with upcoming wilderness programs and nature connection resources.</p>
+              <h3 className="text-2xl font-serif font-semibold mb-4">Abonner på vårt nyhetsbrev</h3>
+              <p className="mb-4">Hold deg oppdatert med kommende arrangementer og nyheter fra Naturfolk.</p>
               <form onSubmit={handleSubscribe} className="flex">
                 <Input 
                   type="email" 
-                  placeholder="Your email address" 
+                  placeholder="Din e-postadresse" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -133,7 +115,7 @@ const ContactSection = () => {
           </div>
 
           <div>
-            <h3 className="text-2xl font-serif font-semibold mb-6">Send Us a Message</h3>
+            <h3 className="text-2xl font-serif font-semibold mb-6">Send oss en melding</h3>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -142,10 +124,10 @@ const ContactSection = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel>Fornavn</FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="Your first name" 
+                            placeholder="Ditt fornavn" 
                             {...field} 
                           />
                         </FormControl>
@@ -158,10 +140,10 @@ const ContactSection = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel>Etternavn</FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="Your last name" 
+                            placeholder="Ditt etternavn" 
                             {...field} 
                           />
                         </FormControl>
@@ -176,11 +158,11 @@ const ContactSection = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>E-post</FormLabel>
                       <FormControl>
                         <Input 
                           type="email" 
-                          placeholder="Your email address" 
+                          placeholder="Din e-postadresse" 
                           {...field} 
                         />
                       </FormControl>
@@ -194,10 +176,10 @@ const ContactSection = () => {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Subject</FormLabel>
+                      <FormLabel>Emne</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="What is your inquiry about?" 
+                          placeholder="Hva gjelder henvendelsen?" 
                           {...field} 
                         />
                       </FormControl>
@@ -211,11 +193,11 @@ const ContactSection = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Message</FormLabel>
+                      <FormLabel>Melding</FormLabel>
                       <FormControl>
                         <Textarea 
                           rows={5}
-                          placeholder="Tell us about your interest in Naturfolk programs" 
+                          placeholder="Skriv din melding her" 
                           {...field} 
                         />
                       </FormControl>
@@ -228,7 +210,7 @@ const ContactSection = () => {
                   type="submit" 
                   className="w-full bg-nature-green hover:bg-nature-green/90"
                 >
-                  Send Message
+                  Send melding
                 </Button>
               </form>
             </Form>
