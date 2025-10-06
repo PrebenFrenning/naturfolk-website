@@ -99,7 +99,7 @@
   }
 
   .underline-custom {
-    @apply relative inline-block after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-nature-green;
+    @apply relative inline-block after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-nature-green;
   }
 
   .underline-custom::after {

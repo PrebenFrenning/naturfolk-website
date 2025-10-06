@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
@@ -83,11 +84,13 @@ const Medlemskap = () => {
                 </div>
 
                 <div className="text-center">
-                  <Button size="lg" className="mb-4">
-                    Bli medlem nå
-                  </Button>
+                  <Link to="/bli-medlem">
+                    <Button size="lg" className="mb-4">
+                      Bli medlem nå
+                    </Button>
+                  </Link>
                   <p className="text-sm text-muted-foreground">
-                    Du vil bli videresendt til vårt medlemssystem
+                    Fyll ut registreringsskjema og velg betalingsmetode
                   </p>
                 </div>
               </CardContent>
