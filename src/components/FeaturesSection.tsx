@@ -100,7 +100,7 @@ const FeaturesSection = () => {
         )}
 
         <div className="mt-16 text-center">
-          <a href="#contact" className="btn-secondary inline-flex items-center gap-2">
+          <a href="/temagrupper" className="btn-secondary inline-flex items-center gap-2">
             Lær mer om temagruppene
           </a>
         </div>

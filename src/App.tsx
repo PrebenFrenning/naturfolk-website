@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Medlemskap from "./pages/Medlemskap";
 import Trosgrunnlag from "./pages/Trosgrunnlag";
 import Aktuelt from "./pages/Aktuelt";
+import Temagrupper from "./pages/Temagrupper";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./hooks/useAuth";
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/medlemskap" element={<Medlemskap />} />
               <Route path="/trosgrunnlag" element={<Trosgrunnlag />} />
               <Route path="/aktuelt" element={<Aktuelt />} />
+              <Route path="/temagrupper" element={<Temagrupper />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/events" element={<Events />} />
