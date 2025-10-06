@@ -238,10 +238,15 @@ export type Database = {
           author_id: string
           content: string
           created_at: string
+          hero_image: string | null
           id: string
+          is_static: boolean | null
           meta_description: string | null
+          meta_title: string | null
           slug: string
+          social_image: string | null
           status: Database["public"]["Enums"]["content_status"]
+          subtitle: string | null
           title: string
           updated_at: string
         }
@@ -249,10 +254,15 @@ export type Database = {
           author_id: string
           content: string
           created_at?: string
+          hero_image?: string | null
           id?: string
+          is_static?: boolean | null
           meta_description?: string | null
+          meta_title?: string | null
           slug: string
+          social_image?: string | null
           status?: Database["public"]["Enums"]["content_status"]
+          subtitle?: string | null
           title: string
           updated_at?: string
         }
@@ -260,10 +270,15 @@ export type Database = {
           author_id?: string
           content?: string
           created_at?: string
+          hero_image?: string | null
           id?: string
+          is_static?: boolean | null
           meta_description?: string | null
+          meta_title?: string | null
           slug?: string
+          social_image?: string | null
           status?: Database["public"]["Enums"]["content_status"]
+          subtitle?: string | null
           title?: string
           updated_at?: string
         }

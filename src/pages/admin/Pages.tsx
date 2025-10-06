@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Pencil, Trash2 } from 'lucide-react';
+import { Pencil, Trash2, Star } from 'lucide-react';
 import { PageDialog } from '@/components/admin/PageDialog';
 import { useAuth } from '@/hooks/useAuth';
 import { Helmet } from 'react-helmet-async';
@@ -14,6 +14,8 @@ interface Page {
   id: string;
   title: string;
   slug: string;
+  subtitle?: string;
+  is_static?: boolean;
   status: 'draft' | 'published' | 'scheduled';
   created_at: string;
   updated_at: string;
@@ -46,7 +48,12 @@ export default function Pages() {
     setLoading(false);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string, isStatic: boolean) => {
+    if (isStatic) {
+      toast.error('Cannot delete site pages');
+      return;
+    }
+    
     if (!confirm('Are you sure you want to delete this page?')) return;
 
     const { error } = await supabase
@@ -94,6 +101,7 @@ export default function Pages() {
               <TableRow>
                 <TableHead>Title</TableHead>
                 <TableHead>Slug</TableHead>
+                <TableHead>Type</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Updated</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
@@ -102,17 +110,25 @@ export default function Pages() {
             <TableBody>
               {loading ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center">Loading...</TableCell>
+                  <TableCell colSpan={6} className="text-center">Loading...</TableCell>
                 </TableRow>
               ) : pages.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center">No pages found</TableCell>
+                  <TableCell colSpan={6} className="text-center">No pages found</TableCell>
                 </TableRow>
               ) : (
                 pages.map((page) => (
                   <TableRow key={page.id}>
-                    <TableCell className="font-medium">{page.title}</TableCell>
+                    <TableCell className="font-medium">
+                      {page.is_static && <Star className="w-4 h-4 inline mr-2 text-yellow-500" />}
+                      {page.title}
+                    </TableCell>
                     <TableCell>{page.slug}</TableCell>
+                    <TableCell>
+                      <Badge variant={page.is_static ? 'default' : 'outline'}>
+                        {page.is_static ? 'Site Page' : 'Custom'}
+                      </Badge>
+                    </TableCell>
                     <TableCell>
                       <Badge variant={page.status === 'published' ? 'default' : 'secondary'}>
                         {page.status}
@@ -127,13 +143,15 @@ export default function Pages() {
                       >
                         <Pencil className="h-4 w-4" />
                       </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleDelete(page.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {!page.is_static && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleDelete(page.id, page.is_static || false)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))
