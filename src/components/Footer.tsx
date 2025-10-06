@@ -43,13 +43,10 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">Support</h4>
+            <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">Medlem</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="#" className="hover:text-nature-green transition-custom">Contact</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">FAQ</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Gift Cards</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Partnerships</a></li>
-              <li><a href="#" className="hover:text-nature-green transition-custom">Newsletter</a></li>
+              <li><a href="/auth" className="hover:text-nature-green transition-custom">Medlemslogin</a></li>
+              <li><a href="/admin" className="hover:text-nature-green transition-custom">Admin login</a></li>
             </ul>
           </div>
         </div>
