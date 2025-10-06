@@ -29,6 +29,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Events from "./pages/Events";
 import Kalender from "./pages/Kalender.tsx";
+import BliMedlem from "./pages/BliMedlem";
+import Betaling from "./pages/Betaling";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +57,8 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/events" element={<Events />} />
               <Route path="/kalender" element={<Kalender />} />
+              <Route path="/bli-medlem" element={<BliMedlem />} />
+              <Route path="/betaling" element={<Betaling />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/medlem-login" element={<MemberLogin />} />
             <Route path="/medlem" element={<ProtectedRoute><MemberOverview /></ProtectedRoute>} />

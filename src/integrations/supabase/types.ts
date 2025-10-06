@@ -358,18 +358,27 @@ export type Database = {
       profiles: {
         Row: {
           address: string | null
+          address_2: string | null
           avatar_url: string | null
           bio: string | null
+          city: string | null
           community_opt_out: boolean | null
+          country: string | null
           created_at: string
           email: string
+          first_name: string | null
           full_name: string | null
+          gender: string | null
+          how_heard_about_us: string | null
           id: string
           last_login_at: string | null
+          last_name: string | null
           membership_type: string | null
+          middle_name: string | null
           newsletter_subscribed: boolean | null
           personnummer: string | null
           phone: string | null
+          postal_code: string | null
           social_links: Json | null
           theme_groups: string[] | null
           updated_at: string
@@ -377,18 +386,27 @@ export type Database = {
         }
         Insert: {
           address?: string | null
+          address_2?: string | null
           avatar_url?: string | null
           bio?: string | null
+          city?: string | null
           community_opt_out?: boolean | null
+          country?: string | null
           created_at?: string
           email: string
+          first_name?: string | null
           full_name?: string | null
+          gender?: string | null
+          how_heard_about_us?: string | null
           id: string
           last_login_at?: string | null
+          last_name?: string | null
           membership_type?: string | null
+          middle_name?: string | null
           newsletter_subscribed?: boolean | null
           personnummer?: string | null
           phone?: string | null
+          postal_code?: string | null
           social_links?: Json | null
           theme_groups?: string[] | null
           updated_at?: string
@@ -396,18 +414,27 @@ export type Database = {
         }
         Update: {
           address?: string | null
+          address_2?: string | null
           avatar_url?: string | null
           bio?: string | null
+          city?: string | null
           community_opt_out?: boolean | null
+          country?: string | null
           created_at?: string
           email?: string
+          first_name?: string | null
           full_name?: string | null
+          gender?: string | null
+          how_heard_about_us?: string | null
           id?: string
           last_login_at?: string | null
+          last_name?: string | null
           membership_type?: string | null
+          middle_name?: string | null
           newsletter_subscribed?: boolean | null
           personnummer?: string | null
           phone?: string | null
+          postal_code?: string | null
           social_links?: Json | null
           theme_groups?: string[] | null
           updated_at?: string
