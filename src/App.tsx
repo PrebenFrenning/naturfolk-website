@@ -13,6 +13,8 @@ import Trosgrunnlag from "./pages/Trosgrunnlag";
 import Aktuelt from "./pages/Aktuelt";
 import Temagrupper from "./pages/Temagrupper";
 import Auth from "./pages/Auth";
+import MemberOverview from "./pages/MemberOverview";
+import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./hooks/useAuth";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -53,6 +55,8 @@ const App = () => (
               <Route path="/events" element={<Events />} />
               <Route path="/kalender" element={<Kalender />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/medlem" element={<ProtectedRoute><MemberOverview /></ProtectedRoute>} />
+            <Route path="/medlem/profil" element={<ProtectedRoute><MemberProfile /></ProtectedRoute>} />
               
               {/* Admin Routes */}
               <Route path="/admin" element={

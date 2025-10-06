@@ -41,6 +41,45 @@ export type Database = {
         }
         Relationships: []
       }
+      event_registrations: {
+        Row: {
+          attended: boolean | null
+          event_id: string
+          id: string
+          registered_at: string
+          user_id: string
+        }
+        Insert: {
+          attended?: boolean | null
+          event_id: string
+          id?: string
+          registered_at?: string
+          user_id: string
+        }
+        Update: {
+          attended?: boolean | null
+          event_id?: string
+          id?: string
+          registered_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "event_registrations_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       events: {
         Row: {
           author_id: string
@@ -147,6 +186,47 @@ export type Database = {
           {
             foreignKeyName: "media_uploaded_by_fkey"
             columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      membership_payments: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          payment_date: string
+          period_end: string
+          period_start: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          payment_date?: string
+          period_end: string
+          period_start: string
+          status: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          payment_date?: string
+          period_end?: string
+          period_start?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "membership_payments_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -262,28 +342,61 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
           avatar_url: string | null
+          bio: string | null
+          community_opt_out: boolean | null
           created_at: string
           email: string
           full_name: string | null
           id: string
+          last_login_at: string | null
+          membership_type: string | null
+          newsletter_subscribed: boolean | null
+          personnummer: string | null
+          phone: string | null
+          social_links: Json | null
+          theme_groups: string[] | null
           updated_at: string
+          website: string | null
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
+          bio?: string | null
+          community_opt_out?: boolean | null
           created_at?: string
           email: string
           full_name?: string | null
           id: string
+          last_login_at?: string | null
+          membership_type?: string | null
+          newsletter_subscribed?: boolean | null
+          personnummer?: string | null
+          phone?: string | null
+          social_links?: Json | null
+          theme_groups?: string[] | null
           updated_at?: string
+          website?: string | null
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
+          bio?: string | null
+          community_opt_out?: boolean | null
           created_at?: string
           email?: string
           full_name?: string | null
           id?: string
+          last_login_at?: string | null
+          membership_type?: string | null
+          newsletter_subscribed?: boolean | null
+          personnummer?: string | null
+          phone?: string | null
+          social_links?: Json | null
+          theme_groups?: string[] | null
           updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }

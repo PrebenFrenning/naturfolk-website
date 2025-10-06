@@ -36,6 +36,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Check user roles when session changes
         if (session?.user) {
           checkUserRoles(session.user.id);
+          // Update last login time
+          if (event === 'SIGNED_IN') {
+            supabase
+              .from('profiles')
+              .update({ last_login_at: new Date().toISOString() })
+              .eq('id', session.user.id)
+              .then(() => {});
+          }
         } else {
           setIsAdmin(false);
           setIsEditor(false);
