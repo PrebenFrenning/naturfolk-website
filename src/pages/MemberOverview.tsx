@@ -83,7 +83,7 @@ export default function MemberOverview() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <div className="container mx-auto px-4 py-12 max-w-6xl">
+        <div className="container mx-auto px-4 pt-32 pb-12 max-w-6xl">
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-foreground mb-2">Medlemsoversikt</h1>
             <p className="text-muted-foreground">Velkommen tilbake, {profile?.full_name}</p>

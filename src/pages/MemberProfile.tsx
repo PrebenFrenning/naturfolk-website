@@ -17,6 +17,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User, Settings, Shield } from 'lucide-react';
 
 const THEME_GROUPS = [
+  'Dyrking & sanking',
+  'Hellige steder',
+  'Natursamfunn',
+  'Ritualer'
+];
+
+const INTERESTS = [
   'Fjellvandring',
   'Sjamanisme',
   'Meditasjon',
@@ -143,7 +150,7 @@ export default function MemberProfile() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <div className="container mx-auto px-4 pt-32 pb-12 max-w-4xl">
           <h1 className="text-4xl font-bold text-foreground mb-8">Min profil</h1>
 
           <Tabs defaultValue="profile" className="space-y-6">
@@ -330,6 +337,24 @@ export default function MemberProfile() {
                             />
                             <Label htmlFor={group} className="cursor-pointer">
                               {group}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label className="mb-4 block">Interests</Label>
+                      <div className="space-y-2">
+                        {INTERESTS.map((interest) => (
+                          <div key={interest} className="flex items-center space-x-2">
+                            <Switch
+                              id={interest}
+                              checked={profile.theme_groups?.includes(interest)}
+                              onCheckedChange={() => handleThemeGroupToggle(interest)}
+                            />
+                            <Label htmlFor={interest} className="cursor-pointer">
+                              {interest}
                             </Label>
                           </div>
                         ))}
