@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Calendar as CalendarUI } from '@/components/ui/calendar';
 import { Helmet } from 'react-helmet-async';
-import { Calendar, MapPin, Users, Facebook, Ticket } from 'lucide-react';
-import { format } from 'date-fns';
+import { Calendar, MapPin, Clock, ExternalLink, Facebook, Ticket } from 'lucide-react';
+import { format, isSameDay, startOfMonth, endOfMonth } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { sanitizeHtml } from '@/lib/sanitize';
+import EventDialog from '@/components/EventDialog';
+import { cn } from '@/lib/utils';
 
 interface Event {
   id: string;
@@ -24,11 +27,16 @@ interface Event {
   facebook_link: string | null;
   organized_by: string | null;
   what_to_bring: string | null;
+  registration_deadline: string | null;
 }
 
 export default function Kalender() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     loadEvents();
@@ -46,6 +54,28 @@ export default function Kalender() {
       setEvents(data);
     }
     setLoading(false);
+  };
+
+  // Get dates that have events
+  const eventDates = events.map(event => new Date(event.start_date));
+  
+  // Filter events by selected date
+  const filteredEvents = selectedDate
+    ? events.filter(event => isSameDay(new Date(event.start_date), selectedDate))
+    : events;
+
+  const handleEventClick = (event: Event) => {
+    setSelectedEvent(event);
+    setDialogOpen(true);
+  };
+
+  // Custom day renderer to show event indicators
+  const modifiers = {
+    hasEvent: eventDates,
+  };
+
+  const modifiersClassNames = {
+    hasEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-nature-green after:rounded-full',
   };
 
   return (
@@ -68,110 +98,110 @@ export default function Kalender() {
 
               {loading ? (
                 <div className="text-center py-12">Laster arrangementer...</div>
-              ) : events.length === 0 ? (
-                <div className="text-center py-12 text-muted-foreground">
-                  Ingen kommende arrangementer for øyeblikket. Kom tilbake snart!
-                </div>
               ) : (
-                <div className="space-y-8">
-                  {events.map((event) => (
-                    <Card key={event.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                      <div className="md:flex">
-                        {event.image_url && (
-                          <div className="md:w-1/3">
-                            <img 
-                              src={event.image_url} 
-                              alt={event.title}
-                              className="w-full h-64 md:h-full object-cover"
-                            />
+                <>
+                  {/* Calendar Section */}
+                  <div className="mb-12 flex flex-col items-center">
+                    <Card className="w-full max-w-md">
+                      <CardContent className="p-6">
+                        <CalendarUI
+                          mode="single"
+                          selected={selectedDate}
+                          onSelect={setSelectedDate}
+                          month={currentMonth}
+                          onMonthChange={setCurrentMonth}
+                          modifiers={modifiers}
+                          modifiersClassNames={modifiersClassNames}
+                          className="rounded-md border-0"
+                        />
+                        {selectedDate && (
+                          <div className="mt-4 text-center">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setSelectedDate(undefined)}
+                            >
+                              Vis alle arrangementer
+                            </Button>
                           </div>
                         )}
-                        <div className={event.image_url ? "md:w-2/3" : "w-full"}>
-                          <CardHeader>
-                            <CardTitle className="text-2xl">{event.title}</CardTitle>
-                            <div className="flex flex-col gap-3 text-sm text-muted-foreground mt-4">
-                              <div className="flex items-center gap-2">
-                                <Calendar className="h-4 w-4 flex-shrink-0" />
-                                <span>
-                                  {format(new Date(event.start_date), "EEEE d. MMMM yyyy 'kl.' HH:mm", { locale: nb })}
-                                  {event.end_date && ` - ${format(new Date(event.end_date), "HH:mm", { locale: nb })}`}
+                      </CardContent>
+                    </Card>
+                    {selectedDate && (
+                      <p className="mt-4 text-sm text-muted-foreground">
+                        Viser arrangementer for {format(selectedDate, 'd. MMMM yyyy', { locale: nb })}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Events Grid */}
+                  {filteredEvents.length === 0 ? (
+                    <div className="text-center py-12 text-muted-foreground">
+                      {selectedDate 
+                        ? 'Ingen arrangementer på denne datoen.'
+                        : 'Ingen kommende arrangementer for øyeblikket. Kom tilbake snart!'}
+                    </div>
+                  ) : (
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {filteredEvents.map((event) => {
+                        const eventDate = new Date(event.start_date);
+                        const endTime = event.end_date ? new Date(event.end_date) : null;
+                        
+                        return (
+                          <Card 
+                            key={event.id} 
+                            className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+                            onClick={() => handleEventClick(event)}
+                          >
+                            {event.image_url && (
+                              <div className="h-48 overflow-hidden">
+                                <img 
+                                  src={event.image_url} 
+                                  alt={event.title}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                />
+                              </div>
+                            )}
+                            <CardContent className="p-5">
+                              <div className="flex justify-between items-start mb-3">
+                                <h3 className="text-lg font-serif font-semibold">{event.title}</h3>
+                                <span className="bg-nature-sage/20 text-nature-green text-xs px-2 py-1 rounded-full whitespace-nowrap ml-2">
+                                  {format(eventDate, 'd. MMM', { locale: nb })}
                                 </span>
                               </div>
                               
-                              {event.location && (
+                              <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                                {event.description?.replace(/<[^>]*>/g, '')}
+                              </p>
+                              
+                              <div className="flex flex-col gap-2 text-sm">
                                 <div className="flex items-center gap-2">
-                                  <MapPin className="h-4 w-4 flex-shrink-0" />
-                                  {event.location}
+                                  <Clock size={14} className="text-nature-green flex-shrink-0" />
+                                  <span>
+                                    {format(eventDate, 'HH:mm', { locale: nb })}
+                                    {endTime && ` - ${format(endTime, 'HH:mm', { locale: nb })}`}
+                                  </span>
                                 </div>
-                              )}
-
-                              {event.max_participants && (
-                                <div className="flex items-center gap-2">
-                                  <Users className="h-4 w-4 flex-shrink-0" />
-                                  Maks {event.max_participants} deltakere
-                                </div>
-                              )}
-
-                              {event.price && (
-                                <div className="flex items-center gap-2">
-                                  <span className="font-semibold">Pris:</span>
-                                  {event.price}
-                                </div>
-                              )}
-
-                              {event.organized_by && (
-                                <div className="text-sm">
-                                  <strong>Arrangør:</strong> {event.organized_by}
-                                </div>
-                              )}
-                            </div>
-                          </CardHeader>
-                          
-                          <CardContent className="space-y-4">
-                            {event.description && (
-                              <div>
-                                <h3 className="font-semibold mb-2">Om arrangementet</h3>
-                                <div 
-                                  className="prose prose-sm max-w-none"
-                                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
-                                />
+                                {event.location && (
+                                  <div className="flex items-center gap-2">
+                                    <MapPin size={14} className="text-nature-green flex-shrink-0" />
+                                    <span className="line-clamp-1">{event.location}</span>
+                                  </div>
+                                )}
                               </div>
-                            )}
-
-                            {event.what_to_bring && (
-                              <div>
-                                <h3 className="font-semibold mb-2">Det bør du ha med</h3>
-                                <div 
-                                  className="prose prose-sm max-w-none"
-                                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.what_to_bring) }}
-                                />
+                              
+                              <div className="mt-4 pt-4 border-t border-gray-100">
+                                <span className="text-nature-green hover:text-nature-green/80 font-medium text-sm flex items-center gap-1">
+                                  Les mer <ExternalLink size={14} />
+                                </span>
                               </div>
-                            )}
-
-                            <div className="flex flex-wrap gap-3 pt-4">
-                              {event.ticket_link && (
-                                <Button asChild>
-                                  <a href={event.ticket_link} target="_blank" rel="noopener noreferrer">
-                                    <Ticket className="h-4 w-4 mr-2" />
-                                    Kjøp billett
-                                  </a>
-                                </Button>
-                              )}
-                              {event.facebook_link && (
-                                <Button variant="outline" asChild>
-                                  <a href={event.facebook_link} target="_blank" rel="noopener noreferrer">
-                                    <Facebook className="h-4 w-4 mr-2" />
-                                    Facebook-event
-                                  </a>
-                                </Button>
-                              )}
-                            </div>
-                          </CardContent>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
+                            </CardContent>
+                          </Card>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </section>
@@ -179,6 +209,12 @@ export default function Kalender() {
 
         <Footer />
       </div>
+      
+      <EventDialog 
+        event={selectedEvent} 
+        open={dialogOpen} 
+        onOpenChange={setDialogOpen} 
+      />
     </>
   );
 }
