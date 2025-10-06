@@ -112,6 +112,10 @@
   .underline-custom:hover::after {
     transform: scaleX(1);
   }
+
+  .underline-custom-active::after {
+    transform: scaleX(1) !important;
+  }
 }
 #impact .meta-numbers{
   display:none!important;

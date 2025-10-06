@@ -69,11 +69,10 @@ const Navbar = () => {
                 href={link.path}
                 className={cn(
                   "font-medium transition-custom underline-custom",
-                  location.pathname === link.path
-                    ? "text-nature-green"
-                    : isScrolled 
-                      ? "text-nature-brown hover:text-nature-green" 
-                      : "text-white hover:text-nature-green"
+                  location.pathname === link.path && "underline-custom-active text-nature-green",
+                  location.pathname !== link.path && (isScrolled 
+                    ? "text-nature-brown hover:text-nature-green" 
+                    : "text-white hover:text-nature-green")
                 )}
               >
                 {link.name}
@@ -84,11 +83,10 @@ const Navbar = () => {
                 to={link.path}
                 className={cn(
                   "font-medium transition-custom underline-custom",
-                  location.pathname === link.path
-                    ? "text-nature-green"
-                    : isScrolled 
-                      ? "text-nature-brown hover:text-nature-green" 
-                      : "text-white hover:text-nature-green"
+                  location.pathname === link.path && "underline-custom-active text-nature-green",
+                  location.pathname !== link.path && (isScrolled 
+                    ? "text-nature-brown hover:text-nature-green" 
+                    : "text-white hover:text-nature-green")
                 )}
               >
                 {link.name}
