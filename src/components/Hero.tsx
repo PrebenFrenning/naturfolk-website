@@ -42,10 +42,10 @@ const Hero = () => {
           Vi er et trossamfunn for dem som lever av, i og for naturen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay mb-8" style={{ animationDelay: "0.4s" }}>
-            <a href="#about" className="btn-primary flex items-center gap-2">
+            <a href="/trosgrunnlag" className="btn-primary flex items-center gap-2">
               Les vår trosberetning <ArrowRight size={18} />
             </a>
-            <a href="#programs" className="btn-secondary">
+            <a href="/medlemskap" className="btn-secondary">
               Meld deg inn
             </a>
           </div>

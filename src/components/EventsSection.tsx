@@ -265,8 +265,8 @@ const EventsSection = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <a href="#contact" className="btn-primary inline-flex items-center gap-2">
-            Be om informasjon
+          <a href="/kalender" className="btn-primary inline-flex items-center gap-2">
+            Vis alle eventer
           </a>
         </div>
       </div>
