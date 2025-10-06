@@ -12,6 +12,7 @@ import Footer from '@/components/Footer';
 
 export default function MemberLogin() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [memberFound, setMemberFound] = useState<boolean | null>(null);
   const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -119,29 +120,58 @@ export default function MemberLogin() {
 
                 {memberFound === true && (
                   <div className="space-y-4">
-                    <div className="p-4 bg-nature-green/10 border border-nature-green/20 rounded-lg">
-                      <p className="text-sm text-center mb-2">
+                    <div className="p-4 bg-nature-green/10 border border-nature-green/20 rounded-lg text-center">
+                      <p className="text-sm font-medium mb-1">
                         Vi har funnet din profil!
                       </p>
                       {phoneNumber && (
-                        <p className="text-sm text-center text-muted-foreground">
-                          En bekreftelseskode vil bli sendt til: {phoneNumber.slice(0, 3)}***{phoneNumber.slice(-2)}
+                        <p className="text-sm text-muted-foreground">
+                          Registrert telefon: {phoneNumber.slice(0, 3)}***{phoneNumber.slice(-2)}
                         </p>
                       )}
-                      <p className="text-sm text-center text-muted-foreground mt-2">
-                        (SMS-verifisering kommer snart)
-                      </p>
                     </div>
-                    <Button 
-                      type="button"
-                      className="w-full"
-                      onClick={() => {
-                        setMemberFound(null);
-                        setEmail('');
-                      }}
-                    >
-                      Prøv på nytt
-                    </Button>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="password">Passord</Label>
+                      <Input
+                        id="password"
+                        type="password"
+                        placeholder="Skriv inn ditt passord"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Button 
+                        type="button" 
+                        className="w-full"
+                        disabled={!password}
+                      >
+                        Logg inn
+                      </Button>
+                      
+                      <Button 
+                        type="button"
+                        variant="outline"
+                        className="w-full"
+                      >
+                        Send SMS med passord
+                      </Button>
+
+                      <Button 
+                        type="button"
+                        variant="ghost"
+                        className="w-full"
+                        onClick={() => {
+                          setMemberFound(null);
+                          setEmail('');
+                          setPassword('');
+                        }}
+                      >
+                        Prøv med annen e-post
+                      </Button>
+                    </div>
                   </div>
                 )}
 
