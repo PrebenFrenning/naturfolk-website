@@ -1,13 +1,52 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Users, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Calendar, Users, MapPin, ArrowRight } from 'lucide-react';
+import { format } from 'date-fns';
+import { nb } from 'date-fns/locale';
 
 const Aktuelt = () => {
+  // Fetch upcoming events (next 2)
+  const { data: events = [] } = useQuery({
+    queryKey: ['upcoming-events'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'published')
+        .gte('start_date', new Date().toISOString())
+        .order('start_date', { ascending: true })
+        .limit(2);
+      
+      if (error) throw error;
+      return data;
+    }
+  });
+
+  // Fetch latest blog posts
+  const { data: posts = [] } = useQuery({
+    queryKey: ['latest-posts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('status', 'published')
+        .order('publish_date', { ascending: false })
+        .limit(4);
+      
+      if (error) throw error;
+      return data;
+    }
+  });
+
   return (
     <>
       <Helmet>
@@ -40,55 +79,49 @@ const Aktuelt = () => {
                 Kommende Arrangementer
               </h2>
               
-              <div className="grid md:grid-cols-2 gap-8 mb-12">
-                <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-64">
-                    <img 
-                      src="/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png" 
-                      alt="Nordlys under Alveblot og Utesitting"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Calendar className="h-4 w-4 text-nature-green" />
-                      <Badge variant="secondary">1. November 2024</Badge>
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                {events.map((event) => (
+                  <Card key={event.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div className="relative h-64">
+                      <img 
+                        src={event.image_url || '/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png'} 
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
-                    <CardTitle className="text-nature-brown">Alveblot og Utesitting</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                     <p className="text-muted-foreground leading-relaxed mb-4">
-                       Trossamfunnet Naturfolk inviterer deg til felles utesitting fredag den 1. november, 
-                       kjent som Allehelgensdag og Samhain, med røtter i tradisjonen om alveblot. 
-                       Bli med oss i naturen for å ære åndelige krefter og forfedres tradisjoner.
-                     </p>
-                  </CardContent>
-                </Card>
+                    <CardHeader>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Calendar className="h-4 w-4 text-nature-green" />
+                        <Badge variant="secondary">
+                          {format(new Date(event.start_date), 'd. MMMM yyyy', { locale: nb })}
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-nature-brown">{event.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div 
+                        className="text-muted-foreground leading-relaxed mb-4 line-clamp-3"
+                        dangerouslySetInnerHTML={{ __html: event.description || '' }}
+                      />
+                      {event.location && (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <MapPin className="h-4 w-4" />
+                          <span>{event.location}</span>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
-                <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-64">
-                    <img 
-                      src="/lovable-uploads/5a0d04c1-33b5-4628-841d-d6c3346896b0.png" 
-                      alt="Bål i skogen under Vårjevndøgn 2025"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Calendar className="h-4 w-4 text-nature-green" />
-                      <Badge variant="secondary">Mars 2025</Badge>
-                    </div>
-                    <CardTitle className="text-nature-brown">Kommende Seremoni – Vårjevndøgn 2025</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                     <p className="text-muted-foreground leading-relaxed mb-4">
-                       Bli med på vår årlige seremoni i skogen for å feire vårens ankomst. 
-                       Mer informasjon kommer snart!
-                     </p>
-                  </CardContent>
-                </Card>
+              <div className="text-center">
+                <Link to="/kalender">
+                  <Button size="lg" className="gap-2">
+                    Se alle arrangementer
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </section>
@@ -101,52 +134,34 @@ const Aktuelt = () => {
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
-                <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-64">
-                    <img 
-                      src="/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png" 
-                      alt="Nordlige landskap som inspirerer Naturfolk"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Users className="h-4 w-4 text-nature-green" />
-                      <Badge variant="secondary">Medlemskap</Badge>
-                    </div>
-                    <CardTitle className="text-nature-brown">Naturfolk Vekst i 2025</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                     <p className="text-muted-foreground leading-relaxed mb-4">
-                       Vi nærmer oss 400 medlemmer og fortsetter å bygge et sterkt fellesskap for å 
-                       beskytte naturens hellighet. Les mer om vår reise og planer for fremtiden.
-                     </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="relative h-64">
-                    <img 
-                      src="/lovable-uploads/5a0d04c1-33b5-4628-841d-d6c3346896b0.png" 
-                      alt="Medlemmer samles under Ny Medlemsdag i Oslo"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <MapPin className="h-4 w-4 text-nature-green" />
-                      <Badge variant="secondary">Oslo</Badge>
-                    </div>
-                    <CardTitle className="text-nature-brown">Ny Medlemsdag i Oslo</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                     <p className="text-muted-foreground leading-relaxed mb-4">
-                       Åpent hus 15. mars i Oslo. Kom og møt oss for å lære mer om Naturfolk!
-                     </p>
-                  </CardContent>
-                </Card>
+                {posts.map((post) => (
+                  <Link key={post.id} to={`/blog/${post.slug}`}>
+                    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full">
+                      <div className="relative h-64">
+                        <img 
+                          src={post.featured_image || '/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png'} 
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      </div>
+                      <CardHeader>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Calendar className="h-4 w-4 text-nature-green" />
+                          <Badge variant="secondary">
+                            {post.publish_date && format(new Date(post.publish_date), 'd. MMMM yyyy', { locale: nb })}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-nature-brown">{post.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
