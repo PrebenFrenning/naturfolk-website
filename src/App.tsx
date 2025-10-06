@@ -13,6 +13,7 @@ import Trosgrunnlag from "./pages/Trosgrunnlag";
 import Aktuelt from "./pages/Aktuelt";
 import Temagrupper from "./pages/Temagrupper";
 import Auth from "./pages/Auth";
+import MemberLogin from "./pages/MemberLogin";
 import MemberOverview from "./pages/MemberOverview";
 import MemberProfile from "./pages/MemberProfile";
 import NotFound from "./pages/NotFound";
@@ -55,6 +56,7 @@ const App = () => (
               <Route path="/events" element={<Events />} />
               <Route path="/kalender" element={<Kalender />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/medlem-login" element={<MemberLogin />} />
             <Route path="/medlem" element={<ProtectedRoute><MemberOverview /></ProtectedRoute>} />
             <Route path="/medlem/profil" element={<ProtectedRoute><MemberProfile /></ProtectedRoute>} />
               
