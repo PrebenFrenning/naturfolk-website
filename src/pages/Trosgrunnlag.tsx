@@ -113,8 +113,8 @@ const Trosgrunnlag = () => {
       )}
 
       {/* Main Content */}
-      <div className="container-custom py-16">
-        <div className="max-w-4xl mx-auto">
+      <div className="container-custom py-8 md:py-16">
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-12">
           
           {/* Erklæring */}
           <section id="erklaring" className="mb-16">
