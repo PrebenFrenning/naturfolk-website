@@ -40,6 +40,7 @@ export default function BlogPost() {
   const [recentPosts, setRecentPosts] = useState<RecentPost[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     if (slug) {
@@ -48,6 +49,19 @@ export default function BlogPost() {
       loadCategories();
     }
   }, [slug]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrolled = window.scrollY;
+      const progress = (scrolled / (documentHeight - windowHeight)) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const loadPost = async () => {
     const { data, error } = await supabase
@@ -136,6 +150,14 @@ export default function BlogPost() {
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
+        {/* Scroll Progress Bar */}
+        <div className="fixed top-0 left-0 right-0 h-1 bg-nature-beige/30 z-[100]">
+          <div 
+            className="h-full bg-nature-green transition-all duration-150 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+        
         <Navbar />
         
         <main className="flex-1 pt-24">
