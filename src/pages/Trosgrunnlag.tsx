@@ -69,7 +69,7 @@ const Trosgrunnlag = () => {
   return (
     <div className="min-h-screen bg-nature-offwhite">
       {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-nature-beige/30 z-50">
+      <div className="fixed top-0 left-0 right-0 h-1 bg-nature-beige/30 z-[100]">
         <div 
           className="h-full bg-nature-green transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
