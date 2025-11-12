@@ -190,16 +190,16 @@ export default function BlogPost() {
                     })}
                   </div>
 
-                  <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
+                  <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-foreground">{post.title}</h1>
 
                   {post.excerpt && (
-                    <p className="text-xl text-muted-foreground mb-8 italic">
+                    <p className="text-xl text-muted-foreground mb-8 font-sans">
                       {post.excerpt}
                     </p>
                   )}
 
                   <div 
-                    className="prose prose-lg max-w-none"
+                    className="prose prose-lg max-w-none font-sans [&_h1]:font-serif [&_h2]:font-serif [&_h3]:font-serif [&_h4]:font-serif [&_h5]:font-serif [&_h6]:font-serif [&_h1]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground [&_p]:text-foreground [&_li]:text-foreground [&_strong]:text-foreground [&_em]:text-foreground"
                     dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
                   />
                 </article>

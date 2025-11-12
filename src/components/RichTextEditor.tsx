@@ -19,7 +19,7 @@ import {
   Undo,
   Redo
 } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 interface RichTextEditorProps {
   content: string;
@@ -46,6 +46,13 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
       onChange(editor.getHTML());
     },
   });
+
+  // Update editor content when prop changes
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
 
   const addLink = useCallback(() => {
     if (!editor) return;
