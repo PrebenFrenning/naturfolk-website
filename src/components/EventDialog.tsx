@@ -16,6 +16,7 @@ import { format } from 'date-fns';
 import { Calendar, CalendarDays, MapPin, Clock, Users, Info, AlertCircle } from 'lucide-react';
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
+import { sanitizeHtml } from '@/lib/sanitize';
 
 type EventType = {
   id: string;
@@ -165,7 +166,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                   <h3 className="font-medium mb-2">Om arrangementet</h3>
                   <div 
                     className="text-muted-foreground text-sm prose prose-sm max-w-none"
-                    dangerouslySetInnerHTML={{ __html: event.description }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
                   />
                 </div>
               )}
@@ -177,7 +178,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                     <h3 className="font-medium mb-2">Det bør du ha med</h3>
                     <div 
                       className="text-muted-foreground text-sm prose prose-sm max-w-none"
-                      dangerouslySetInnerHTML={{ __html: event.what_to_bring }}
+                      dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.what_to_bring) }}
                     />
                   </div>
                 </>

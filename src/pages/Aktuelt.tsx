@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, Users, MapPin, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 const Aktuelt = () => {
   // Fetch upcoming events (next 2)
@@ -102,7 +103,7 @@ const Aktuelt = () => {
                     <CardContent>
                       <div 
                         className="text-muted-foreground leading-relaxed mb-4 line-clamp-3"
-                        dangerouslySetInnerHTML={{ __html: event.description || '' }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description || '') }}
                       />
                       {event.location && (
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
