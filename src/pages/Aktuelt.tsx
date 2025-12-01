@@ -136,7 +136,7 @@ const Aktuelt = () => {
               
               <div className="grid md:grid-cols-2 gap-8">
                 {posts.map((post) => (
-                  <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Link key={post.id} to={`/blogg/${post.slug}`}>
                     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full">
                       <div className="relative h-64">
                         <img 
