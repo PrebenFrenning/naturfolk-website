@@ -133,7 +133,7 @@ export default function BlogPost() {
         <Navbar />
         <div className="container mx-auto px-4 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
-          <Link to="/blog">
+          <Link to="/blogg">
             <Button>Back to Blog</Button>
           </Link>
         </div>
@@ -163,7 +163,7 @@ export default function BlogPost() {
         <main className="flex-1 pt-24">
           <div className="py-8 px-4">
             <div className="container mx-auto max-w-7xl">
-              <Link to="/blog" className="inline-block mb-8">
+              <Link to="/blogg" className="inline-block mb-8">
                 <Button variant="outline" size="lg" className="bg-background hover:bg-accent shadow-sm">
                   <ArrowLeft className="mr-2 h-5 w-5" />
                   Tilbake til blog
@@ -215,7 +215,7 @@ export default function BlogPost() {
                           {recentPosts.map((recentPost) => (
                             <li key={recentPost.id}>
                               <Link 
-                                to={`/blog/${recentPost.slug}`}
+                                to={`/blogg/${recentPost.slug}`}
                                 className="group block"
                               >
                                 <h4 className="font-medium text-sm group-hover:text-nature-green transition-colors line-clamp-2">
@@ -245,7 +245,7 @@ export default function BlogPost() {
                           {categories.map((category) => (
                             <li key={category.id}>
                               <Link 
-                                to={`/blog?category=${category.slug}`}
+                                to={`/blogg?category=${category.slug}`}
                                 className="group flex items-center justify-between hover:text-nature-green transition-colors"
                               >
                                 <span className="text-sm font-medium">{category.name}</span>

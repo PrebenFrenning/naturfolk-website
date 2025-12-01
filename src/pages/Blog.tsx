@@ -43,8 +43,8 @@ export default function Blog() {
   return (
     <>
       <Helmet>
-        <title>Blog - Nettverket i Norge</title>
-        <meta name="description" content="Read the latest articles and updates from Nettverket i Norge" />
+        <title>Blogg - Nettverket i Norge</title>
+        <meta name="description" content="Les våre siste innlegg og oppdateringer" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
@@ -53,9 +53,9 @@ export default function Blog() {
         <main className="flex-1">
           <section className="py-20 px-4">
             <div className="container mx-auto max-w-6xl">
-              <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">Blog</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">Blogg</h1>
               <p className="text-xl text-center text-muted-foreground mb-12">
-                Latest articles and updates
+                Les våre siste innlegg og oppdateringer
               </p>
 
               {loading ? (
@@ -67,7 +67,7 @@ export default function Blog() {
               ) : (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {posts.map((post) => (
-                    <Link key={post.id} to={`/blog/${post.slug}`}>
+                    <Link key={post.id} to={`/blogg/${post.slug}`}>
                       <Card className="h-full hover:shadow-lg transition-shadow">
                         {post.featured_image && (
                           <img 
