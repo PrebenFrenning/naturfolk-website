@@ -39,6 +39,7 @@ const Footer = () => {
               <li><a href="/about" className="hover:text-nature-green transition-custom">Om oss</a></li>
               <li><a href="/medlemskap" className="hover:text-nature-green transition-custom">Medlemskap</a></li>
               <li><a href="/kontakt" className="hover:text-nature-green transition-custom">Kontakt</a></li>
+              <li><a href="/blogg" className="hover:text-nature-green transition-custom">Blogg</a></li>
             </ul>
           </div>
           
