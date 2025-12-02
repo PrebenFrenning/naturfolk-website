@@ -164,6 +164,15 @@ const Aktuelt = () => {
                   </Link>
                 ))}
               </div>
+
+              <div className="text-center mt-8">
+                <Link to="/blogg">
+                  <Button size="lg" className="gap-2">
+                    Til bloggen
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </section>
 
