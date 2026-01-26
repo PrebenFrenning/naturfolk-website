@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 // Pages that have hero images (transparent navbar looks good)
-const PAGES_WITH_HERO = ['/', '/about', '/trosgrunnlag', '/medlemskap', '/temagrupper', '/bli-medlem', '/betaling'];
+const PAGES_WITH_HERO = ['/', '/about', '/trosgrunnlag', '/medlemskap', '/temagrupper', '/bli-medlem', '/betaling', '/kalender'];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
