@@ -10,11 +10,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+// Pages that have hero images (transparent navbar looks good)
+const PAGES_WITH_HERO = ['/', '/about', '/trosgrunnlag', '/medlemskap', '/temagrupper', '/bli-medlem', '/betaling'];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [language, setLanguage] = useState<'en' | 'no'>('no');
   const location = useLocation();
+
+  // Check if current page has a hero image
+  const hasHeroImage = PAGES_WITH_HERO.includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,13 +40,18 @@ const Navbar = () => {
     { name: 'Kontakt', path: '/contact', isExternal: false },
   ];
 
+  // Determine if navbar should show dark style (not scrolled, either has hero or needs solid dark bg)
+  const showDarkStyle = !isScrolled;
+  // On pages without hero, use solid dark background instead of transparent
+  const darkBgClass = hasHeroImage ? 'bg-black/50 backdrop-blur-sm' : 'bg-nature-brown';
+
   return (
     <nav 
       className={cn(
         'fixed w-full z-50 transition-all duration-300',
         isScrolled 
           ? 'bg-white py-3 shadow-md' 
-          : 'bg-black/50 backdrop-blur-sm py-5'
+          : `${darkBgClass} py-5`
       )}
     >
       <div className="container-custom flex justify-between items-center">
