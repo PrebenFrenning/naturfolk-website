@@ -35,10 +35,10 @@ const Medlemskap = () => {
             <Card>
               <CardContent className="p-8">
                 <p className="text-lg leading-relaxed mb-4">
-                  Trossamfunnet Naturfolk ble etter en grundig og spennende prosess grunnlagt i 2023. Vi er i vekst og bygger vår forening steg for steg, og nærmer oss nå 400 medlemmer. Vårt mål er at vi som fellesskap skal kunne møtes regelmessig for samlinger, ritualer og kunnskapsdeling - lokalt, regionalt og nasjonalt, både digitalt og fysisk.
+                  Trossamfunnet Naturfolk ble etter en utfordrende og inspirerende prosess grunnlagt i 2023. Vi er i vekst og bygger vårt fellesskap organisk steg for steg. Vårt mål er at vi som fellesskap skal kunne møtes regelmessig for samlinger, ritualer og kunnskapsdeling - lokalt, regionalt og nasjonalt. Dette for å kunne spre våre verdier til samfunnet omkring oss og påvirke gjennom å være positive forbilder. Vi lever i en tid hvor naturen fortrenges mer og mer i vår hverdag, naturen behøver alle gode krefter på sin side og vi behøver naturen i våre liv.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  Vi ønsker varmt velkommen alle som ønsker å stå sammen med oss på den hellige naturens side.
+                  Vi ønsker varmt velkommen alle som ønsker å stå sammen med oss på den hellige naturens side og håper vi møtes snart i bålsirkelen.
                 </p>
               </CardContent>
             </Card>
