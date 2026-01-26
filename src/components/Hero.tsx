@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import heroImage from '@/assets/hero-fjord.png';
+import heroImage from '@/assets/hero-fjord-bonfire.png';
 
 const Hero = () => {
   return (
@@ -28,7 +28,7 @@ const Hero = () => {
             <a href="/trosgrunnlag" className="btn-primary flex items-center gap-2">
               Vår tro og våre verdier <ArrowRight size={18} />
             </a>
-            <a href="/medlemskap" className="btn-secondary">
+            <a href="/medlemskap" className="btn-secondary text-white border-white hover:bg-white hover:text-nature-brown">
               Meld deg inn
             </a>
           </div>
