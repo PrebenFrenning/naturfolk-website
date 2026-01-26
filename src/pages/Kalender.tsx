@@ -131,6 +131,8 @@ export default function Kalender() {
                           modifiers={modifiers}
                           modifiersClassNames={modifiersClassNames}
                           className="rounded-md border-0"
+                          locale={nb}
+                          weekStartsOn={1}
                         />
                         {selectedDate && (
                           <div className="mt-4 text-center">
