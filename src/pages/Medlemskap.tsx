@@ -5,16 +5,24 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
+import heroImage from '@/assets/medlemskap-hero.jpg';
 
 const Medlemskap = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-nature-green to-nature-green/80 text-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-[50vh] flex items-center justify-center">
+        <img 
+          src={heroImage} 
+          alt="Fellesskap rundt bål i norsk natur" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+        
+        <div className="relative z-10 container-custom py-24">
+          <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
               Bli med i Naturfolk
             </h1>
