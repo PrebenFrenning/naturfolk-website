@@ -4,6 +4,10 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Leaf, Map, Users, Star } from 'lucide-react';
+import dyrkingImage from '@/assets/temagruppe-dyrking.jpg';
+import helligeStederImage from '@/assets/temagruppe-hellige-steder.jpg';
+import natursamfunnImage from '@/assets/temagruppe-natursamfunn.jpg';
+import ritualerImage from '@/assets/temagruppe-ritualer.jpg';
 
 const Temagrupper = () => {
   const themeGroups = [
@@ -11,25 +15,29 @@ const Temagrupper = () => {
       icon: <Leaf size={48} />,
       title: "Dyrking og sanking",
       description: "Temagruppen for dyrking og sanking deler kunnskap og erfaringer rundt alt man kan spise og gjøre nytte av ellers.",
-      detailedInfo: "I denne gruppen utforsker vi naturens rikdom gjennom både tradisjonell og moderne kunnskap om planter. Vi lærer om bærekraftig sanking, identifisering av spiselige planter, bevaring av mattradisjoner og økologisk dyrking. Gruppen møtes regelmessig for å dele erfaringer, organisere sankingsturer og diskutere sesongbaserte dyrkingsmetoder."
+      detailedInfo: "I denne gruppen utforsker vi naturens rikdom gjennom både tradisjonell og moderne kunnskap om planter. Vi lærer om bærekraftig sanking, identifisering av spiselige planter, bevaring av mattradisjoner og økologisk dyrking. Gruppen møtes regelmessig for å dele erfaringer, organisere sankingsturer og diskutere sesongbaserte dyrkingsmetoder.",
+      image: dyrkingImage
     },
     {
       icon: <Map size={48} />,
       title: "Hellige steder",
       description: "Her jobber vi med å kartlegge og dokumentere hellige steder vi kjenner til, med mål om å gi de et hellig vern gjennom bruk og glede.",
-      detailedInfo: "Temagruppen for hellige steder arbeider med å identifisere, respektere og beskytte naturområder av åndelig betydning. Vi dokumenterer gamle kultplasser, naturlige helligdommer og steder med særegen energi. Gjennom vårt arbeid søker vi å skape bevissthet om disse stedenes betydning og sikre at de behandles med respekt og ærefrykt for fremtidige generasjoner."
+      detailedInfo: "Temagruppen for hellige steder arbeider med å identifisere, respektere og beskytte naturområder av åndelig betydning. Vi dokumenterer gamle kultplasser, naturlige helligdommer og steder med særegen energi. Gjennom vårt arbeid søker vi å skape bevissthet om disse stedenes betydning og sikre at de behandles med respekt og ærefrykt for fremtidige generasjoner.",
+      image: helligeStederImage
     },
     {
       icon: <Users size={48} />,
       title: "Natursamfunn",
       description: "Øke bevissthet omkring samfunnsbygging basert på Naturfolks kjerneverdier, inspirere til naturnært levesett og skape en visjon for natursamfunn for fremtiden.",
-      detailedInfo: "Denne gruppen fokuserer på hvordan vi kan bygge bærekraftige fellesskap i harmoni with naturen. Vi utforsker alternative boformer, økologisk økonomi, selvforsyning og fellesskapsdrevne løsninger. Målet er å inspirere til og konkretisere visjoner for hvordan fremtidens natursamfunn kan se ut, hvor mennesker lever i balanse med naturen og hverandre. Vi trekker inn både kunnskap og praktiske erfaringer i vårt arbeid, med tidsramme 2024-2025, men vi tar den tiden vi behøver."
+      detailedInfo: "Denne gruppen fokuserer på hvordan vi kan bygge bærekraftige fellesskap i harmoni with naturen. Vi utforsker alternative boformer, økologisk økonomi, selvforsyning og fellesskapsdrevne løsninger. Målet er å inspirere til og konkretisere visjoner for hvordan fremtidens natursamfunn kan se ut, hvor mennesker lever i balanse med naturen og hverandre. Vi trekker inn både kunnskap og praktiske erfaringer i vårt arbeid, med tidsramme 2024-2025, men vi tar den tiden vi behøver.",
+      image: natursamfunnImage
     },
     {
       icon: <Star size={48} />,
       title: "Ritualer",
       description: "Her lærer vi om, og utvikler ulike ritualer for enhver anledning og begivenhet.",
-      detailedInfo: "Ritualgruppen jobber med å bevare gamle tradisjoner og skape nye meningsfulle ritualer tilpasset moderne liv. Vi utforsker sesongbaserte seremonier, overgangsritualer, naturbaserte helligdager og personlige markeringer. Gjennom ritualer skaper vi sammenheng, mening og dypere forbindelse til naturens sykluser og livets viktige øyeblikk. Alle medlemmer er velkomne til å bidra med egen kunnskap og kreativitet."
+      detailedInfo: "Ritualgruppen jobber med å bevare gamle tradisjoner og skape nye meningsfulle ritualer tilpasset moderne liv. Vi utforsker sesongbaserte seremonier, overgangsritualer, naturbaserte helligdager og personlige markeringer. Gjennom ritualer skaper vi sammenheng, mening og dypere forbindelse til naturens sykluser og livets viktige øyeblikk. Alle medlemmer er velkomne til å bidra med egen kunnskap og kreativitet.",
+      image: ritualerImage
     }
   ];
 
@@ -72,12 +80,13 @@ const Temagrupper = () => {
                       <p className="text-lg mb-4 text-foreground/80">{group.description}</p>
                       <p className="text-base text-muted-foreground leading-relaxed">{group.detailedInfo}</p>
                     </div>
-                    <div className={`bg-nature-sage/20 p-8 md:p-12 flex items-center justify-center ${index % 2 === 1 ? 'md:col-start-1' : ''}`}>
-                      <div className="w-full h-64 md:h-full flex items-center justify-center">
-                        <div className="text-nature-green/30">
-                          {React.cloneElement(group.icon, { size: 120 })}
-                        </div>
-                      </div>
+                    <div className={`relative overflow-hidden ${index % 2 === 1 ? 'md:col-start-1' : ''}`}>
+                      <img 
+                        src={group.image} 
+                        alt={group.title}
+                        className="w-full h-64 md:h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
                   </div>
                 </CardContent>
