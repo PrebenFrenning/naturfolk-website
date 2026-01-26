@@ -13,6 +13,7 @@ import { Calendar, Users, MapPin, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { sanitizeHtml } from '@/lib/sanitize';
+import aktueltHero from '@/assets/aktuelt-hero.jpg';
 
 const Aktuelt = () => {
   // Fetch upcoming events (next 2)
@@ -60,14 +61,20 @@ const Aktuelt = () => {
       <div className="min-h-screen bg-gradient-to-b from-nature-light to-background">
         <Navbar />
         
-        <main className="pt-20">
+        <main className="flex-1">
           {/* Hero Section */}
-          <section className="section-padding bg-gradient-to-r from-nature-primary to-nature-secondary text-white">
-            <div className="container-custom text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Aktuelt
-              </h1>
-              <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+          <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center">
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={aktueltHero} 
+                alt="Norsk fjellandskap med brennende varde i skumringen" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
+            </div>
+            <div className="relative z-10 text-center text-white px-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">Aktuelt</h1>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
                 De nyeste nyhetene og arrangementene fra Naturfolk
               </p>
             </div>
