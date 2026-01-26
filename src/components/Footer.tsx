@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           <div>
             <h3 className="font-serif text-2xl font-semibold mb-4">Naturfolk</h3>
-            <p className="mb-6 opacity-80">
-              Reconnect with wild nature. Transformative wilderness experiences that foster a deeper connection with the natural world, yourself, and others.
+            <p className="mb-6 opacity-80 text-sm leading-relaxed">
+              Naturfolk er en levende vei som forener fortidens visdom med samtidens livsutfordringer. I en tid der naturen roper om vern, inviterer vårt fellesskap deg til å gjenoppdage vår urnordiske ånd – slik den springer ut av vårt naturlandskap og livet vi lever i balanse med vår indre natur og naturen omkring oss.
             </p>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/naturfolk" className="text-white hover:text-nature-green transition-custom">
