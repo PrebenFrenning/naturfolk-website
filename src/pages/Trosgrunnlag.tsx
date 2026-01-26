@@ -79,19 +79,16 @@ const Trosgrunnlag = () => {
       
       <Navbar />
       
-      {/* Hero Image */}
-      <div className="relative h-[40vh] min-h-[300px] w-full">
+      {/* Hero Header with Background Image */}
+      <div className="relative min-h-[60vh] w-full flex items-end">
         <img 
           src={heroImage} 
           alt="Bål i nordisk skog" 
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
-      </div>
-      
-      {/* Header */}
-      <div className="bg-nature-green text-white py-12">
-        <div className="container-custom">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/70"></div>
+        
+        <div className="relative z-10 container-custom pb-12 pt-32 text-white">
           <div className="flex items-center gap-4 mb-6">
             <Link to="/" className="flex items-center gap-2 text-white/80 hover:text-white transition-custom">
               <ArrowLeft size={20} />
