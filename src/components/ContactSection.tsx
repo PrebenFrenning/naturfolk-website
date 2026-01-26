@@ -66,8 +66,7 @@ const ContactSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Ta kontakt</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-lg text-balance">
-            Har du spørsmål om eller til Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss
-            direkte på mail.
+            Har du spørsmål til Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss direkte på epost, så svarer vi så snart vi kan.
           </p>
         </div>
 
