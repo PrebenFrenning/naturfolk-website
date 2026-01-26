@@ -4,6 +4,7 @@ import { ArrowLeft, List } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
+import heroImage from '@/assets/trosgrunnlag-hero.jpg';
 
 const Trosgrunnlag = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -78,8 +79,18 @@ const Trosgrunnlag = () => {
       
       <Navbar />
       
+      {/* Hero Image */}
+      <div className="relative h-[40vh] min-h-[300px] w-full">
+        <img 
+          src={heroImage} 
+          alt="Bål i nordisk skog" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
+      </div>
+      
       {/* Header */}
-      <div className="bg-nature-green text-white py-16">
+      <div className="bg-nature-green text-white py-12">
         <div className="container-custom">
           <div className="flex items-center gap-4 mb-6">
             <Link to="/" className="flex items-center gap-2 text-white/80 hover:text-white transition-custom">
