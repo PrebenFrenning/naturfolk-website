@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import heroImage from '@/assets/hero-fjord.jpg';
 
 const Hero = () => {
   return (
@@ -7,8 +8,8 @@ const Hero = () => {
       {/* Hero background */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80" 
-          alt="Naturlandskap" 
+          src={heroImage} 
+          alt="Mektig nordnorsk fjordlandskap med fjell" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
