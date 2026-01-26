@@ -122,7 +122,7 @@ export default function BliMedlem() {
                 </SelectContent>
               </Select>
               <p className="text-xs text-muted-foreground">
-                *For å bli hovedmedlem eller støttemedlem, må du være hovedmedlem i noe annet trossamfunn
+                *For å bli hovedmedlem må du være utmeldt andre trossamfunn
               </p>
               {errors.membership_type && <p className="text-sm text-destructive">{errors.membership_type.message}</p>}
             </div>
@@ -192,7 +192,6 @@ export default function BliMedlem() {
                 <SelectContent>
                   <SelectItem value="Mann">Mann</SelectItem>
                   <SelectItem value="Kvinne">Kvinne</SelectItem>
-                  <SelectItem value="Annet">Annet</SelectItem>
                   <SelectItem value="Ønsker ikke å oppgi">Ønsker ikke å oppgi</SelectItem>
                 </SelectContent>
               </Select>
