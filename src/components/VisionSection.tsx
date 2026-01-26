@@ -1,4 +1,5 @@
 import React from 'react';
+import visionImage from '@/assets/vision-yggdrasil.jpg';
 
 const VisionSection = () => {
   return (
@@ -15,8 +16,8 @@ const VisionSection = () => {
           
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
-              alt="Sollys gjennom trær i skogen" 
+              src={visionImage} 
+              alt="Mektig eik i norsk vinterskog med sollys gjennom greinene" 
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
