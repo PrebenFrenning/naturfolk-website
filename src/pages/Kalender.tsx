@@ -86,8 +86,8 @@ export default function Kalender() {
   };
 
   const modifiersClassNames = {
-    hasPastEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-muted-foreground/50 after:rounded-full',
-    hasFutureEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-nature-green after:rounded-full',
+    hasPastEvent: 'font-bold relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-muted-foreground/50 after:rounded-full',
+    hasFutureEvent: 'font-bold relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-nature-green after:rounded-full',
   };
 
   return (
