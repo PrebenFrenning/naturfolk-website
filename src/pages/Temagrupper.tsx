@@ -99,7 +99,7 @@ const Temagrupper = () => {
       {/* CTA Section */}
       <section className="section-padding bg-nature-beige/30">
         <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Bli med i et fellesskap</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Bli med i vårt fellesskap</h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Som medlem av Naturfolk får du tilgang til alle våre temagrupper. Engasjer deg i de gruppene som appellerer til deg, eller utforsk dem alle.
           </p>
