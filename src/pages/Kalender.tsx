@@ -12,6 +12,7 @@ import { nb } from 'date-fns/locale';
 import { sanitizeHtml } from '@/lib/sanitize';
 import EventDialog from '@/components/EventDialog';
 import { cn } from '@/lib/utils';
+import kalenderHero from '@/assets/kalender-hero.jpg';
 
 interface Event {
   id: string;
@@ -89,9 +90,26 @@ export default function Kalender() {
         <Navbar />
         
         <main className="flex-1">
-          <section className="py-20 px-4">
+          {/* Hero Section */}
+          <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center">
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={kalenderHero} 
+                alt="Tradisjonell norsk primstav med runer" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
+            </div>
+            <div className="relative z-10 text-center text-white px-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">Kalender</h1>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
+                Kommende arrangementer og aktiviteter
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16 px-4">
             <div className="container mx-auto max-w-6xl">
-              <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Kalender</h1>
               <p className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
                 For Naturfolk er det fellesskapet som ligger i våre møter, ritualer, seremonier og samhandling med natur- og åndskraft, som er essensen av hva og hvem vi er. Her finner du aktiviteter du som medlem kan ta del i, både fysisk og digitalt.
               </p>
