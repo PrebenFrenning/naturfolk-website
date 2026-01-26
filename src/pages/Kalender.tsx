@@ -91,9 +91,9 @@ export default function Kalender() {
         <main className="flex-1">
           <section className="py-20 px-4">
             <div className="container mx-auto max-w-6xl">
-              <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">Kalender</h1>
-              <p className="text-xl text-center text-muted-foreground mb-12">
-                Bli med på våre kommende arrangementer og samlinger
+              <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Kalender</h1>
+              <p className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+                For Naturfolk er det fellesskapet som ligger i våre møter, ritualer, seremonier og samhandling med natur- og åndskraft, som er essensen av hva og hvem vi er. Her finner du aktiviteter du som medlem kan ta del i, både fysisk og digitalt.
               </p>
 
               {loading ? (
