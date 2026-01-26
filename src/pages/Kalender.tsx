@@ -44,11 +44,11 @@ export default function Kalender() {
   }, []);
 
   const loadEvents = async () => {
+    // Load all events (past and future) for calendar display
     const { data, error } = await supabase
       .from('events')
       .select('*')
       .eq('status', 'published')
-      .gte('start_date', new Date().toISOString())
       .order('start_date', { ascending: true });
 
     if (!error && data) {
@@ -57,13 +57,22 @@ export default function Kalender() {
     setLoading(false);
   };
 
-  // Get dates that have events
-  const eventDates = events.map(event => new Date(event.start_date));
+  // Get dates that have events - separate past and future
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
   
-  // Filter events by selected date
+  const pastEventDates = events
+    .filter(event => new Date(event.start_date) < today)
+    .map(event => new Date(event.start_date));
+  
+  const futureEventDates = events
+    .filter(event => new Date(event.start_date) >= today)
+    .map(event => new Date(event.start_date));
+  
+  // Filter events by selected date, but only show future events by default
   const filteredEvents = selectedDate
     ? events.filter(event => isSameDay(new Date(event.start_date), selectedDate))
-    : events;
+    : events.filter(event => new Date(event.start_date) >= today);
 
   const handleEventClick = (event: Event) => {
     setSelectedEvent(event);
@@ -72,11 +81,13 @@ export default function Kalender() {
 
   // Custom day renderer to show event indicators
   const modifiers = {
-    hasEvent: eventDates,
+    hasPastEvent: pastEventDates,
+    hasFutureEvent: futureEventDates,
   };
 
   const modifiersClassNames = {
-    hasEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-nature-green after:rounded-full',
+    hasPastEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-muted-foreground/50 after:rounded-full',
+    hasFutureEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-nature-green after:rounded-full',
   };
 
   return (
