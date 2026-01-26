@@ -220,8 +220,16 @@ export default function Betaling() {
             <ul className="space-y-1 text-sm text-muted-foreground">
               <li><strong>Navn:</strong> {membershipData.first_name} {membershipData.middle_name} {membershipData.last_name}</li>
               <li><strong>E-post:</strong> {membershipData.email}</li>
+              <li><strong>Telefon:</strong> {membershipData.phone}</li>
+              <li><strong>Fødselsnummer:</strong> {membershipData.personnummer}</li>
+              <li><strong>Kjønn:</strong> {membershipData.gender}</li>
               <li><strong>Medlemstype:</strong> {membershipData.membership_type}</li>
-              <li><strong>Adresse:</strong> {membershipData.address}, {membershipData.postal_code} {membershipData.city}</li>
+              <li><strong>Land:</strong> {membershipData.country}</li>
+              <li><strong>Adresse:</strong> {membershipData.address}{membershipData.address_2 ? `, ${membershipData.address_2}` : ''}, {membershipData.postal_code} {membershipData.city}</li>
+              <li><strong>Nyhetsbrev:</strong> {membershipData.newsletter_subscribed ? 'Ja' : 'Nei'}</li>
+              {membershipData.how_heard_about_us && (
+                <li><strong>Hvordan hørte du om oss:</strong> {membershipData.how_heard_about_us}</li>
+              )}
             </ul>
           </div>
         </div>

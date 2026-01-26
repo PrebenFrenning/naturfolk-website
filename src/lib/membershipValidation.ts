@@ -31,7 +31,7 @@ export const membershipSignupSchema = z.object({
       // For Hovedmedlem: 11-12 digits, for Støttemedlem: 6 digits (we'll validate based on membership_type)
       return /^\d{6,12}$/.test(val);
     }, { message: "Fødselsnummer må være mellom 6 og 12 siffer" }),
-  gender: z.enum(['Mann', 'Kvinne', 'Annet', 'Ønsker ikke å oppgi'], {
+  gender: z.enum(['Mann', 'Kvinne', 'Ønsker ikke å oppgi'], {
     required_error: "Vennligst velg kjønn"
   }),
   country: z.string()
