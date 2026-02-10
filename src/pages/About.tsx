@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
+import omOssHero from '@/assets/om-oss-hero.jpg';
 
 const About = () => {
   return (
@@ -10,17 +11,23 @@ const About = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-nature-green to-nature-green/80 text-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
-              Om Oss
-            </h1>
-            <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-            <p className="text-xl md:text-2xl leading-relaxed">
-              Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet.
-            </p>
-          </div>
+      <section className="relative h-[40vh] min-h-[250px] flex items-center justify-center">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={omOssHero} 
+            alt="Samling i villreinens rike, norsk natur" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
+        </div>
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
+            Om Oss
+          </h1>
+          <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+          <p className="text-xl md:text-2xl leading-relaxed">
+            Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet.
+          </p>
         </div>
       </section>
 
