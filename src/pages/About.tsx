@@ -11,7 +11,7 @@ const About = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[40vh] min-h-[250px] flex items-center justify-center">
+      <section className="relative h-[50vh] min-h-[350px] flex items-end justify-center pb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src={omOssHero} 
