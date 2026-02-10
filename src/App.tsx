@@ -25,6 +25,7 @@ import Posts from "./pages/admin/Posts";
 import AdminEvents from "./pages/admin/Events";
 import Pages from "./pages/admin/Pages";
 import Categories from "./pages/admin/Categories";
+import Members from "./pages/admin/Members";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Events from "./pages/Events";
@@ -88,6 +89,11 @@ const App = () => (
               <Route path="/admin/categories" element={
                 <ProtectedRoute requireAdmin>
                   <AdminLayout><Categories /></AdminLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/members" element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout><Members /></AdminLayout>
                 </ProtectedRoute>
               } />
               
