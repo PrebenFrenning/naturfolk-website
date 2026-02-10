@@ -8,6 +8,7 @@ import {
   Calendar, 
   FileEdit, 
   FolderOpen,
+  Users,
   LogOut,
   Menu
 } from 'lucide-react';
@@ -20,6 +21,7 @@ const navigation = [
   { name: 'Events', href: '/admin/events', icon: Calendar },
   { name: 'Pages', href: '/admin/pages', icon: FileEdit },
   { name: 'Categories', href: '/admin/categories', icon: FolderOpen },
+  { name: 'Medlemmer', href: '/admin/members', icon: Users },
 ];
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {

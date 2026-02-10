@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { FileText, Calendar, FileEdit, Eye } from 'lucide-react';
+import { FileText, Calendar, FileEdit, Users } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
 export default function Dashboard() {
@@ -9,7 +9,7 @@ export default function Dashboard() {
     posts: 0,
     events: 0,
     pages: 0,
-    views: 0,
+    members: 0,
   });
 
   useEffect(() => {
@@ -17,17 +17,18 @@ export default function Dashboard() {
   }, []);
 
   const loadStats = async () => {
-    const [postsResult, eventsResult, pagesResult] = await Promise.all([
+    const [postsResult, eventsResult, pagesResult, membersResult] = await Promise.all([
       supabase.from('posts').select('id', { count: 'exact', head: true }),
       supabase.from('events').select('id', { count: 'exact', head: true }),
       supabase.from('pages').select('id', { count: 'exact', head: true }),
+      supabase.from('profiles').select('id', { count: 'exact', head: true }),
     ]);
 
     setStats({
       posts: postsResult.count || 0,
       events: eventsResult.count || 0,
       pages: pagesResult.count || 0,
-      views: 0,
+      members: membersResult.count || 0,
     });
   };
 
@@ -35,7 +36,7 @@ export default function Dashboard() {
     { title: 'Total Posts', value: stats.posts, icon: FileText, color: 'text-blue-600' },
     { title: 'Total Events', value: stats.events, icon: Calendar, color: 'text-green-600' },
     { title: 'Total Pages', value: stats.pages, icon: FileEdit, color: 'text-purple-600' },
-    { title: 'Total Views', value: stats.views, icon: Eye, color: 'text-orange-600' },
+    { title: 'Medlemmer', value: stats.members, icon: Users, color: 'text-orange-600' },
   ];
 
   return (
