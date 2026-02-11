@@ -18,7 +18,7 @@ const VisionSection = () => {
         <img 
           src={visionImage} 
           alt="Kvinne i strikkejakke ser ut over en bekk i norsk fjellandskap" 
-          className="w-full h-[400px] md:h-[500px] object-cover object-top"
+          className="w-full h-[400px] md:h-[500px] object-cover object-bottom"
         />
       </div>
     </section>
