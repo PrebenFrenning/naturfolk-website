@@ -40,6 +40,25 @@ const Navbar = () => {
     { name: 'Kontakt', path: '/contact', isExternal: false },
   ];
 
+  // Hero image preload map
+  const heroImages: Record<string, string> = {
+    '/': '/src/assets/hero-fjord-bonfire.png',
+    '/about': '/src/assets/om-oss-hero.jpg',
+    '/trosgrunnlag': '/src/assets/trosgrunnlag-hero.jpg',
+    '/medlemskap': '/src/assets/medlemskap-hero-new.jpg',
+    '/kalender': '/src/assets/kalender-hero.jpg',
+    '/aktuelt': '/src/assets/aktuelt-hero.jpg',
+    '/contact': '/src/assets/kontakt-hero-new.jpg',
+  };
+
+  const preloadImage = (path: string) => {
+    const src = heroImages[path];
+    if (src) {
+      const img = new Image();
+      img.src = src;
+    }
+  };
+
   // Determine if navbar should show dark style (not scrolled, either has hero or needs solid dark bg)
   const showDarkStyle = !isScrolled;
   // On pages without hero, use solid dark background instead of transparent
@@ -92,6 +111,7 @@ const Navbar = () => {
               <Link 
                 key={link.name}
                 to={link.path}
+                onMouseEnter={() => preloadImage(link.path)}
                 className={cn(
                   "font-medium transition-custom underline-custom",
                   location.pathname === link.path && "underline-custom-active text-nature-green",
