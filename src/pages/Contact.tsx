@@ -12,7 +12,7 @@ const Contact = () => {
       <Navbar />
       
       {/* Hero Section - shorter height */}
-      <section className="relative h-[30vh] min-h-[200px] flex items-center justify-center">
+      <section className="relative h-[40vh] min-h-[280px] flex items-center justify-center pt-16">
         <div className="absolute inset-0 z-0">
           <img 
             src={kontaktHero} 
