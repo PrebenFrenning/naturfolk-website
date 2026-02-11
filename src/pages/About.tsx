@@ -13,11 +13,11 @@ const About = () => {
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[350px] flex items-end justify-center pb-12">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={omOssHero} 
-            alt="Samling i villreinens rike, norsk natur" 
-            className="w-full h-full object-cover"
-          />
+          <img
+            src={omOssHero}
+            alt="Samling i villreinens rike, norsk natur"
+            className="w-full h-full object-cover" />
+
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
         </div>
         <div className="relative z-10 text-center text-white px-4">
@@ -39,8 +39,8 @@ const About = () => {
             {/* Introduction */}
             <Card>
               <CardContent className="p-8">
-                <p className="text-lg leading-relaxed mb-6">
-                  Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet. For dem som søker åndelig erfaring, utvikling, harmoni, mestring og glede i samspill med åndskrefter og naturkrefter.
+                <p className="text-lg leading-relaxed mb-6">Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet. For dem som søker åndelig erfaring, utvikling, harmoni, mestring og glede i samspill med åndskrefter og naturkrefter.
+
                 </p>
                 <p className="text-lg leading-relaxed">
                   Natur, kultur og åndelighet er uløselig knyttet sammen hos Naturfolk, og vår åndelighet vil derfor finne sitt særegne uttrykk i de forskjellige naturlandskapene. Naturfolk trenger naturen for å utøve vår tro, vår kultur og vårt levesett. Naturen er vårt livskompass og veileder oss i våre valg i hverdagen og i vår trosutøvelse.
@@ -137,8 +137,8 @@ const About = () => {
 
       <Footer />
       <ScrollToTop />
-    </div>
-  );
+    </div>);
+
 };
 
 export default About;
