@@ -39,6 +39,7 @@ const About = () => {
             {/* Introduction */}
             <Card>
               <CardContent className="p-8">
+                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">For alle</h2>
                 <p className="text-lg leading-relaxed mb-6">Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet. For dem som søker åndelig erfaring, utvikling, harmoni, mestring og glede i samspill med åndskrefter og naturkrefter.
 
                 </p>
