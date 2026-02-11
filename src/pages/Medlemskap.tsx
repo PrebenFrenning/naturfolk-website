@@ -13,7 +13,7 @@ const Medlemskap = () => {
       <Navbar />
       
       {/* Hero Section with Background Image */}
-      <section className="relative min-h-[50vh] flex items-end justify-center pb-12">
+      <section className="relative min-h-[50vh] flex items-center justify-center">
         <img 
           src={heroImage} 
           alt="Fellesskap rundt bål i norsk natur" 
