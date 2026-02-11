@@ -62,10 +62,15 @@ const Trosgrunnlag = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 120;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      // Close TOC first, then scroll after layout reflow
       setShowToc(false);
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const offset = 100;
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+        }, 50);
+      });
     }
   };
 
