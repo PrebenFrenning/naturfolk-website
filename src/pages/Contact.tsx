@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
-import kontaktHero from '@/assets/kontakt-hero.jpg';
+import kontaktHero from '@/assets/kontakt-hero-new.jpg';
 
 const Contact = () => {
   return (
