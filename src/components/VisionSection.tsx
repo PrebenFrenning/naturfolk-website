@@ -12,14 +12,14 @@ const VisionSection = () => {
             Et samfunn hvor menneske, ånd og natur inngår i en større helhet. Hvor vi som naturfolk lever i balanse med naturens sykluser, naturlandskapet vi lever i og alt levende. I en gjensidig avhengighet som vi tar ansvar for – hvor dualiteten mellom åndskraft og livskraft uttrykkes i vår levevei, ritualer og seremonier. Et større fellesskap der naturens puls slår i takt med din egen sjel.
           </p>
         </div>
-        
-        <div className="w-full">
-          <img 
-            src={visionImage} 
-            alt="Kvinne i strikkejakke ser ut over en bekk i norsk fjellandskap" 
-            className="w-full h-auto object-cover rounded-lg shadow-lg"
-          />
-        </div>
+      </div>
+      
+      <div className="w-full mt-8">
+        <img 
+          src={visionImage} 
+          alt="Kvinne i strikkejakke ser ut over en bekk i norsk fjellandskap" 
+          className="w-full h-[400px] md:h-[500px] object-cover object-top"
+        />
       </div>
     </section>
   );
