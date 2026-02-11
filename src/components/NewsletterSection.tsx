@@ -15,19 +15,21 @@ const NewsletterSection = () => {
             </p>
           </div>
           
-          <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-lg shadow-sm p-8">
-            <div className="w-16 h-16 bg-nature-sage/50 rounded-full flex items-center justify-center flex-shrink-0 mx-auto md:mx-0">
-              <Mail className="text-nature-green" size={28} />
+          <div className="bg-white rounded-lg shadow-sm p-8">
+            <div className="flex flex-col md:flex-row items-center gap-8 mb-6">
+              <div className="w-16 h-16 bg-nature-sage/50 rounded-full flex items-center justify-center flex-shrink-0 mx-auto md:mx-0">
+                <Mail className="text-nature-green" size={28} />
+              </div>
+              
+              <div className="flex-grow text-center md:text-left">
+                <h3 className="text-2xl font-serif font-semibold mb-2">Bli med i vårt fellesskap</h3>
+                <p className="text-muted-foreground mb-0">
+                  Meld deg på vårt nyhetsbrev for å motta oppdateringer om kommende villmarksprogrammer, ressurser for naturkontakt og fellesarrangementer.
+                </p>
+              </div>
             </div>
             
-            <div className="flex-grow text-center md:text-left">
-              <h3 className="text-2xl font-serif font-semibold mb-2">Bli med i vårt fellesskap</h3>
-              <p className="text-muted-foreground mb-0">
-                Meld deg på vårt nyhetsbrev for å motta oppdateringer om kommende villmarksprogrammer, ressurser for naturkontakt og fellesarrangementer.
-              </p>
-            </div>
-            
-            <div className="w-full md:w-auto">
+            <div className="w-full max-w-lg mx-auto">
               <div className="flex">
                 <input 
                   type="email" 
