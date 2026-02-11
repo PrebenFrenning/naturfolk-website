@@ -8,11 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import aktueltImg1 from '@/assets/aktuelt-spiritual-forest.jpg';
-import aktueltImg2 from '@/assets/aktuelt-meditation-stream.jpg';
-import aktueltImg3 from '@/assets/aktuelt-fire-ritual.jpg';
-
-const fallbackImages = [aktueltImg1, aktueltImg2, aktueltImg3];
 
 const AktueltSection = () => {
   const { data: posts = [] } = useQuery({
@@ -43,12 +38,12 @@ const AktueltSection = () => {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <Link key={post.id} to={`/blogg/${post.slug}`} className="group">
               <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-shadow h-full">
                 <div className="relative h-48 overflow-hidden">
                   <img 
-                    src={post.featured_image || fallbackImages[index % fallbackImages.length]} 
+                    src={post.featured_image || '/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png'} 
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
