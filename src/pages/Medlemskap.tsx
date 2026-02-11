@@ -21,7 +21,7 @@ const Medlemskap = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
         
-        <div className="relative z-10 container-custom py-24">
+        <div className="relative z-10 container-custom">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-3xl md:text-5xl font-serif font-bold mb-6">
               Bli med i Naturfolk
