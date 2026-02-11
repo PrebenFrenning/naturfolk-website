@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import heroImage from '@/assets/medlemskap-hero.jpg';
+import heroImage from '@/assets/medlemskap-hero-new.jpg';
 
 const Medlemskap = () => {
   return (
