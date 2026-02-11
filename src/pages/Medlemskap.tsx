@@ -22,7 +22,7 @@ const Medlemskap = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
         
         <div className="relative z-10 container-custom">
-          <div className="max-w-4xl mx-auto text-center text-white">
+          <div className="max-w-4xl mx-auto text-center text-white mt-16">
             <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">
               Bli med i Naturfolk
             </h1>
