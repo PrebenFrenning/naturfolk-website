@@ -141,7 +141,7 @@ const Trosgrunnlag = () => {
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-12">
           
           {/* Erklæring */}
-          <section id="erklaring" className="mb-16">
+          <section id="erklaring" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">Erklæring</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -155,7 +155,7 @@ const Trosgrunnlag = () => {
 
 
           {/* 1. Trosgrunnlag */}
-          <section id="trosgrunnlag" className="mb-16">
+          <section id="trosgrunnlag" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">1. Trosgrunnlag</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -172,7 +172,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 2. Verdensbilde og landskapets betydning */}
-          <section id="verdensbilde" className="mb-16">
+          <section id="verdensbilde" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">2. Verdensbilde og landskapets betydning</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>Verden forstås som lagdelt:</p>
@@ -188,7 +188,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 3. Religiøs praksis */}
-          <section id="religioss-praksis" className="mb-16">
+          <section id="religioss-praksis" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">3. Religiøs praksis – Åndereiser og kontakt</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>Åndereiser er sentrale for kontakt med ånder, guder og forfedre. Praksisene veves inn i landskapet de tilhører, og kan omfatte:</p>
@@ -206,7 +206,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 4. Naturens hellighet */}
-          <section id="naturens-hellighet" className="mb-16">
+          <section id="naturens-hellighet" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">4. Naturens hellighet</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -216,7 +216,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 5. Seremonier og overgangsritualer */}
-          <section id="seremonier" className="mb-16">
+          <section id="seremonier" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">5. Seremonier og overgangsritualer</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>Vi markerer livets sykluser: fødsel, pubertet, partnerskap, visdomstid og død. Praksis kan omfatte:</p>
@@ -235,7 +235,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 6. Vi hedrer våre forfedre */}
-          <section id="forfedre" className="mb-16">
+          <section id="forfedre" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">6. Vi hedrer våre forfedre</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -245,7 +245,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 7. Hellig maskulin og feminin kraft */}
-          <section id="maskulin-feminin" className="mb-16">
+          <section id="maskulin-feminin" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">7. Hellig maskulin og feminin kraft</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -255,7 +255,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 8. Helingsritualer og renselse */}
-          <section id="helingsritualer" className="mb-16">
+          <section id="helingsritualer" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">8. Helingsritualer og renselse</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -265,7 +265,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 9. Hellige steder */}
-          <section id="hellige-steder" className="mb-16">
+          <section id="hellige-steder" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">9. Hellige steder</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -275,7 +275,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 10. Beskyttelse mot destruktive krefter */}
-          <section id="beskyttelse" className="mb-16">
+          <section id="beskyttelse" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">10. Beskyttelse mot destruktive krefter</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -285,7 +285,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 11. Etikk og livssyn */}
-          <section id="etikk" className="mb-16">
+          <section id="etikk" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">11. Etikk og livssyn</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -295,7 +295,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 12. Myter og overlevering */}
-          <section id="myter" className="mb-16">
+          <section id="myter" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">12. Myter og overlevering</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -305,7 +305,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 13. Naturfolks rett */}
-          <section id="naturfolks-rett" className="mb-16">
+          <section id="naturfolks-rett" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">13. Naturfolks rett</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <ul className="list-disc pl-6 space-y-2">
@@ -320,7 +320,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 14. Misjonering og rekruttering */}
-          <section id="misjonering" className="mb-16">
+          <section id="misjonering" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">14. Misjonering og rekruttering</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -330,7 +330,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 15. Barn og kunnskapsdeling */}
-          <section id="barn" className="mb-16">
+          <section id="barn" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">15. Barn og kunnskapsdeling</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
@@ -340,7 +340,7 @@ const Trosgrunnlag = () => {
           </section>
 
           {/* 16. Åndelig fellesskap og praksis */}
-          <section id="aandelig-fellesskap" className="mb-16">
+          <section id="aandelig-fellesskap" className="mb-16 scroll-mt-32">
             <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">16. Åndelig fellesskap og praksis</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <p>
