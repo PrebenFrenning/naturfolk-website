@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 
 // Define form validation schema
@@ -22,7 +22,6 @@ const formSchema = z.object({
 type ContactFormValues = z.infer<typeof formSchema>;
 
 const ContactSection = () => {
-  // Initialize form with validation schema
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,12 +33,9 @@ const ContactSection = () => {
     },
   });
 
-  // Newsletter form state
   const [email, setEmail] = React.useState("");
 
-  // Handle form submission
   const onSubmit = (data: ContactFormValues) => {
-    // For demonstration purposes - would connect to an API in production
     console.log(data);
     toast({
       title: "Melding sendt!",
@@ -48,10 +44,8 @@ const ContactSection = () => {
     form.reset();
   };
 
-  // Handle newsletter subscription
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    // For demonstration purposes - would connect to an API in production
     toast({
       title: "Abonnert!",
       description: "Du er nå lagt til i vårt nyhetsbrev.",
@@ -60,26 +54,111 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-white">
+    <section id="contact" className="section-padding bg-nature-offwhite">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Ta kontakt</h2>
-          <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
-          <p className="text-lg text-balance">
+        {/* Intro */}
+        <div className="max-w-2xl mx-auto text-center mb-14">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Har du spørsmål til Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss direkte på epost, så svarer vi så snart vi kan.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-serif font-semibold mb-6">Kontaktinformasjon</h3>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-nature-sage rounded-full flex items-center justify-center flex-shrink-0">
+        <div className="max-w-5xl mx-auto space-y-10">
+          {/* Contact Form */}
+          <Card>
+            <CardContent className="p-8 md:p-10">
+              <h3 className="text-2xl font-serif font-semibold mb-8 text-nature-green">Send oss en melding</h3>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <FormField
+                      control={form.control}
+                      name="firstName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Fornavn</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Ditt fornavn" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="lastName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Etternavn</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Ditt etternavn" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>E-post</FormLabel>
+                          <FormControl>
+                            <Input type="email" placeholder="Din e-postadresse" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Emne</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Hva gjelder henvendelsen?" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Melding</FormLabel>
+                        <FormControl>
+                          <Textarea rows={5} placeholder="Skriv din melding her" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button type="submit" className="bg-nature-green hover:bg-nature-green/90 px-8">
+                    Send melding
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+
+          {/* Bottom row: Email + Newsletter side by side */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card>
+              <CardContent className="p-8 flex items-start gap-4">
+                <div className="w-10 h-10 bg-nature-sage/50 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <Mail className="text-nature-green" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">E-post</h4>
+                  <h4 className="font-serif font-semibold text-lg mb-1">E-post</h4>
                   <a
                     href="mailto:post@naturfolk.org"
                     className="text-muted-foreground hover:text-nature-green transition-colors"
@@ -87,108 +166,28 @@ const ContactSection = () => {
                     post@naturfolk.org
                   </a>
                 </div>
-              </div>
-            </div>
-
-            <Card className="mt-12 p-6 border-nature-sage">
-              <h3 className="text-2xl font-serif font-semibold mb-4">Abonner på vårt nyhetsbrev</h3>
-              <p className="mb-4">Hold deg oppdatert med kommende arrangementer og nyheter fra Naturfolk.</p>
-              <form onSubmit={handleSubscribe} className="flex">
-                <Input
-                  type="email"
-                  placeholder="Din e-postadresse"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                  required
-                />
-                <Button className="bg-nature-green hover:bg-nature-green/90 rounded-l-none">
-                  <Send size={18} />
-                </Button>
-              </form>
+              </CardContent>
             </Card>
-          </div>
 
-          <div>
-            <h3 className="text-2xl font-serif font-semibold mb-6">Send oss en melding</h3>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Fornavn</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Ditt fornavn" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+            <Card>
+              <CardContent className="p-8">
+                <h4 className="font-serif font-semibold text-lg mb-2">Nyhetsbrev</h4>
+                <p className="text-sm text-muted-foreground mb-4">Hold deg oppdatert med arrangementer og nyheter.</p>
+                <form onSubmit={handleSubscribe} className="flex">
+                  <Input
+                    type="email"
+                    placeholder="Din e-postadresse"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                    required
                   />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Etternavn</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Ditt etternavn" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>E-post</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="Din e-postadresse" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Emne</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Hva gjelder henvendelsen?" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Melding</FormLabel>
-                      <FormControl>
-                        <Textarea rows={5} placeholder="Skriv din melding her" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button type="submit" className="w-full bg-nature-green hover:bg-nature-green/90">
-                  Send melding
-                </Button>
-              </form>
-            </Form>
+                  <Button className="bg-nature-green hover:bg-nature-green/90 rounded-l-none">
+                    <Send size={18} />
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
