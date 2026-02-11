@@ -27,9 +27,14 @@ const Medlemskap = () => {
               Bli med i Naturfolk
             </h1>
             <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-            <p className="text-base md:text-lg leading-relaxed">
+            <p className="text-base md:text-lg leading-relaxed mb-8">
               For deg som ønsker å finne din åndelighet i balanse med naturlandskap og naturkrefter.
             </p>
+            <Link to="/bli-medlem">
+              <Button className="bg-nature-green hover:bg-nature-green/90 text-white px-8 py-3 text-lg">
+                Bli medlem
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
