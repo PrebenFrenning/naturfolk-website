@@ -20,23 +20,23 @@ const About = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[350px] flex items-end justify-center pb-12">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={omOssHero}
-            alt="Samling i villreinens rike, norsk natur"
-            className="w-full h-full object-cover" />
-
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
-        </div>
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
-            Om Oss
-          </h1>
-          <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-          <p className="text-xl md:text-2xl leading-relaxed">
-            Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet.
-          </p>
+      <section className="relative min-h-[50vh] flex items-center justify-center">
+        <img
+          src={omOssHero}
+          alt="Samling i villreinens rike, norsk natur"
+          className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+        
+        <div className="relative z-10 container-custom">
+          <div className="max-w-4xl mx-auto text-center text-white mt-16">
+            <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">
+              Om Oss
+            </h1>
+            <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+            <p className="text-base md:text-lg leading-relaxed">
+              Trossamfunnet Naturfolk er for alle som ser menneske, åndelighet og natur som en helhet.
+            </p>
+          </div>
         </div>
       </section>
 
