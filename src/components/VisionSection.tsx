@@ -5,7 +5,7 @@ const VisionSection = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
             <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Vår visjon</h2>
             <div className="w-24 h-1 bg-nature-green mb-6"></div>
