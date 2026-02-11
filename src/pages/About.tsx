@@ -49,6 +49,10 @@ const About = () => {
               </CardContent>
             </Card>
 
+            <div className="flex justify-center">
+              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
+            </div>
+
             {/* Begynnelsen */}
             <Card>
               <CardContent className="p-8">
@@ -61,6 +65,10 @@ const About = () => {
                 </p>
               </CardContent>
             </Card>
+
+            <div className="flex justify-center">
+              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
+            </div>
 
             {/* Trossamfunnet */}
             <Card>
@@ -81,6 +89,10 @@ const About = () => {
               </CardContent>
             </Card>
 
+            <div className="flex justify-center">
+              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
+            </div>
+
             {/* Fellesskapet */}
             <Card>
               <CardContent className="p-8">
@@ -93,6 +105,10 @@ const About = () => {
                 </p>
               </CardContent>
             </Card>
+
+            <div className="flex justify-center">
+              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
+            </div>
 
             {/* Contact */}
             <Card>
@@ -109,6 +125,10 @@ const About = () => {
                 </p>
               </CardContent>
             </Card>
+
+            <div className="flex justify-center">
+              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
+            </div>
 
             {/* Styret */}
             <Card>
