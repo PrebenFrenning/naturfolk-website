@@ -3,7 +3,16 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
+import { Leaf } from 'lucide-react';
 import omOssHero from '@/assets/om-oss-hero.jpg';
+
+const NatureDivider = () => (
+  <div className="flex items-center justify-center gap-3">
+    <div className="w-12 h-[1px] bg-nature-green/30"></div>
+    <Leaf className="text-nature-green/50" size={18} strokeWidth={1.5} />
+    <div className="w-12 h-[1px] bg-nature-green/30"></div>
+  </div>
+);
 
 const About = () => {
   return (
@@ -49,9 +58,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <div className="flex justify-center">
-              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
-            </div>
+            <NatureDivider />
 
             {/* Begynnelsen */}
             <Card>
@@ -66,9 +73,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <div className="flex justify-center">
-              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
-            </div>
+            <NatureDivider />
 
             {/* Trossamfunnet */}
             <Card>
@@ -89,9 +94,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <div className="flex justify-center">
-              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
-            </div>
+            <NatureDivider />
 
             {/* Fellesskapet */}
             <Card>
@@ -106,9 +109,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <div className="flex justify-center">
-              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
-            </div>
+            <NatureDivider />
 
             {/* Contact */}
             <Card>
@@ -126,9 +127,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <div className="flex justify-center">
-              <div className="w-16 h-[2px] bg-nature-green/40 rounded-full"></div>
-            </div>
+            <NatureDivider />
 
             {/* Styret */}
             <Card>
