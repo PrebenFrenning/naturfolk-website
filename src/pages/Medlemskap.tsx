@@ -23,11 +23,11 @@ const Medlemskap = () => {
         
         <div className="relative z-10 container-custom py-24">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
+            <h1 className="text-3xl md:text-5xl font-serif font-bold mb-6">
               Bli med i Naturfolk
             </h1>
             <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-            <p className="text-xl md:text-2xl leading-relaxed">
+            <p className="text-lg md:text-xl leading-relaxed">
               For deg som ønsker å finne din åndelighet i balanse med naturlandskap og naturkrefter.
             </p>
           </div>
