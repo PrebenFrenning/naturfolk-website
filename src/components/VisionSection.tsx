@@ -3,9 +3,9 @@ import visionImage from '@/assets/vision-yggdrasil.jpg';
 
 const VisionSection = () => {
   return (
-    <section className="py-10 md:py-14 bg-white">
-      <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-8">
+    <section className="pt-0 pb-0 bg-white">
+      <div className="container-custom py-10 md:py-14">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Vår visjon</h2>
           <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
           <p className="text-base leading-relaxed text-muted-foreground">
@@ -14,7 +14,7 @@ const VisionSection = () => {
         </div>
       </div>
       
-      <div className="w-full mt-8">
+      <div className="w-full">
         <img 
           src={visionImage} 
           alt="Kvinne i strikkejakke ser ut over en bekk i norsk fjellandskap" 
