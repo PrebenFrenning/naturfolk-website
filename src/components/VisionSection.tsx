@@ -17,7 +17,7 @@ const VisionSection = () => {
           <div className="relative">
             <img 
               src={visionImage} 
-              alt="Mektig eik i norsk vinterskog med sollys gjennom greinene" 
+              alt="Kvinne i strikkejakke ser ut over en bekk i norsk fjellandskap" 
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
