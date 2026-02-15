@@ -83,10 +83,19 @@ const Medlemskap = () => {
             <Card>
               <CardContent className="p-8">
                 <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">Hvordan bli medlem?</h2>
-                <p className="text-lg leading-relaxed mb-6">
-                  Vi trenger litt midler i oppstarten og har valgt å sette innmeldingsavgift i 2025 til kr 200,- for begge typer medlemskap.
+                <p className="text-lg leading-relaxed mb-6">Vi trenger midler for å drive vår virksomhet og har valgt å sette innmeldingsavgift i 2025 til kr 200,- for begge typer medlemskap. Da vil du få mulighet til rimelig å kunne delta på større samlinger og bidra til å spre våre verdier. 
+
                 </p>
                 
+                <div className="bg-nature-beige/50 p-6 rounded-lg mb-6">
+                  <p className="text-lg leading-relaxed mb-4">
+                    <strong>Utmelding fra andre trossamfunn:</strong>
+                  </p>
+                  <p className="text-base leading-relaxed mb-4">
+                    Hvis du skal være hovedmedlem hos oss, må du først melde deg ut av andre trossamfunn. Dette gjør du enklest ved å gå til <a href="https://www.kirken.no/innmelding" target="_blank" rel="noopener noreferrer" className="text-nature-green underline hover:no-underline">kirken.no/innmelding</a> og følge instruksjonene der.
+                  </p>
+                </div>
+
                 <div className="text-center">
                   <Link to="/bli-medlem">
                     <Button size="lg" className="mb-4">
@@ -95,15 +104,6 @@ const Medlemskap = () => {
                   </Link>
                   <p className="text-sm text-muted-foreground">
                     Fyll ut registreringsskjema og velg betalingsmetode
-                  </p>
-                </div>
-
-                <div className="bg-nature-beige/50 p-6 rounded-lg">
-                  <p className="text-lg leading-relaxed mb-4">
-                    <strong>Utmelding fra andre trossamfunn:</strong>
-                  </p>
-                  <p className="text-base leading-relaxed mb-4">
-                    Hvis du skal være hovedmedlem hos oss, må du først melde deg ut av andre trossamfunn. Dette gjør du enklest ved å gå til <a href="https://www.kirken.no/innmelding" target="_blank" rel="noopener noreferrer" className="text-nature-green underline hover:no-underline">kirken.no/innmelding</a> og følge instruksjonene der.
                   </p>
                 </div>
               </CardContent>
