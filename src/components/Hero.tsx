@@ -26,7 +26,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay" style={{ animationDelay: "0.4s" }}>
             <a href="/trosgrunnlag" className="btn-primary flex items-center gap-2">
-              Vår tro og våre verdier <ArrowRight size={18} />
+              Vår tro og våre verdier
             </a>
             <a href="/medlemskap" className="btn-secondary text-white border-white hover:bg-white hover:text-nature-brown">
               Meld deg inn
