@@ -26,7 +26,7 @@ const Medlemskap = () => {
             <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">
               Bli med i Naturfolk
             </h1>
-            <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+            
             <p className="text-base md:text-lg leading-relaxed mb-8">
               For deg som ønsker å finne din åndelighet i balanse med naturlandskap og naturkrefter.
             </p>
