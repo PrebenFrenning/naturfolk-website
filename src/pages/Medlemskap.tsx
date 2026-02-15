@@ -14,11 +14,11 @@ const Medlemskap = () => {
       
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[50vh] flex items-center justify-center">
-        <img 
-          src={heroImage} 
-          alt="Fellesskap rundt bål i norsk natur" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <img
+          src={heroImage}
+          alt="Fellesskap rundt bål i norsk natur"
+          className="absolute inset-0 w-full h-full object-cover" />
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
         
         <div className="relative z-10 container-custom">
@@ -47,8 +47,8 @@ const Medlemskap = () => {
             {/* Introduction */}
             <Card>
               <CardContent className="p-8">
-                <p className="text-lg leading-relaxed mb-4">
-                  Trossamfunnet Naturfolk ble etter en utfordrende og inspirerende prosess grunnlagt i 2023. Vi er i vekst og bygger vårt fellesskap organisk steg for steg. Vårt mål er at vi som fellesskap skal kunne møtes regelmessig for samlinger, ritualer og kunnskapsdeling - lokalt, regionalt og nasjonalt. Dette for å kunne spre våre verdier til samfunnet omkring oss og påvirke gjennom å være positive forbilder. Vi lever i en tid hvor naturen fortrenges mer og mer i vår hverdag, naturen behøver alle gode krefter på sin side og vi behøver naturen i våre liv.
+                <p className="text-lg leading-relaxed mb-4">Trossamfunnet Naturfolk ble etter en spennende og inspirerende prosess grunnlagt i 2023. Vi er i vekst og bygger vårt fellesskap organisk steg for steg. Vårt mål er at vi som fellesskap skal kunne møtes regelmessig for samlinger, ritualer og kunnskapsdeling - lokalt, regionalt og nasjonalt. Dette for å kunne spre våre verdier til samfunnet omkring oss og påvirke gjennom å være positive forbilder. Vi lever i en tid hvor naturen fortrenges mer og mer i vår hverdag, naturen behøver alle gode krefter på sin side og vi behøver naturen i våre liv.
+
                 </p>
                 <p className="text-lg leading-relaxed">
                   Vi ønsker varmt velkommen alle som ønsker å stå sammen med oss på den hellige naturens side og håper vi møtes snart i bålsirkelen.
@@ -171,8 +171,8 @@ const Medlemskap = () => {
 
       <Footer />
       <ScrollToTop />
-    </div>
-  );
+    </div>);
+
 };
 
 export default Medlemskap;
