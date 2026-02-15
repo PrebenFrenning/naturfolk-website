@@ -27,8 +27,8 @@ const Medlemskap = () => {
               Bli med i Naturfolk
             </h1>
             
-            <p className="text-base md:text-lg leading-relaxed mb-8">
-              For deg som ønsker å finne din åndelighet i balanse med naturlandskap og naturkrefter.
+            <p className="text-base md:text-lg leading-relaxed mb-8">For deg som ønsker å finne din åndelighet i balanse med naturlandskap og naturkrefter
+
             </p>
             <Link to="/bli-medlem">
               <Button className="bg-nature-green hover:bg-nature-green/90 text-white px-8 py-3 text-lg">
@@ -47,7 +47,6 @@ const Medlemskap = () => {
             {/* Introduction */}
             <Card>
               <CardContent className="p-8">
-                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">Velkommen</h2>
                 <p className="text-lg leading-relaxed mb-4">Trossamfunnet Naturfolk ble etter en spennende og inspirerende prosess grunnlagt i 2023. Vi er i vekst og bygger vårt fellesskap organisk steg for steg. Vårt mål er at vi som fellesskap skal kunne møtes regelmessig for samlinger, ritualer og kunnskapsdeling - lokalt, regionalt og nasjonalt. Dette for å kunne spre våre verdier til samfunnet omkring oss og påvirke gjennom å være positive forbilder. Vi lever i en tid hvor naturen fortrenges mer og mer i vår hverdag, naturen behøver alle gode krefter på sin side og vi behøver naturen i våre liv.
 
                 </p>
@@ -158,11 +157,11 @@ const Medlemskap = () => {
                 <p className="text-lg leading-relaxed mb-6">
                   Ta gjerne kontakt med oss hvis du lurer på noe om medlemskap eller Naturfolk generelt.
                 </p>
-                <a href="mailto:post@naturfolk.org">
-                  <Button size="lg" className="bg-nature-green hover:bg-nature-green/90 text-white">
-                    Kontakt oss
-                  </Button>
-                </a>
+                <Button variant="outline" size="lg">
+                  <a href="mailto:post@naturfolk.org" className="text-inherit no-underline">
+                    Kontakt oss: post@naturfolk.org
+                  </a>
+                </Button>
               </CardContent>
             </Card>
 
