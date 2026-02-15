@@ -83,7 +83,7 @@ const Medlemskap = () => {
             <Card>
               <CardContent className="p-8">
                 <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">Hvordan bli medlem?</h2>
-                <p className="text-lg leading-relaxed mb-6">Vi trenger midler for å drive vår virksomhet og har valgt å sette innmeldingsavgift i 2025 til kr 200,- for begge typer medlemskap. Da vil du få mulighet til rimelig å kunne delta på større samlinger og bidra til å spre våre verdier. 
+                <p className="text-lg leading-relaxed mb-6">Vi trenger midler for å drive vår virksomhet og har valgt å sette innmeldingsavgift i 2025 til kr 200,- for begge typer medlemskap. Da vil du få mulighet til rimelig å kunne delta på større samlinger og bidra til at vårt fellesskap vokser.  
 
                 </p>
                 
