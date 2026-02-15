@@ -157,11 +157,11 @@ const Medlemskap = () => {
                 <p className="text-lg leading-relaxed mb-6">
                   Ta gjerne kontakt med oss hvis du lurer på noe om medlemskap eller Naturfolk generelt.
                 </p>
-                <Button variant="outline" size="lg">
-                  <a href="mailto:post@naturfolk.org" className="text-inherit no-underline">
-                    Kontakt oss: post@naturfolk.org
-                  </a>
-                </Button>
+                <a href="mailto:post@naturfolk.org">
+                  <Button size="lg" className="bg-nature-green hover:bg-nature-green/90 text-white">
+                    Kontakt oss
+                  </Button>
+                </a>
               </CardContent>
             </Card>
 
