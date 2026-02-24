@@ -71,12 +71,6 @@ serve(async (req: Request) => {
 
       if (error) throw error;
 
-      // Sign in with the token from the generated link
-      const { data: signInData, error: signInError } = await supabaseAdmin.auth.admin.generateLink({
-        type: "magiclink",
-        email: email.toLowerCase(),
-      });
-
       // Use admin to create a session directly
       // We'll return a token hash that the client can use
       return new Response(
