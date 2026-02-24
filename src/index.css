@@ -83,7 +83,7 @@
   }
 
   .btn-primary {
-    @apply bg-nature-green text-white px-6 py-3 rounded hover:bg-nature-green/90 transition-custom font-medium;
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded hover:bg-primary/90 transition-custom font-medium;
   }
 
   .btn-secondary {
