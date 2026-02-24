@@ -244,8 +244,8 @@ export const translations = {
   // Aktuelt Page
   'aktueltPage.title': { no: 'Aktuelt', en: 'News' },
   'aktueltPage.subtitle': {
-    no: 'De nyeste nyhetene og arrangementene fra Naturfolk',
-    en: 'The latest news and events from Naturfolk'
+    no: 'Nyheter, artikler og aktiviteter fra Naturfolk',
+    en: 'News, articles and activities from Naturfolk'
   },
   'aktueltPage.upcomingEvents': { no: 'Kommende Arrangementer', en: 'Upcoming Events' },
   'aktueltPage.seeAllEvents': { no: 'Se alle arrangementer', en: 'See all events' },
