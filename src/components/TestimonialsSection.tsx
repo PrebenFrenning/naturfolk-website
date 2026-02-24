@@ -69,7 +69,7 @@ const TestimonialsSection = () => {
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16 text-white">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Våre medlemmer</h2>
-          <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg opacity-90 text-balance">
             Hør hva våre medlemmer har å si om sine erfaringer med Naturfolk, og hvordan det påvirker deres liv.
           </p>

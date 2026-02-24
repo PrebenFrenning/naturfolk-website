@@ -137,7 +137,7 @@ const EventsSection = () => {
       <div className="container-custom max-w-full px-4 mx-auto sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Eventer og arrangementer</h2>
-          <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-balance">
             Connect with our community through seasonal celebrations, educational workshops, and nature immersion experiences.
           </p>

@@ -55,7 +55,7 @@ const Temagrupper = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-serif font-semibold mb-6">Våre Temagrupper</h1>
-            <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg md:text-xl text-muted-foreground">
               Bli med i våre temagrupper og utforsk ulike aspekter av naturbasert livsførsel sammen med likesinnede. 
               Hver gruppe har sine egne møter, aktiviteter og prosjekter.

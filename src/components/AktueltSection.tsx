@@ -39,7 +39,7 @@ const AktueltSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Aktuelt</h2>
-          <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">

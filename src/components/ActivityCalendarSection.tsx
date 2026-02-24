@@ -69,7 +69,7 @@ const ActivityCalendarSection = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Aktivitetskalender</h2>
-          <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground">
             Kommende arrangementer og samlinger
           </p>
