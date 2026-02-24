@@ -65,7 +65,7 @@ const FeaturesSection = () => {
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Våre temagrupper</h2>
-          <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-balance">
             Vi tilbyr en hel del ulike undergrupper for våre medlemmer, hvor vi kan dykke dypere inn i flere ulike, spennende temaer. Temagruppene våre har regelmessige møter og events for medlemmene. Enten du er interessert i ritualer eller heller mer mot biologien, har vi noe for deg. 
           </p>

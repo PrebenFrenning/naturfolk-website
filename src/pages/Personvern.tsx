@@ -15,7 +15,7 @@ const Personvern = () => {
       <main className="pt-24 pb-16">
         <div className="container-custom max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-serif font-semibold mb-8">Personvernerklæring</h1>
-          <div className="w-24 h-1 bg-nature-green mb-8"></div>
+          <div className="w-24 h-1 bg-primary mb-8"></div>
 
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
             <p>

@@ -9,7 +9,7 @@ const NewsletterSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Hold deg oppdatert</h2>
-            <div className="w-24 h-1 bg-nature-green mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="text-lg max-w-2xl mx-auto mb-8">
               Få de siste oppdateringene om våre arrangementer, temaer og fellesskapsaktiviteter direkte i din innboks.
             </p>
