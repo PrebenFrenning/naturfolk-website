@@ -71,7 +71,7 @@ serve(async (req: Request) => {
     const firstName = profile.first_name || "medlem";
 
     const { error: emailError } = await resend.emails.send({
-      from: "Naturfolk <noreply@naturfolk.no>",
+      from: "Naturfolk <noreply@naturfolk.org>",
       to: [email],
       subject: "Din innloggingskode - Naturfolk",
       html: `
