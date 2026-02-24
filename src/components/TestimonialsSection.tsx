@@ -2,6 +2,7 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +13,8 @@ import {
 
 const TestimonialsSection = () => {
   const isMobile = useIsMobile();
+  const { t, localePath } = useLanguage();
+  
   const testimonials = [
     {
       quote: "The wilderness expedition with Naturfolk was truly life-changing. I developed a deeper connection with myself and gained a greater appreciation for wild places. The guides were exceptional.",
@@ -33,7 +36,7 @@ const TestimonialsSection = () => {
     }
   ];
 
-  const renderTestimonialCard = (testimonial, index) => (
+  const renderTestimonialCard = (testimonial: typeof testimonials[0], index: number) => (
     <div 
       key={index} 
       className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-custom h-full"
@@ -56,7 +59,6 @@ const TestimonialsSection = () => {
 
   return (
     <section id="impact" className="relative py-32">
-      {/* Background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2400&q=80" 
@@ -68,22 +70,16 @@ const TestimonialsSection = () => {
 
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16 text-white">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Våre medlemmer</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">{t('testimonials.title')}</h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg opacity-90 text-balance">
-            Hør hva våre medlemmer har å si om sine erfaringer med Naturfolk, og hvordan det påvirker deres liv.
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
         {isMobile ? (
           <div className="px-4">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
+            <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent>
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
@@ -108,24 +104,23 @@ const TestimonialsSection = () => {
             <div className="grid grid-cols-3 gap-8 md:gap-16 items-center text-white">
               <div className="text-center">
                 <p className="font-serif text-4xl font-semibold text-nature-green">1,500+</p>
-                <p className="text-white/80">Program Participants</p>
+                <p className="text-white/80">{t('testimonials.stats.participants')}</p>
               </div>
               <div className="text-center">
                 <p className="font-serif text-4xl font-semibold text-nature-green">25+</p>
-                <p className="text-white/80">Wilderness Locations</p>
+                <p className="text-white/80">{t('testimonials.stats.locations')}</p>
               </div>
               <div className="text-center">
                 <p className="font-serif text-4xl font-semibold text-nature-green">8+</p>
-                <p className="text-white/80">Countries</p>
+                <p className="text-white/80">{t('testimonials.stats.countries')}</p>
               </div>
             </div>
           </div>
         </div>
         
-        {/* Added "Bli medlem" button */}
         <div className="mt-12 text-center">
-          <a href="/medlemskap" className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4">
-            Bli medlem &rarr;
+          <a href={localePath('/medlemskap')} className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4">
+            {t('testimonials.cta')} &rarr;
           </a>
         </div>
       </div>

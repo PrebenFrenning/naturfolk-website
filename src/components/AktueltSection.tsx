@@ -7,14 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
-import { nb } from 'date-fns/locale';
-import aktueltImg1 from '@/assets/aktuelt-spiritual-1.jpg';
-import aktueltImg2 from '@/assets/aktuelt-spiritual-2.jpg';
-import aktueltImg3 from '@/assets/aktuelt-spiritual-3.jpg';
-
-const fallbackImages = [aktueltImg1, aktueltImg2, aktueltImg3];
+import { nb, enUS } from 'date-fns/locale';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const AktueltSection = () => {
+  const { t, localePath, language } = useLanguage();
+  const dateLocale = language === 'en' ? enUS : nb;
+  
   const { data: posts = [] } = useQuery({
     queryKey: ['homepage-aktuelt-posts'],
     queryFn: async () => {
@@ -38,13 +37,13 @@ const AktueltSection = () => {
     <section className="section-padding bg-nature-offwhite">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Aktuelt</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">{t('aktuelt.title')}</h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          {posts.map((post, index) => (
-            <Link key={post.id} to={`/blogg/${post.slug}`} className="group">
+          {posts.map((post) => (
+            <Link key={post.id} to={localePath(`/blogg/${post.slug}`)} className="group">
               <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-shadow h-full">
                 <div className="relative h-48 overflow-hidden">
                   <img 
@@ -57,7 +56,7 @@ const AktueltSection = () => {
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className="h-4 w-4 text-nature-green" />
                     <Badge variant="secondary" className="text-xs">
-                      {post.publish_date && format(new Date(post.publish_date), 'd. MMMM yyyy', { locale: nb })}
+                      {post.publish_date && format(new Date(post.publish_date), language === 'en' ? 'MMMM d, yyyy' : 'd. MMMM yyyy', { locale: dateLocale })}
                     </Badge>
                   </div>
                   <CardTitle className="text-lg font-serif group-hover:text-nature-green transition-colors">
@@ -75,9 +74,9 @@ const AktueltSection = () => {
         </div>
 
         <div className="text-center mt-10">
-          <Link to="/aktuelt">
+          <Link to={localePath('/aktuelt')}>
             <Button size="lg" className="gap-2">
-              Se alt aktuelt
+              {t('aktuelt.cta')}
               <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>

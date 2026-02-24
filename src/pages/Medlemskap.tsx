@@ -6,128 +6,97 @@ import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import heroImage from '@/assets/medlemskap-hero-new.jpg';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const Medlemskap = () => {
+  const { t, localePath } = useLanguage();
+  
   return (
     <div className="min-h-screen">
       <Navbar />
       
-      {/* Hero Section with Background Image */}
       <section className="relative min-h-[50vh] flex items-center justify-center">
-        <img
-          src={heroImage}
-          alt="Fellesskap rundt bål i norsk natur"
-          className="absolute inset-0 w-full h-full object-cover" />
-
+        <img src={heroImage} alt="Fellesskap rundt bål i norsk natur" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
-        
         <div className="relative z-10 container-custom">
           <div className="max-w-4xl mx-auto text-center text-white mt-16">
-            <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">
-              Bli med i Naturfolk
-            </h1>
-            
-            <p className="text-base md:text-lg leading-relaxed mb-8">For deg som ønsker å finne din åndelighet i balanse med naturlandskap og naturkrefter
-
-            </p>
-            <Link to="/bli-medlem">
+            <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">{t('membershipPage.hero.title')}</h1>
+            <p className="text-base md:text-lg leading-relaxed mb-8">{t('membershipPage.hero.subtitle')}</p>
+            <Link to={localePath('/bli-medlem')}>
               <Button className="bg-nature-green hover:bg-nature-green/90 text-white px-8 py-3 text-lg">
-                Bli medlem
+                {t('testimonials.cta')}
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-16 bg-nature-offwhite">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto space-y-12">
             
-            {/* Introduction */}
             <Card>
               <CardContent className="p-8">
-                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">Velkommen</h2>
-                <p className="text-lg leading-relaxed mb-4">Trossamfunnet Naturfolk ble etter en spennende og inspirerende prosess grunnlagt i 2023. Vi er i vekst og bygger vårt fellesskap organisk steg for steg. Vårt mål er at vi som fellesskap skal kunne møtes regelmessig for samlinger, ritualer og kunnskapsdeling - lokalt, regionalt og nasjonalt. Dette for å kunne spre våre verdier til samfunnet omkring oss og påvirke gjennom å være positive forbilder. Vi lever i en tid hvor naturen fortrenges mer og mer i vår hverdag, naturen behøver alle gode krefter på sin side og vi behøver naturen i våre liv.
-
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Vi ønsker varmt velkommen alle som ønsker å stå sammen med oss på den hellige naturens side og håper vi møtes snart i bålsirkelen.
-                </p>
+                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">{t('membershipPage.welcome.title')}</h2>
+                <p className="text-lg leading-relaxed mb-4">{t('membershipPage.welcome.p1')}</p>
+                <p className="text-lg leading-relaxed">{t('membershipPage.welcome.p2')}</p>
               </CardContent>
             </Card>
 
-            {/* Medlemskapstyper */}
             <Card>
               <CardContent className="p-8">
-                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">Medlemskapstyper</h2>
-                
-                {/* Hovedmedlem */}
+                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">{t('membershipPage.types.title')}</h2>
                 <div className="mb-8">
-                  <h3 className="text-2xl font-serif font-semibold mb-4 text-nature-brown">Hovedmedlem:</h3>
-                  <p className="text-lg leading-relaxed">
-                    For de over 15 år og som er utmeldt av andre trossamfunn. Innmeldingen hos oss må være med personnummer (11 siffer) og fullt navn/adresse/mobilnummer. Her vil årsavgiften være gratis så fort vi får godkjent statsstøtte for ditt medlemsskap. Foreldre kan melde inn (egne) barn under 15 år. Du vil få tilgang til seremonier og samlinger, samt kunne delta i våre digitale grupper sammen med de andre medlemmene. Vi vil også holde deg oppdatert via nyhetsmail m.m.
-                  </p>
+                  <h3 className="text-2xl font-serif font-semibold mb-4 text-nature-brown">{t('membershipPage.types.main.title')}</h3>
+                  <p className="text-lg leading-relaxed">{t('membershipPage.types.main.text')}</p>
                 </div>
-
-                {/* Støttemedlem */}
                 <div>
-                  <h3 className="text-2xl font-serif font-semibold mb-4 text-nature-brown">Støttemedlem:</h3>
-                  <p className="text-lg leading-relaxed">
-                    Som støttemedlem kan du stå som hovedmedlem i et annet trossamfunn, og likevel få nesten de samme fordelene som hovedmedlemmer med tilgang til seremonier, samlinger, medlemsgrupper m.m. Innmelding med navn/adresse/kontaktinfo. Her vil det bli en liten årsavgift å betale siden vi ikke kan få statsstøtte for ditt medlemsskap. Du kan velge ulike støttebeløp, og betaling enten årlig eller månedlig.
-                  </p>
+                  <h3 className="text-2xl font-serif font-semibold mb-4 text-nature-brown">{t('membershipPage.types.support.title')}</h3>
+                  <p className="text-lg leading-relaxed">{t('membershipPage.types.support.text')}</p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Hvordan bli medlem */}
             <Card>
               <CardContent className="p-8">
-                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">Hvordan bli medlem?</h2>
-                <p className="text-lg leading-relaxed mb-6">Vi trenger midler for å drive vår virksomhet og har valgt å sette innmeldingsavgift i 2025 til kr 200,- for begge typer medlemskap. Da vil du få mulighet til rimelig å kunne delta på større samlinger og bidra til at vårt fellesskap vokser.  
-
-                </p>
+                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.howTo.title')}</h2>
+                <p className="text-lg leading-relaxed mb-6">{t('membershipPage.howTo.text')}</p>
                 
                 <div className="bg-nature-beige/50 p-6 rounded-lg mb-6">
                   <p className="text-lg leading-relaxed mb-4">
-                    <strong>Utmelding fra andre trossamfunn:</strong>
+                    <strong>{t('membershipPage.howTo.leaveOther.title')}</strong>
                   </p>
                   <p className="text-base leading-relaxed mb-4">
-                    Hvis du skal være hovedmedlem hos oss, må du først melde deg ut av andre trossamfunn. Dette gjør du enklest ved å gå til <a href="https://www.kirken.no/innmelding" target="_blank" rel="noopener noreferrer" className="text-nature-green underline hover:no-underline">kirken.no/innmelding</a> og følge instruksjonene der.
+                    {t('membershipPage.howTo.leaveOther.text')} <a href="https://www.kirken.no/innmelding" target="_blank" rel="noopener noreferrer" className="text-nature-green underline hover:no-underline">kirken.no/innmelding</a>
                   </p>
                 </div>
 
                 <div className="text-center">
-                  <Link to="/bli-medlem">
-                    <Button size="lg" className="mb-4">
-                      Bli medlem nå
-                    </Button>
+                  <Link to={localePath('/bli-medlem')}>
+                    <Button size="lg" className="mb-4">{t('membershipPage.howTo.cta')}</Button>
                   </Link>
-                  <p className="text-sm text-muted-foreground">
-                    Fyll ut registreringsskjema og velg betalingsmetode
-                  </p>
+                  <p className="text-sm text-muted-foreground">{t('membershipPage.howTo.ctaSubtext')}</p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Medlemsfordeler */}
             <Card>
               <CardContent className="p-8">
-                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">Medlemsfordeler</h2>
+                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.benefits.title')}</h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <ul className="space-y-3 text-lg">
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Tilgang til seremonier og samlinger
+                        {t('membershipPage.benefits.ceremonies')}
                       </li>
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Delta i digitale medlemsmøter
+                        {t('membershipPage.benefits.digital')}
                       </li>
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Kunnskapsdeling og læring
+                        {t('membershipPage.benefits.knowledge')}
                       </li>
                     </ul>
                   </div>
@@ -135,15 +104,15 @@ const Medlemskap = () => {
                     <ul className="space-y-3 text-lg">
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Nyhetsmail og oppdateringer
+                        {t('membershipPage.benefits.news')}
                       </li>
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Lokale, regionale og nasjonale møter
+                        {t('membershipPage.benefits.meetings')}
                       </li>
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Åndelig fellesskap og støtte
+                        {t('membershipPage.benefits.spiritual')}
                       </li>
                     </ul>
                   </div>
@@ -151,16 +120,13 @@ const Medlemskap = () => {
               </CardContent>
             </Card>
 
-            {/* Contact Info */}
             <Card>
               <CardContent className="p-8 text-center">
-                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">Har du spørsmål?</h2>
-                <p className="text-lg leading-relaxed mb-6">
-                  Ta gjerne kontakt med oss hvis du lurer på noe om medlemskap eller Naturfolk generelt.
-                </p>
+                <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.questions.title')}</h2>
+                <p className="text-lg leading-relaxed mb-6">{t('membershipPage.questions.text')}</p>
                 <a href="mailto:post@naturfolk.org">
                   <Button size="lg" className="bg-nature-green hover:bg-nature-green/90 text-white">
-                    Kontakt
+                    {t('membershipPage.questions.cta')}
                   </Button>
                 </a>
               </CardContent>
@@ -172,8 +138,8 @@ const Medlemskap = () => {
 
       <Footer />
       <ScrollToTop />
-    </div>);
-
+    </div>
+  );
 };
 
 export default Medlemskap;
