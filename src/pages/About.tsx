@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
 import { Leaf } from 'lucide-react';
-import heroImage from '@/assets/hero-fjord-bonfire.png';
+import heroImage from '@/assets/vision-gathering.jpg';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const NatureDivider = () => (
