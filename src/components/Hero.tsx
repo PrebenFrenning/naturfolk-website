@@ -16,15 +16,15 @@ const Hero = () => {
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 container-custom h-full flex flex-col justify-center">
+      <div className="relative z-10 container-custom h-full flex flex-col justify-center items-center text-center">
         <div className="max-w-3xl text-white">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-tight mb-4 animate-fade-in">
             Naturen er hellig
           </h1>
-          <p className="text-xl md:text-2xl opacity-90 mb-8 max-w-2xl animate-fade-in-delay font-serif">
+          <p className="text-xl md:text-2xl opacity-90 mb-8 max-w-2xl mx-auto animate-fade-in-delay font-serif">
             Et trossamfunn hvor menneske, ånd og natur er ett
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay" style={{ animationDelay: "0.4s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay justify-center" style={{ animationDelay: "0.4s" }}>
             <a href="/trosgrunnlag" className="btn-primary flex items-center gap-2">
               Vår tro og våre verdier
             </a>
