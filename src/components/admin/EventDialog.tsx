@@ -7,6 +7,7 @@ import { CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { eventSchema } from '@/lib/validation';
 import { sanitizeUrl } from '@/lib/sanitize';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -62,9 +63,12 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState<Date>();
+  const [startTime, setStartTime] = useState('12:00');
   const [endDate, setEndDate] = useState<Date>();
+  const [endTime, setEndTime] = useState('');
   const [registrationDeadline, setRegistrationDeadline] = useState<Date>();
   const [location, setLocation] = useState('');
+  const [isDigital, setIsDigital] = useState(false);
   const [status, setStatus] = useState<'draft' | 'published' | 'scheduled'>('draft');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState('');
@@ -82,10 +86,25 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
     if (event) {
       setTitle(event.title || '');
       setDescription(event.description || '');
-      setStartDate(event.start_date ? new Date(event.start_date) : undefined);
-      setEndDate(event.end_date ? new Date(event.end_date) : undefined);
+      if (event.start_date) {
+        const sd = new Date(event.start_date);
+        setStartDate(sd);
+        setStartTime(format(sd, 'HH:mm'));
+      } else {
+        setStartDate(undefined);
+        setStartTime('12:00');
+      }
+      if (event.end_date) {
+        const ed = new Date(event.end_date);
+        setEndDate(ed);
+        setEndTime(format(ed, 'HH:mm'));
+      } else {
+        setEndDate(undefined);
+        setEndTime('');
+      }
       setRegistrationDeadline(event.registration_deadline ? new Date(event.registration_deadline) : undefined);
       setLocation(event.location || '');
+      setIsDigital(event.location === 'Digitalt' || (event.location?.startsWith('http') ?? false));
       setStatus(event.status || 'draft');
       setImageUrl(event.image_url || '');
       setMaxParticipants(event.max_participants?.toString() || '');
@@ -103,9 +122,12 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
     setTitle('');
     setDescription('');
     setStartDate(undefined);
+    setStartTime('12:00');
     setEndDate(undefined);
+    setEndTime('');
     setRegistrationDeadline(undefined);
     setLocation('');
+    setIsDigital(false);
     setStatus('draft');
     setImageFile(null);
     setImageUrl('');
@@ -185,11 +207,19 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
 
     setLoading(true);
 
+    // Combine date + time
+    const combineDateAndTime = (date: Date, time: string): string => {
+      const [hours, minutes] = time.split(':').map(Number);
+      const combined = new Date(date);
+      combined.setHours(hours, minutes, 0, 0);
+      return combined.toISOString();
+    };
+
     const eventData = {
       title: validation.data.title,
       description: validation.data.description,
-      start_date: startDate.toISOString(),
-      end_date: endDate?.toISOString() || null,
+      start_date: combineDateAndTime(startDate, startTime),
+      end_date: endDate && endTime ? combineDateAndTime(endDate, endTime) : endDate?.toISOString() || null,
       registration_deadline: validation.data.registrationDeadline || null,
       location: validation.data.location,
       status,
@@ -199,7 +229,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
       ticket_link: validation.data.ticketLink ? sanitizeUrl(validation.data.ticketLink) : null,
       facebook_link: validation.data.facebookLink ? sanitizeUrl(validation.data.facebookLink) : null,
       organized_by: validation.data.organizedBy,
-      what_to_bring: validation.data.whatToBring || null,
+      what_to_bring: isDigital ? null : (validation.data.whatToBring || null),
       author_id: user?.id,
     };
 
@@ -267,14 +297,31 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
             <RichTextEditor content={description} onChange={setDescription} />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="what_to_bring">What to Bring</Label>
-            <RichTextEditor content={whatToBring} onChange={setWhatToBring} />
+          {!isDigital && (
+            <div className="space-y-2">
+              <Label htmlFor="what_to_bring">What to Bring</Label>
+              <RichTextEditor content={whatToBring} onChange={setWhatToBring} />
+            </div>
+          )}
+
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="is_digital"
+              checked={isDigital}
+              onCheckedChange={(checked) => {
+                setIsDigital(checked === true);
+                if (checked) {
+                  setWhatToBring('');
+                  setLocation('');
+                }
+              }}
+            />
+            <Label htmlFor="is_digital" className="cursor-pointer">Digitalt arrangement</Label>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label>Start Date</Label>
+              <Label>Startdato</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -285,7 +332,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {startDate ? format(startDate, 'PPP') : <span>Pick a date</span>}
+                    {startDate ? format(startDate, 'PPP') : <span>Velg dato</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
@@ -301,30 +348,12 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
             </div>
 
             <div className="space-y-2">
-              <Label>End Date (Optional)</Label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      'w-full justify-start text-left font-normal',
-                      !endDate && 'text-muted-foreground'
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {endDate ? format(endDate, 'PPP') : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={endDate}
-                    onSelect={setEndDate}
-                    initialFocus
-                    className="pointer-events-auto"
-                  />
-                </PopoverContent>
-              </Popover>
+              <Label>Starttid</Label>
+              <Input
+                type="time"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+              />
             </div>
 
             <div className="space-y-2">
@@ -339,7 +368,7 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {registrationDeadline ? format(registrationDeadline, 'PPP') : <span>Pick a date</span>}
+                    {registrationDeadline ? format(registrationDeadline, 'PPP') : <span>Velg dato</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
@@ -355,18 +384,58 @@ export function EventDialog({ open, onClose, event, user }: EventDialogProps) {
             </div>
           </div>
 
+          <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Label>Sluttdato (valgfritt)</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      'w-full justify-start text-left font-normal',
+                      !endDate && 'text-muted-foreground'
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {endDate ? format(endDate, 'PPP') : <span>Velg dato</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={endDate}
+                    onSelect={setEndDate}
+                    initialFocus
+                    className="pointer-events-auto"
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Sluttid (valgfritt)</Label>
+              <Input
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+              />
+            </div>
+            <div />
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
+              <Label htmlFor="location">{isDigital ? 'Møtelenke' : 'Lokasjon'}</Label>
               <Input
                 id="location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
+                placeholder={isDigital ? 'https://meet.google.com/...' : ''}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="organized_by">Arranged By</Label>
+              <Label htmlFor="organized_by">Arrangert av</Label>
               <Input
                 id="organized_by"
                 value={organizedBy}
