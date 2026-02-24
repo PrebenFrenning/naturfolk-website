@@ -11,7 +11,7 @@ const Trosgrunnlag = () => {
   const [showToc, setShowToc] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const sections = [
-    { id: 'erklaring', title: 'Erklaring' },
+    { id: 'erklaring', title: 'Erklæring' },
     { id: 'trosgrunnlag', title: '1. Trosgrunnlag' },
     { id: 'verdensbilde', title: '2. Verdensbilde og landskapets betydning' },
     { id: 'religioss-praksis', title: '3. Religiøs praksis - Åndereiser og kontakt' },
