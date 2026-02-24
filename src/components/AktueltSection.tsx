@@ -48,7 +48,7 @@ const AktueltSection = () => {
               <Card className="overflow-hidden shadow-sm hover:shadow-lg transition-shadow h-full">
                 <div className="relative h-48 overflow-hidden">
                   <img 
-                    src={post.featured_image || fallbackImages[index % fallbackImages.length]} 
+                    src={post.featured_image || '/images/fallback-bonfire.jpg'} 
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
