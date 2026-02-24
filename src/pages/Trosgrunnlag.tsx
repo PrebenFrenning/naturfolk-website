@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, List } from 'lucide-react';
+import { ArrowLeft, List, Leaf } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
@@ -355,6 +355,13 @@ const Trosgrunnlag = () => {
               </p>
             </div>
           </section>
+
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-3 my-12">
+            <div className="w-12 h-[1px] bg-nature-green/30"></div>
+            <Leaf className="text-nature-green/50" size={18} strokeWidth={1.5} />
+            <div className="w-12 h-[1px] bg-nature-green/30"></div>
+          </div>
 
           {/* Naturfolkets Ed */}
           <section id="naturfolkets-ed-full" className="mb-16">
