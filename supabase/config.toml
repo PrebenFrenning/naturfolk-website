@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.verify-login-code]
 verify_jwt = false
+
+[functions.send-renewal-reminder]
+verify_jwt = false
