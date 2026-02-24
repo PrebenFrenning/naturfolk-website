@@ -3,7 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus, Pencil, Trash2 } from 'lucide-react';
+import { Plus, Pencil, Trash2, Monitor } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -136,7 +136,20 @@ export default function Events() {
                       <TableCell>
                         {new Date(event.start_date).toLocaleDateString()}
                       </TableCell>
-                      <TableCell>{event.location || '-'}</TableCell>
+                      <TableCell>
+                        {event.location ? (
+                          event.location.startsWith('http') ? (
+                            <span className="flex items-center gap-1.5">
+                              <Monitor className="h-3.5 w-3.5" />
+                              <Badge variant="outline">Digitalt</Badge>
+                            </span>
+                          ) : (
+                            event.location
+                          )
+                        ) : (
+                          '-'
+                        )}
+                      </TableCell>
                       <TableCell>
                         <Badge
                           variant={
