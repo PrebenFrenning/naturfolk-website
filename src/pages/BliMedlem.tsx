@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -49,14 +49,28 @@ export default function BliMedlem() {
     formState: { errors },
   } = useForm<MembershipSignupData>({
     resolver: zodResolver(membershipSignupSchema),
-    defaultValues: {
-      membership_type: "Hovedmedlem",
-      country: "Norge",
-      newsletter_subscribed: false,
-    },
+    defaultValues: (() => {
+      const saved = localStorage.getItem('membershipFormData');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch {}
+      }
+      return {
+        membership_type: "Hovedmedlem",
+        country: "Norge",
+        newsletter_subscribed: false,
+      };
+    })(),
   });
 
   const membershipType = watch("membership_type");
+
+  // Auto-save form data to localStorage so user doesn't lose progress
+  const allValues = watch();
+  useEffect(() => {
+    localStorage.setItem('membershipFormData', JSON.stringify(allValues));
+  }, [allValues]);
 
   const onSubmit = async (data: MembershipSignupData) => {
     setLoading(true);
