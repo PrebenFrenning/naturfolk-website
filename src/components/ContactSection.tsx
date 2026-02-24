@@ -9,19 +9,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-// Define form validation schema
-const formSchema = z.object({
-  firstName: z.string().min(2, { message: "Fornavn må være minst 2 tegn." }),
-  lastName: z.string().min(2, { message: "Etternavn må være minst 2 tegn." }),
-  email: z.string().email({ message: "Vennligst oppgi en gyldig e-postadresse." }),
-  subject: z.string().min(5, { message: "Emne må være minst 5 tegn." }),
-  message: z.string().min(10, { message: "Melding må være minst 10 tegn." }),
-});
-
-type ContactFormValues = z.infer<typeof formSchema>;
+type ContactFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 const ContactSection = () => {
+  const { t } = useLanguage();
+  
+  const formSchema = z.object({
+    firstName: z.string().min(2, { message: t('contact.form.firstName') + " min 2" }),
+    lastName: z.string().min(2, { message: t('contact.form.lastName') + " min 2" }),
+    email: z.string().email(),
+    subject: z.string().min(5),
+    message: z.string().min(10),
+  });
+
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,8 +46,8 @@ const ContactSection = () => {
   const onSubmit = (data: ContactFormValues) => {
     console.log(data);
     toast({
-      title: "Melding sendt!",
-      description: "Takk for at du kontaktet oss. Vi svarer kort.",
+      title: t('contact.form.success.title'),
+      description: t('contact.form.success.description'),
     });
     form.reset();
   };
@@ -47,8 +55,8 @@ const ContactSection = () => {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Abonnert!",
-      description: "Du er nå lagt til i vårt nyhetsbrev.",
+      title: t('contact.newsletter.success.title'),
+      description: t('contact.newsletter.success.description'),
     });
     setEmail("");
   };
@@ -56,18 +64,16 @@ const ContactSection = () => {
   return (
     <section id="contact" className="section-padding bg-nature-offwhite">
       <div className="container-custom">
-        {/* Intro */}
         <div className="max-w-2xl mx-auto text-center mb-14">
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Har du spørsmål til Naturfolk? Ta kontakt med oss ved å bruke skjemaet nedenfor eller kontakt oss direkte på epost, så svarer vi så snart vi kan.
+            {t('contact.intro')}
           </p>
         </div>
 
         <div className="max-w-5xl mx-auto space-y-10">
-          {/* Contact Form */}
           <Card>
             <CardContent className="p-8 md:p-10">
-              <h3 className="text-2xl font-serif font-semibold mb-8 text-nature-green">Send oss en melding</h3>
+              <h3 className="text-2xl font-serif font-semibold mb-8 text-nature-green">{t('contact.form.title')}</h3>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -76,9 +82,9 @@ const ContactSection = () => {
                       name="firstName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Fornavn</FormLabel>
+                          <FormLabel>{t('contact.form.firstName')}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Ditt fornavn" {...field} />
+                            <Input placeholder={t('contact.form.firstName.placeholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -89,9 +95,9 @@ const ContactSection = () => {
                       name="lastName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Etternavn</FormLabel>
+                          <FormLabel>{t('contact.form.lastName')}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Ditt etternavn" {...field} />
+                            <Input placeholder={t('contact.form.lastName.placeholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -105,9 +111,9 @@ const ContactSection = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>E-post</FormLabel>
+                          <FormLabel>{t('contact.form.email')}</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Din e-postadresse" {...field} />
+                            <Input type="email" placeholder={t('contact.form.email.placeholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -118,9 +124,9 @@ const ContactSection = () => {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Emne</FormLabel>
+                          <FormLabel>{t('contact.form.subject')}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Hva gjelder henvendelsen?" {...field} />
+                            <Input placeholder={t('contact.form.subject.placeholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -133,9 +139,9 @@ const ContactSection = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Melding</FormLabel>
+                        <FormLabel>{t('contact.form.message')}</FormLabel>
                         <FormControl>
-                          <Textarea rows={5} placeholder="Skriv din melding her" {...field} />
+                          <Textarea rows={5} placeholder={t('contact.form.message.placeholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -143,14 +149,13 @@ const ContactSection = () => {
                   />
 
                   <Button type="submit" className="bg-nature-green hover:bg-nature-green/90 px-8">
-                    Send melding
+                    {t('contact.form.submit')}
                   </Button>
                 </form>
               </Form>
             </CardContent>
           </Card>
 
-          {/* Bottom row: Email + Newsletter side by side */}
           <div className="grid md:grid-cols-2 gap-6">
             <Card>
               <CardContent className="p-8 flex items-start gap-4">
@@ -158,7 +163,7 @@ const ContactSection = () => {
                   <Mail className="text-nature-green" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-serif font-semibold text-lg mb-1">E-post</h4>
+                  <h4 className="font-serif font-semibold text-lg mb-1">{t('contact.email.title')}</h4>
                   <a
                     href="mailto:post@naturfolk.org"
                     className="text-muted-foreground hover:text-nature-green transition-colors"
@@ -171,12 +176,12 @@ const ContactSection = () => {
 
             <Card>
               <CardContent className="p-8">
-                <h4 className="font-serif font-semibold text-lg mb-2">Nyhetsbrev</h4>
-                <p className="text-sm text-muted-foreground mb-4">Hold deg oppdatert med arrangementer og nyheter.</p>
+                <h4 className="font-serif font-semibold text-lg mb-2">{t('contact.newsletter.title')}</h4>
+                <p className="text-sm text-muted-foreground mb-4">{t('contact.newsletter.text')}</p>
                 <form onSubmit={handleSubscribe} className="flex">
                   <Input
                     type="email"
-                    placeholder="Din e-postadresse"
+                    placeholder={t('contact.form.email.placeholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"

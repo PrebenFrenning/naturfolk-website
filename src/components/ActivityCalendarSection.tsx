@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
-import { nb } from 'date-fns/locale';
+import { nb, enUS } from 'date-fns/locale';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import EventDialog from './EventDialog';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface Event {
   id: string;
@@ -29,6 +30,8 @@ const ActivityCalendarSection = () => {
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const { t, localePath, language } = useLanguage();
+  const dateLocale = language === 'en' ? enUS : nb;
 
   useEffect(() => {
     loadEvents();
@@ -58,7 +61,7 @@ const ActivityCalendarSection = () => {
     return (
       <section className="section-padding bg-white">
         <div className="container-custom text-center">
-          <p>Laster aktiviteter...</p>
+          <p>{t('calendar.loading')}</p>
         </div>
       </section>
     );
@@ -68,10 +71,10 @@ const ActivityCalendarSection = () => {
     <section className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">Aktivitetskalender</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">{t('calendar.title')}</h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground">
-            Kommende arrangementer og samlinger
+            {t('calendar.subtitle')}
           </p>
         </div>
         
@@ -100,7 +103,7 @@ const ActivityCalendarSection = () => {
                     <div className="flex items-center gap-2 mb-3">
                       <Calendar className="h-4 w-4 text-nature-green" />
                       <span className="text-sm font-medium text-nature-green">
-                        {format(eventDate, 'd. MMMM yyyy', { locale: nb })}
+                        {format(eventDate, language === 'en' ? 'MMMM d, yyyy' : 'd. MMMM yyyy', { locale: dateLocale })}
                       </span>
                     </div>
                     <h3 className="text-lg font-serif font-semibold mb-2 group-hover:text-nature-green transition-colors">
@@ -110,8 +113,8 @@ const ActivityCalendarSection = () => {
                       <div className="flex items-center gap-2">
                         <Clock size={14} />
                         <span>
-                          {format(eventDate, 'HH:mm', { locale: nb })}
-                          {endTime && ` - ${format(endTime, 'HH:mm', { locale: nb })}`}
+                          {format(eventDate, 'HH:mm', { locale: dateLocale })}
+                          {endTime && ` - ${format(endTime, 'HH:mm', { locale: dateLocale })}`}
                         </span>
                       </div>
                       {event.location && (
@@ -129,14 +132,14 @@ const ActivityCalendarSection = () => {
         ) : (
           <div className="text-center py-12 bg-nature-offwhite rounded-lg">
             <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-            <p className="text-muted-foreground">Ingen kommende arrangementer.</p>
+            <p className="text-muted-foreground">{t('calendar.empty')}</p>
           </div>
         )}
 
         <div className="text-center mt-10">
-          <Link to="/kalender">
+          <Link to={localePath('/kalender')}>
             <Button size="lg" className="gap-2">
-              Se full kalender
+              {t('calendar.cta')}
               <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
