@@ -16,7 +16,7 @@ const Hero = () => {
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 container-custom h-full flex flex-col justify-center items-center text-center">
+      <div className="relative z-10 container-custom h-full flex flex-col justify-start items-center text-center pt-[28vh] md:pt-[25vh]">
         <div className="max-w-3xl text-white">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-tight mb-4 animate-fade-in">
             Naturen er hellig
