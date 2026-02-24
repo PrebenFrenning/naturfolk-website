@@ -69,13 +69,11 @@ export default function Blog() {
                   {posts.map((post) => (
                     <Link key={post.id} to={`/blogg/${post.slug}`}>
                       <Card className="h-full hover:shadow-lg transition-shadow">
-                        {post.featured_image && (
-                          <img 
-                            src={post.featured_image} 
+                        <img 
+                            src={post.featured_image || '/images/fallback-bonfire.jpg'} 
                             alt={post.title}
                             className="w-full h-48 object-cover rounded-t-lg"
                           />
-                        )}
                         <CardHeader>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                             <Calendar className="h-4 w-4" />
