@@ -128,7 +128,7 @@ export default function Kalender() {
                   {/* Calendar + Text Section - 2 columns */}
                   <div className="grid md:grid-cols-2 gap-6 mb-12">
                     <div className="flex flex-col justify-center">
-                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-bold">
                         For Naturfolk er det fellesskapet som ligger i våre møter, ritualer, seremonier og samhandling med natur- og åndskraft, som er essensen av hva og hvem vi er. Her finner du aktiviteter du som medlem kan ta del i, både fysisk og digitalt.
                       </p>
                       {selectedDate && (
