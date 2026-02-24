@@ -358,7 +358,7 @@ const Trosgrunnlag = () => {
 
           {/* Naturfolkets Ed */}
           <section id="naturfolkets-ed-full" className="mb-16">
-            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8">Naturfolkets Ed</h2>
+            <h2 className="text-3xl font-serif font-semibold text-nature-brown mb-8 text-center">Naturfolkets Ed</h2>
             <div className="prose prose-lg max-w-none text-nature-brown space-y-6">
               <div className="text-center italic text-lg">
                 <p>Med føttene på jorda</p>
