@@ -27,10 +27,7 @@ export const membershipSignupSchema = z.object({
     .max(15, { message: "Telefonnummer må være mindre enn 15 siffer" }),
   personnummer: z.string()
     .trim()
-    .refine((val) => {
-      // For Hovedmedlem: 11-12 digits, for Støttemedlem: 6 digits (we'll validate based on membership_type)
-      return /^\d{6,12}$/.test(val);
-    }, { message: "Fødselsnummer må være mellom 6 og 12 siffer" }),
+    .regex(/^\d+$/, { message: "Fødselsnummer kan kun inneholde siffer" }),
   gender: z.enum(['Mann', 'Kvinne', 'Ønsker ikke å oppgi'], {
     required_error: "Vennligst velg kjønn"
   }),
@@ -59,6 +56,25 @@ export const membershipSignupSchema = z.object({
     .trim()
     .max(1000, { message: "Tekst må være mindre enn 1000 tegn" })
     .optional(),
+}).superRefine((data, ctx) => {
+  const digits = data.personnummer;
+  if (data.membership_type === 'Hovedmedlem') {
+    if (digits.length !== 11) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Hovedmedlem krever fullt personnummer (11 siffer)",
+        path: ['personnummer'],
+      });
+    }
+  } else if (data.membership_type === 'Støttemedlem') {
+    if (digits.length !== 6) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Støttemedlem krever fødselsdato (6 siffer)",
+        path: ['personnummer'],
+      });
+    }
+  }
 });
 
 export type MembershipSignupData = z.infer<typeof membershipSignupSchema>;
