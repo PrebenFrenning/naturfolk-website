@@ -123,7 +123,7 @@ const Medlemskap = () => {
                       </li>
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
-                        Delta i digitale medlemsgrupper
+                        Delta i digitale medlemsmøter
                       </li>
                       <li className="flex items-start">
                         <span className="w-2 h-2 bg-nature-green rounded-full mt-3 mr-3 flex-shrink-0"></span>
