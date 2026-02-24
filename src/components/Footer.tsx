@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
@@ -28,29 +29,29 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">{t('footer.themeGroups')}</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.cultivation')}</a></li>
-              <li><a href={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.sacredPlaces')}</a></li>
-              <li><a href={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.natureCommunity')}</a></li>
-              <li><a href={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.rituals')}</a></li>
+              <li><Link to={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.cultivation')}</Link></li>
+              <li><Link to={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.sacredPlaces')}</Link></li>
+              <li><Link to={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.natureCommunity')}</Link></li>
+              <li><Link to={localePath('/temagrupper')} className="hover:text-nature-green transition-custom">{t('footer.themeGroups.rituals')}</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">{t('footer.aboutNaturfolk')}</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href={localePath('/trosgrunnlag')} className="hover:text-nature-green transition-custom">{t('footer.faith')}</a></li>
-              <li><a href={localePath('/about')} className="hover:text-nature-green transition-custom">{t('footer.aboutUs')}</a></li>
-              <li><a href={localePath('/medlemskap')} className="hover:text-nature-green transition-custom">{t('footer.membership')}</a></li>
-              <li><a href={localePath('/contact')} className="hover:text-nature-green transition-custom">{t('footer.contact')}</a></li>
-              <li><a href={localePath('/blogg')} className="hover:text-nature-green transition-custom">{t('footer.blog')}</a></li>
+              <li><Link to={localePath('/trosgrunnlag')} className="hover:text-nature-green transition-custom">{t('footer.faith')}</Link></li>
+              <li><Link to={localePath('/about')} className="hover:text-nature-green transition-custom">{t('footer.aboutUs')}</Link></li>
+              <li><Link to={localePath('/medlemskap')} className="hover:text-nature-green transition-custom">{t('footer.membership')}</Link></li>
+              <li><Link to={localePath('/contact')} className="hover:text-nature-green transition-custom">{t('footer.contact')}</Link></li>
+              <li><Link to={localePath('/blogg')} className="hover:text-nature-green transition-custom">{t('footer.blog')}</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold mb-4 uppercase text-sm tracking-wider">{t('footer.member')}</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="/medlem-login" className="hover:text-nature-green transition-custom">{t('footer.memberLogin')}</a></li>
-              <li><a href="/auth" className="hover:text-nature-green transition-custom">{t('footer.adminLogin')}</a></li>
+              <li><Link to="/medlem-login" className="hover:text-nature-green transition-custom">{t('footer.memberLogin')}</Link></li>
+              <li><Link to="/auth" className="hover:text-nature-green transition-custom">{t('footer.adminLogin')}</Link></li>
             </ul>
           </div>
         </div>
@@ -60,8 +61,8 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Naturfolk. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm opacity-70">
-            <a href={localePath('/personvern')} className="hover:text-nature-green transition-custom">{t('footer.privacy')}</a>
-            <a href={localePath('/vilkar')} className="hover:text-nature-green transition-custom">{t('footer.terms')}</a>
+            <Link to={localePath('/personvern')} className="hover:text-nature-green transition-custom">{t('footer.privacy')}</Link>
+            <Link to={localePath('/vilkar')} className="hover:text-nature-green transition-custom">{t('footer.terms')}</Link>
           </div>
         </div>
       </div>
