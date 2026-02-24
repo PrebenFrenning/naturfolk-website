@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Card, CardContent } from '../components/ui/card';
 import { Leaf } from 'lucide-react';
-import omOssHero from '@/assets/om-oss-hero.jpg';
+import heroImage from '@/assets/hero-fjord-bonfire.png';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const NatureDivider = () => (
@@ -23,7 +23,7 @@ const About = () => {
       <Navbar />
       
       <section className="relative min-h-[50vh] flex items-center justify-center">
-        <img src={omOssHero} alt="Samling i villreinens rike, norsk natur" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={heroImage} alt="Mektig nordnorsk fjordlandskap med bål" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
         <div className="relative z-10 container-custom">
           <div className="max-w-4xl mx-auto text-center text-white mt-16">
