@@ -167,7 +167,7 @@ export default function Betaling() {
                 <div className="flex items-center justify-center w-12 h-12 bg-nature-green/10 rounded-full mb-4 mx-auto">
                   <CreditCard className="w-6 h-6 text-nature-green" />
                 </div>
-                <CardTitle className="text-center">Betal med Stripe</CardTitle>
+                <CardTitle className="text-center">Trygg kortbetaling</CardTitle>
                 <CardDescription className="text-center">
                   Betal trygt med kort via Stripe
                 </CardDescription>
@@ -179,7 +179,7 @@ export default function Betaling() {
                   className="w-full"
                   size="lg"
                 >
-                  {processingMethod === 'stripe' ? 'Behandler...' : 'Betal med Stripe'}
+                  {processingMethod === 'stripe' ? 'Behandler...' : 'Betal med kort'}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center mt-4">
                   Støtter Visa, Mastercard, American Express
