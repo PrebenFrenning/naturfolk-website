@@ -57,8 +57,8 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Naturfolk. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm opacity-70">
-            <a href="#" className="hover:text-nature-green transition-custom">Personvern</a>
-            <a href="#" className="hover:text-nature-green transition-custom">Vilkår</a>
+            <a href="/personvern" className="hover:text-nature-green transition-custom">Personvern</a>
+            <a href="/vilkar" className="hover:text-nature-green transition-custom">Vilkår</a>
           </div>
         </div>
       </div>
