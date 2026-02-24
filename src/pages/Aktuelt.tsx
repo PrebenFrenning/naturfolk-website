@@ -92,7 +92,7 @@ const Aktuelt = () => {
                   <Card key={event.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                     <div className="relative h-64">
                       <img 
-                        src={event.image_url || '/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png'} 
+                        src={event.image_url || '/og-image.png'} 
                         alt={event.title}
                         className="w-full h-full object-cover"
                       />
@@ -147,7 +147,7 @@ const Aktuelt = () => {
                     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full">
                       <div className="relative h-64">
                         <img 
-                          src={post.featured_image || '/lovable-uploads/07d9355a-bf98-4a58-878d-1ce5e623810b.png'} 
+                          src={post.featured_image || '/og-image.png'} 
                           alt={post.title}
                           className="w-full h-full object-cover"
                         />
