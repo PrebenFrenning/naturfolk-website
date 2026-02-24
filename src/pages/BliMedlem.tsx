@@ -175,7 +175,9 @@ export default function BliMedlem() {
               </Label>
               <Input id="personnummer" {...register("personnummer")} />
               <p className="text-xs text-muted-foreground">
-                12 siffer kreves for innmelding som hovedmedlem (personnummer) 6 siffer for støttemedlem (fødselsdato)
+                {membershipType === 'Støttemedlem' 
+                  ? 'Støttemedlem: Fyll inn fødselsdato (6 siffer, ddmmåå)' 
+                  : 'Hovedmedlem: Fyll inn fullt personnummer (11 siffer)'}
               </p>
               {errors.personnummer && <p className="text-sm text-destructive">{errors.personnummer.message}</p>}
             </div>
