@@ -121,17 +121,13 @@ export default function Kalender() {
 
           <section className="py-16 px-4">
             <div className="container mx-auto max-w-6xl">
-              <p className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-                For Naturfolk er det fellesskapet som ligger i våre møter, ritualer, seremonier og samhandling med natur- og åndskraft, som er essensen av hva og hvem vi er. Her finner du aktiviteter du som medlem kan ta del i, både fysisk og digitalt.
-              </p>
-
               {loading ? (
                 <div className="text-center py-12">Laster arrangementer...</div>
               ) : (
                 <>
-                  {/* Calendar Section */}
-                  <div className="mb-12 flex flex-col items-center">
-                    <Card className="w-full max-w-md">
+                  {/* Calendar + Text Section - 2 columns */}
+                  <div className="grid md:grid-cols-2 gap-6 mb-12">
+                    <Card>
                       <CardContent className="p-6">
                         <CalendarUI
                           mode="single"
@@ -141,7 +137,7 @@ export default function Kalender() {
                           onMonthChange={setCurrentMonth}
                           modifiers={modifiers}
                           modifiersClassNames={modifiersClassNames}
-                          className="rounded-md border-0"
+                          className="rounded-md border-0 w-full"
                           locale={nb}
                           weekStartsOn={1}
                         />
@@ -158,11 +154,16 @@ export default function Kalender() {
                         )}
                       </CardContent>
                     </Card>
-                    {selectedDate && (
-                      <p className="mt-4 text-sm text-muted-foreground">
-                        Viser arrangementer for {format(selectedDate, 'd. MMMM yyyy', { locale: nb })}
+                    <div className="flex flex-col justify-center">
+                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                        For Naturfolk er det fellesskapet som ligger i våre møter, ritualer, seremonier og samhandling med natur- og åndskraft, som er essensen av hva og hvem vi er. Her finner du aktiviteter du som medlem kan ta del i, både fysisk og digitalt.
                       </p>
-                    )}
+                      {selectedDate && (
+                        <p className="mt-6 text-sm text-muted-foreground">
+                          Viser arrangementer for {format(selectedDate, 'd. MMMM yyyy', { locale: nb })}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
                   {/* Events Grid */}
