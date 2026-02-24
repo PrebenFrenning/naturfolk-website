@@ -59,10 +59,10 @@ export default function Blog() {
               </p>
 
               {loading ? (
-                <div className="text-center py-12">Loading posts...</div>
+                <div className="text-center py-12">Laster innlegg...</div>
               ) : posts.length === 0 ? (
                 <div className="text-center py-12 text-muted-foreground">
-                  No posts published yet.
+                  Ingen innlegg publisert ennå.
                 </div>
               ) : (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
