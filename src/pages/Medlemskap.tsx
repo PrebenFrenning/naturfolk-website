@@ -130,7 +130,7 @@ const Medlemskap = () => {
                 <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.questions.title')}</h2>
                 <p className="text-lg leading-relaxed mb-6">{t('membershipPage.questions.text')}</p>
                 <a href="mailto:post@naturfolk.org">
-                  <Button size="lg" className="bg-nature-green hover:bg-nature-green/90 text-white">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     {t('membershipPage.questions.cta')}
                   </Button>
                 </a>
