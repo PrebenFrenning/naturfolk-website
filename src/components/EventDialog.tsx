@@ -173,18 +173,6 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                       <ExternalLink size={14} />
                     </a>
                   )}
-                  {event.facebook_link && (
-                    <a 
-                      href={event.facebook_link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-nature-green hover:text-nature-green/80 font-medium text-sm underline"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Se arrangement på Facebook
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
                 </div>
               )}
               
@@ -194,7 +182,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                 <div>
                   <h3 className="font-medium mb-2">Om arrangementet</h3>
                   <div 
-                    className="text-muted-foreground text-sm prose prose-sm max-w-none"
+                    className="text-muted-foreground text-sm prose prose-sm max-w-none [&_a]:text-primary [&_a]:font-semibold [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
                     dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
                   />
                 </div>

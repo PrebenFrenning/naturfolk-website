@@ -1,0 +1,1 @@
+UPDATE events SET facebook_link = NULL WHERE id = '88858c16-4d40-4baa-a787-bfd0f2059c3c'
