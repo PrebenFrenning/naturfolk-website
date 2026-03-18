@@ -182,7 +182,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                 <div>
                   <h3 className="font-medium mb-2">Om arrangementet</h3>
                   <div 
-                    className="text-muted-foreground text-sm prose prose-sm max-w-none"
+                    className="text-muted-foreground text-sm prose prose-sm max-w-none [&_a]:text-primary [&_a]:font-semibold [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
                     dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
                   />
                 </div>
