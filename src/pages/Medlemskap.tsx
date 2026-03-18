@@ -23,7 +23,7 @@ const Medlemskap = () => {
             <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">{t('membershipPage.hero.title')}</h1>
             <p className="text-base md:text-lg leading-relaxed mb-8">{t('membershipPage.hero.subtitle')}</p>
             <Link to={localePath('/bli-medlem')}>
-              <Button className="bg-nature-green hover:bg-nature-green/90 text-white px-8 py-3 text-lg">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg">
                 {t('testimonials.cta')}
               </Button>
             </Link>
@@ -130,7 +130,7 @@ const Medlemskap = () => {
                 <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.questions.title')}</h2>
                 <p className="text-lg leading-relaxed mb-6">{t('membershipPage.questions.text')}</p>
                 <a href="mailto:post@naturfolk.org">
-                  <Button size="lg" className="bg-nature-green hover:bg-nature-green/90 text-white">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     {t('membershipPage.questions.cta')}
                   </Button>
                 </a>
