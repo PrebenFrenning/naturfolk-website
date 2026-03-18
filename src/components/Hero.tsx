@@ -12,7 +12,7 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="Mektig nordnorsk fjordlandskap med fjell" 
-          className="w-full h-full object-cover object-[50%_15%] md:object-center"
+          className="w-full h-full object-cover object-[18%_15%] md:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
       </div>
