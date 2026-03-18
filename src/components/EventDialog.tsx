@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { format } from 'date-fns';
-import { Calendar, CalendarDays, MapPin, Clock, Users, Info, AlertCircle } from 'lucide-react';
+import { Calendar, CalendarDays, MapPin, Clock, Users, Info, AlertCircle, ExternalLink } from 'lucide-react';
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { sanitizeHtml } from '@/lib/sanitize';
