@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { format } from 'date-fns';
-import { Calendar, CalendarDays, MapPin, Clock, Users, Info, AlertCircle } from 'lucide-react';
+import { Calendar, CalendarDays, MapPin, Clock, Users, Info, AlertCircle, ExternalLink } from 'lucide-react';
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { sanitizeHtml } from '@/lib/sanitize';
@@ -158,6 +158,35 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                   </div>
                 )}
               </div>
+
+              {(event.ticket_link || event.facebook_link) && (
+                <div className="flex flex-col gap-2 mt-2">
+                  {event.ticket_link && (
+                    <a 
+                      href={event.ticket_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded font-medium hover:bg-primary/90 transition-colors text-sm"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Billetter / Påmelding
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
+                  {event.facebook_link && (
+                    <a 
+                      href={event.facebook_link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-nature-green hover:text-nature-green/80 font-medium text-sm underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Se arrangement på Facebook
+                      <ExternalLink size={14} />
+                    </a>
+                  )}
+                </div>
+              )}
               
               <Separator />
               
