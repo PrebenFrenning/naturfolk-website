@@ -173,18 +173,6 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                       <ExternalLink size={14} />
                     </a>
                   )}
-                  {event.facebook_link && (
-                    <a 
-                      href={event.facebook_link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-nature-green hover:text-nature-green/80 font-medium text-sm underline"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Se arrangement på Facebook
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
                 </div>
               )}
               
