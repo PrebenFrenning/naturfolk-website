@@ -106,7 +106,7 @@ const Trosgrunnlag = () => {
             Trosgrunnlag & Erklæring
           </h1>
           <p className="text-xl text-white/90 mb-8 max-w-2xl">
-            Forankret i førkristen, urnordisk andelighet
+            Forankret i førkristen, urnordisk åndelighet
           </p>
           
           {/* Table of Contents Toggle */}
