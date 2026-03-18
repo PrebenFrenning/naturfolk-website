@@ -23,7 +23,7 @@ const Medlemskap = () => {
             <h1 className="text-2xl md:text-4xl font-serif font-bold mb-6">{t('membershipPage.hero.title')}</h1>
             <p className="text-base md:text-lg leading-relaxed mb-8">{t('membershipPage.hero.subtitle')}</p>
             <Link to={localePath('/bli-medlem')}>
-              <Button className="bg-nature-green hover:bg-nature-green/90 text-white px-8 py-3 text-lg">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg">
                 {t('testimonials.cta')}
               </Button>
             </Link>
