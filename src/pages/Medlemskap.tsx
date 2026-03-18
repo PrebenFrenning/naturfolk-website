@@ -126,6 +126,17 @@ const Medlemskap = () => {
             </Card>
 
             <Card>
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-serif font-semibold mb-4 text-nature-green">Utmelding</h2>
+                <p className="text-lg leading-relaxed">
+                  For utmelding av Naturfolk, send epost med navn og registrert epostadresse til{' '}
+                  <a href="mailto:post@naturfolk.org" className="text-primary underline hover:no-underline">post@naturfolk.org</a>.
+                  Oppgi gjerne årsak om ønskelig.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
               <CardContent className="p-8 text-center">
                 <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.questions.title')}</h2>
                 <p className="text-lg leading-relaxed mb-6">{t('membershipPage.questions.text')}</p>
