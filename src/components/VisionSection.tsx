@@ -18,7 +18,7 @@ const VisionSection = () => {
         <img
           src={visionGathering}
           alt="Fellesskap samlet rundt bål i lavvo"
-          className="w-full h-[400px] md:h-[500px] object-cover"
+          className="w-full h-[400px] md:h-[500px] object-cover object-left md:object-center"
         />
       </div>
     </section>
