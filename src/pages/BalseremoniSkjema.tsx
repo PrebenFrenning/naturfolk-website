@@ -1,8 +1,7 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
 import { Flame, MapPinned, Phone, Wallet } from "lucide-react";
 import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
@@ -14,44 +13,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
 import {
   bonfireCeremonyApplicationSchema,
   type BonfireCeremonyApplicationValues,
 } from "@/lib/validation";
 
 export default function BalseremoniSkjema() {
-  const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const { data: profile } = useQuery({
-    queryKey: ["profile", user?.id],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("full_name, first_name, last_name, email, phone")
-        .eq("id", user?.id)
-        .single();
-
-      if (error) throw error;
-      return data;
-    },
-    enabled: !!user?.id,
-  });
-
-  const defaultFullName = useMemo(() => {
-    if (profile?.full_name?.trim()) return profile.full_name;
-    return [profile?.first_name, profile?.last_name].filter(Boolean).join(" ").trim();
-  }, [profile]);
 
   const form = useForm<BonfireCeremonyApplicationValues>({
     resolver: zodResolver(bonfireCeremonyApplicationSchema),
-    values: {
+    defaultValues: {
       requestedAt: "",
       locationAddress: "",
-      applicantFullName: defaultFullName,
+      applicantFullName: "",
       requestedAmount: undefined as unknown as number,
-      vippsPhone: profile?.phone ?? "",
+      vippsPhone: "",
       additionalInfo: "",
     },
   });
@@ -73,9 +50,9 @@ export default function BalseremoniSkjema() {
         form.reset({
           requestedAt: "",
           locationAddress: "",
-          applicantFullName: defaultFullName,
+            applicantFullName: "",
           requestedAmount: undefined as unknown as number,
-          vippsPhone: profile?.phone ?? "",
+            vippsPhone: "",
           additionalInfo: "",
         });
         return;
@@ -88,9 +65,9 @@ export default function BalseremoniSkjema() {
         form.reset({
           requestedAt: "",
           locationAddress: "",
-          applicantFullName: defaultFullName,
+            applicantFullName: "",
           requestedAmount: undefined as unknown as number,
-          vippsPhone: profile?.phone ?? "",
+            vippsPhone: "",
           additionalInfo: "",
         });
         return;
@@ -125,7 +102,7 @@ export default function BalseremoniSkjema() {
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-muted-foreground">
                   <Flame className="h-4 w-4 text-primary" />
-                  Kun for innloggede medlemmer
+                  Skjult underside for søknader om bålsamling
                 </div>
                 <div className="space-y-3">
                   <h1 className="text-4xl md:text-5xl font-semibold text-foreground">Søk om midler til bålseremoni</h1>
