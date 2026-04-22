@@ -10,6 +10,14 @@ const corsHeaders = {
 
 const RECIPIENT_EMAIL = "post@naturfolk.org";
 
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
 const bodySchema = z.object({
   firstName: z.string().trim().min(2).max(100),
   lastName: z.string().trim().min(2).max(100),
@@ -74,19 +82,23 @@ serve(async (req: Request) => {
     }
 
     try {
-      const escapedMessage = payload.message.replace(/\n/g, "<br />");
+      const escapedFirstName = escapeHtml(payload.firstName);
+      const escapedLastName = escapeHtml(payload.lastName);
+      const escapedEmail = escapeHtml(payload.email);
+      const escapedSubject = escapeHtml(payload.subject);
+      const escapedMessage = escapeHtml(payload.message).replace(/\n/g, "<br />");
 
       const { error: emailError } = await resend.emails.send({
         from: "Naturfolk <noreply@naturfolk.org>",
         to: [RECIPIENT_EMAIL],
         replyTo: payload.email,
-        subject: payload.subject,
+        subject: `Kontaktskjema: ${payload.subject}`,
         html: `
           <div style="font-family: 'Open Sans', Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px; background: #fdfaf6; color: #3d3129;">
             <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 28px; margin-bottom: 16px; color: #3d3129;">Ny henvendelse fra kontaktskjemaet</h1>
-            <p style="margin: 0 0 8px;"><strong>Navn:</strong> ${payload.firstName} ${payload.lastName}</p>
-            <p style="margin: 0 0 8px;"><strong>E-post:</strong> ${payload.email}</p>
-            <p style="margin: 0 0 8px;"><strong>Emne:</strong> ${payload.subject}</p>
+            <p style="margin: 0 0 8px;"><strong>Navn:</strong> ${escapedFirstName} ${escapedLastName}</p>
+            <p style="margin: 0 0 8px;"><strong>E-post:</strong> ${escapedEmail}</p>
+            <p style="margin: 0 0 8px;"><strong>Emne:</strong> ${escapedSubject}</p>
             <div style="margin-top: 24px; padding: 20px; border-radius: 8px; background: #ffffff; border: 1px solid #e4dccf;">
               <p style="margin: 0 0 8px;"><strong>Melding:</strong></p>
               <p style="margin: 0; line-height: 1.7;">${escapedMessage}</p>
