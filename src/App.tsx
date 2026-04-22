@@ -60,7 +60,7 @@ const AppRoutes = () => (
     <Route path="/kalender" element={<Kalender />} />
     <Route path="/bli-medlem" element={<BliMedlem />} />
     <Route path="/betaling" element={<Betaling />} />
-    <Route path="/balseremoni-skjema" element={<ProtectedRoute><BalseremoniSkjema /></ProtectedRoute>} />
+    <Route path="/balseremoni-skjema" element={<BalseremoniSkjema />} />
     <Route path="/personvern" element={<Personvern />} />
     <Route path="/vilkar" element={<Vilkar />} />
     <Route path="/auth" element={<Auth />} />
