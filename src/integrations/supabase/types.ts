@@ -18,7 +18,7 @@ export type Database = {
         Row: {
           additional_info: string | null
           applicant_full_name: string
-          applicant_user_id: string
+          applicant_user_id: string | null
           email_error: string | null
           email_sent: boolean
           id: string
@@ -33,7 +33,7 @@ export type Database = {
         Insert: {
           additional_info?: string | null
           applicant_full_name: string
-          applicant_user_id: string
+          applicant_user_id?: string | null
           email_error?: string | null
           email_sent?: boolean
           id?: string
@@ -48,7 +48,7 @@ export type Database = {
         Update: {
           additional_info?: string | null
           applicant_full_name?: string
-          applicant_user_id?: string
+          applicant_user_id?: string | null
           email_error?: string | null
           email_sent?: boolean
           id?: string

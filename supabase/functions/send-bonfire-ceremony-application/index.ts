@@ -9,6 +9,7 @@ const corsHeaders = {
 };
 
 const RECIPIENT_EMAIL = "post@naturfolk.org";
+const SENDER_EMAIL = "noreply@naturfolk.org";
 
 const bodySchema = z.object({
   requestedAt: z.string().trim().min(1),
@@ -40,30 +41,6 @@ serve(async (req: Request) => {
   }
 
   try {
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const anonClient = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } },
-    );
-
-    const token = authHeader.replace("Bearer ", "");
-    const { data: claimsData, error: claimsError } = await anonClient.auth.getClaims(token);
-
-    if (claimsError || !claimsData?.claims?.sub) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
     const parsed = bodySchema.safeParse(await req.json());
     if (!parsed.success) {
       return new Response(
@@ -82,25 +59,12 @@ serve(async (req: Request) => {
       throw new Error("Mangler e-postoppsett");
     }
 
-    const { data: profile, error: profileError } = await supabaseAdmin
-      .from("profiles")
-      .select("id, email")
-      .eq("id", claimsData.claims.sub)
-      .single();
-
-    if (profileError || !profile) {
-      return new Response(JSON.stringify({ error: "Fant ikke medlemsprofil" }), {
-        status: 404,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
     const payload = parsed.data;
 
     const { data: application, error: insertError } = await supabaseAdmin
       .from("bonfire_ceremony_applications")
       .insert({
-        applicant_user_id: profile.id,
+        applicant_user_id: null,
         requested_at: new Date(payload.requestedAt).toISOString(),
         location_address: payload.locationAddress,
         applicant_full_name: payload.applicantFullName,
@@ -122,7 +86,6 @@ serve(async (req: Request) => {
       const escapedLocation = escapeHtml(payload.locationAddress);
       const escapedVippsPhone = escapeHtml(payload.vippsPhone);
       const escapedAdditionalInfo = escapeHtml(payload.additionalInfo || "Ikke oppgitt").replace(/\n/g, "<br />");
-      const escapedMemberEmail = escapeHtml(profile.email);
       const formattedAmount = new Intl.NumberFormat("nb-NO", { style: "currency", currency: "NOK" }).format(payload.requestedAmount);
       const formattedDate = new Date(payload.requestedAt).toLocaleString("nb-NO", {
         day: "2-digit",
@@ -133,15 +96,13 @@ serve(async (req: Request) => {
       });
 
       const { error: emailError } = await resend.emails.send({
-        from: "Naturfolk <noreply@naturfolk.org>",
+        from: `Naturfolk <${SENDER_EMAIL}>`,
         to: [RECIPIENT_EMAIL],
-        replyTo: profile.email,
         subject: "Søknad om midler til bålseremoni",
         html: `
           <div style="font-family: 'Open Sans', Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px; background: #fdfaf6; color: #3d3129;">
             <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 28px; margin-bottom: 16px; color: #3d3129;">Ny søknad om midler til bålseremoni</h1>
             <p style="margin: 0 0 8px;"><strong>Navn:</strong> ${escapedName}</p>
-            <p style="margin: 0 0 8px;"><strong>Medlemmets e-post:</strong> ${escapedMemberEmail}</p>
             <p style="margin: 0 0 8px;"><strong>Dato og klokkeslett:</strong> ${formattedDate}</p>
             <p style="margin: 0 0 8px;"><strong>Lokasjon:</strong> ${escapedLocation}</p>
             <p style="margin: 0 0 8px;"><strong>Ønsket beløp:</strong> ${formattedAmount}</p>
