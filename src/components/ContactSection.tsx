@@ -10,28 +10,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-
-type ContactFormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  subject: string;
-  message: string;
-};
+import { supabase } from "@/integrations/supabase/client";
+import { contactSchema, type ContactFormValues } from "@/lib/validation";
 
 const ContactSection = () => {
   const { t } = useLanguage();
-  
-  const formSchema = z.object({
-    firstName: z.string().min(2, { message: t('contact.form.firstName') + " min 2" }),
-    lastName: z.string().min(2, { message: t('contact.form.lastName') + " min 2" }),
-    email: z.string().email(),
-    subject: z.string().min(5),
-    message: z.string().min(10),
-  });
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -43,13 +30,44 @@ const ContactSection = () => {
 
   const [email, setEmail] = React.useState("");
 
-  const onSubmit = (data: ContactFormValues) => {
-    console.log(data);
-    toast({
-      title: t('contact.form.success.title'),
-      description: t('contact.form.success.description'),
-    });
-    form.reset();
+  const onSubmit = async (data: ContactFormValues) => {
+    setIsSubmitting(true);
+
+    try {
+      const { data: response, error } = await supabase.functions.invoke('send-contact-message', {
+        body: data,
+      });
+
+      if (error) throw error;
+
+      if (response?.success) {
+        toast({
+          title: t('contact.form.success.title'),
+          description: t('contact.form.success.description'),
+        });
+        form.reset();
+        return;
+      }
+
+      if (response?.saved) {
+        toast({
+          title: "Meldingen er mottatt",
+          description: "Vi har lagret henvendelsen din og følger opp selv om e-posten ble forsinket.",
+        });
+        form.reset();
+        return;
+      }
+
+      throw new Error(response?.error || 'Noe gikk galt');
+    } catch (_error) {
+      toast({
+        title: "Kunne ikke sende meldingen",
+        description: "Prøv igjen om litt, eller send oss en e-post direkte på post@naturfolk.org.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -148,8 +166,8 @@ const ContactSection = () => {
                     )}
                   />
 
-                  <Button type="submit" className="bg-nature-green hover:bg-nature-green/90 px-8">
-                    {t('contact.form.submit')}
+                  <Button type="submit" className="bg-nature-green hover:bg-nature-green/90 px-8" disabled={isSubmitting}>
+                    {isSubmitting ? "Sender..." : t('contact.form.submit')}
                   </Button>
                 </form>
               </Form>
