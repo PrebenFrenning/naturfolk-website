@@ -14,6 +14,62 @@ export type Database = {
   }
   public: {
     Tables: {
+      bonfire_ceremony_applications: {
+        Row: {
+          additional_info: string | null
+          applicant_full_name: string
+          applicant_user_id: string
+          email_error: string | null
+          email_sent: boolean
+          id: string
+          location_address: string
+          processed_at: string | null
+          recipient_email: string
+          requested_amount: number
+          requested_at: string
+          submitted_at: string
+          vipps_phone: string
+        }
+        Insert: {
+          additional_info?: string | null
+          applicant_full_name: string
+          applicant_user_id: string
+          email_error?: string | null
+          email_sent?: boolean
+          id?: string
+          location_address: string
+          processed_at?: string | null
+          recipient_email?: string
+          requested_amount: number
+          requested_at: string
+          submitted_at?: string
+          vipps_phone: string
+        }
+        Update: {
+          additional_info?: string | null
+          applicant_full_name?: string
+          applicant_user_id?: string
+          email_error?: string | null
+          email_sent?: boolean
+          id?: string
+          location_address?: string
+          processed_at?: string | null
+          recipient_email?: string
+          requested_amount?: number
+          requested_at?: string
+          submitted_at?: string
+          vipps_phone?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bonfire_ceremony_applications_applicant_user_id_fkey"
+            columns: ["applicant_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       categories: {
         Row: {
           created_at: string

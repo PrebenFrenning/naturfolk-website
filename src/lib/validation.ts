@@ -80,3 +80,32 @@ export const contactSchema = z.object({
 });
 
 export type ContactFormValues = z.infer<typeof contactSchema>;
+
+export const bonfireCeremonyApplicationSchema = z.object({
+  requestedAt: z.string()
+    .trim()
+    .min(1, { message: "Velg dato og klokkeslett" }),
+  locationAddress: z.string()
+    .trim()
+    .min(5, { message: "Oppgi lokasjon for oppmøte" })
+    .max(250, { message: "Lokasjonen må være kortere enn 250 tegn" }),
+  applicantFullName: z.string()
+    .trim()
+    .min(2, { message: "Oppgi fullt navn" })
+    .max(150, { message: "Navnet må være kortere enn 150 tegn" }),
+  requestedAmount: z.coerce.number()
+    .positive({ message: "Beløpet må være større enn 0" })
+    .max(100000, { message: "Beløpet virker for høyt" }),
+  vippsPhone: z.string()
+    .trim()
+    .min(8, { message: "Oppgi telefonnummer" })
+    .max(20, { message: "Telefonnummeret er for langt" })
+    .regex(/^[0-9+\s]+$/, { message: "Telefonnummer kan kun inneholde tall, mellomrom og +" }),
+  additionalInfo: z.string()
+    .trim()
+    .max(3000, { message: "Kommentaren må være kortere enn 3000 tegn" })
+    .optional()
+    .or(z.literal("")),
+});
+
+export type BonfireCeremonyApplicationValues = z.infer<typeof bonfireCeremonyApplicationSchema>;
