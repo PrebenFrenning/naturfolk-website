@@ -41,6 +41,48 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          email: string
+          email_error: string | null
+          email_sent: boolean
+          first_name: string
+          id: string
+          last_name: string
+          message: string
+          processed_at: string | null
+          recipient_email: string
+          subject: string
+          submitted_at: string
+        }
+        Insert: {
+          email: string
+          email_error?: string | null
+          email_sent?: boolean
+          first_name: string
+          id?: string
+          last_name: string
+          message: string
+          processed_at?: string | null
+          recipient_email?: string
+          subject: string
+          submitted_at?: string
+        }
+        Update: {
+          email?: string
+          email_error?: string | null
+          email_sent?: boolean
+          first_name?: string
+          id?: string
+          last_name?: string
+          message?: string
+          processed_at?: string | null
+          recipient_email?: string
+          subject?: string
+          submitted_at?: string
+        }
+        Relationships: []
+      }
       event_registrations: {
         Row: {
           attended: boolean | null
