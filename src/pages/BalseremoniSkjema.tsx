@@ -20,16 +20,6 @@ import {
   type BonfireCeremonyApplicationValues,
 } from "@/lib/validation";
 
-const formatDateTimeLocal = (value?: string | null) => {
-  if (!value) return "";
-
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-
-  const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-  return local.toISOString().slice(0, 16);
-};
-
 export default function BalseremoniSkjema() {
   const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -107,7 +97,7 @@ export default function BalseremoniSkjema() {
       }
 
       throw new Error(data?.error || "Noe gikk galt");
-    } catch (_error) {
+    } catch {
       toast.error("Kunne ikke sende søknaden", {
         description: "Prøv igjen om litt, eller kontakt oss direkte på post@naturfolk.org.",
       });
