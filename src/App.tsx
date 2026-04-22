@@ -36,6 +36,7 @@ import BliMedlem from "./pages/BliMedlem";
 import Betaling from "./pages/Betaling";
 import Personvern from "./pages/Personvern";
 import Vilkar from "./pages/Vilkar";
+import BalsseremoniSkjema from "./pages/BalsseremoniSkjema";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,7 @@ const AppRoutes = () => (
     <Route path="/kalender" element={<Kalender />} />
     <Route path="/bli-medlem" element={<BliMedlem />} />
     <Route path="/betaling" element={<Betaling />} />
+    <Route path="/balseremoni-skjema" element={<ProtectedRoute><BalsseremoniSkjema /></ProtectedRoute>} />
     <Route path="/personvern" element={<Personvern />} />
     <Route path="/vilkar" element={<Vilkar />} />
     <Route path="/auth" element={<Auth />} />
