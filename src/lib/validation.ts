@@ -55,3 +55,28 @@ export const eventSchema = z.object({
     .optional(),
   registrationDeadline: z.string().optional(),
 });
+
+export const contactSchema = z.object({
+  firstName: z.string()
+    .trim()
+    .min(2, { message: "Fornavn må være minst 2 tegn" })
+    .max(100, { message: "Fornavn må være kortere enn 100 tegn" }),
+  lastName: z.string()
+    .trim()
+    .min(2, { message: "Etternavn må være minst 2 tegn" })
+    .max(100, { message: "Etternavn må være kortere enn 100 tegn" }),
+  email: z.string()
+    .trim()
+    .email({ message: "Skriv inn en gyldig e-postadresse" })
+    .max(255, { message: "E-postadressen er for lang" }),
+  subject: z.string()
+    .trim()
+    .min(5, { message: "Emnet må være minst 5 tegn" })
+    .max(200, { message: "Emnet må være kortere enn 200 tegn" }),
+  message: z.string()
+    .trim()
+    .min(10, { message: "Meldingen må være minst 10 tegn" })
+    .max(5000, { message: "Meldingen må være kortere enn 5000 tegn" }),
+});
+
+export type ContactFormValues = z.infer<typeof contactSchema>;
