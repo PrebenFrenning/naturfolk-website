@@ -1,7 +1,18 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
+import { Resend } from "https://esm.sh/resend@4.0.0";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
+
+const NOTIFICATION_RECIPIENT = "post@naturfolk.org";
+
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
