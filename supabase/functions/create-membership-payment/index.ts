@@ -234,44 +234,88 @@ serve(async (req) => {
     }
 
     // Send notification email to post@naturfolk.org about new member registration
+    // and log status to member_registration_notifications for manual follow-up.
+    const addressLine = [
+      validatedData.address,
+      validatedData.address_2,
+    ].filter(Boolean).join(", ");
+    const fullAddress = `${addressLine}, ${validatedData.postal_code} ${validatedData.city}, ${validatedData.country}`;
+    const howHeard = validatedData.how_heard_about_us?.trim() || "(ikke besvart)";
+
+    let notificationId: string | null = null;
+    try {
+      const { data: notifRow } = await supabaseAdmin
+        .from('member_registration_notifications')
+        .insert({
+          user_id: userId,
+          membership_type: validatedData.membership_type,
+          full_name: fullName || email,
+          email,
+          phone: validatedData.phone,
+          address: [validatedData.address, validatedData.address_2].filter(Boolean).join(", "),
+          postal_code: validatedData.postal_code,
+          city: validatedData.city,
+          country: validatedData.country,
+          how_heard_about_us: validatedData.how_heard_about_us ?? null,
+          recipient_email: NOTIFICATION_RECIPIENT,
+          email_status: 'pending',
+        })
+        .select('id')
+        .single();
+      notificationId = notifRow?.id ?? null;
+    } catch (logError) {
+      console.error("Failed to insert member notification log:", logError);
+    }
+
     try {
       const resendKey = Deno.env.get("RESEND_API_KEY");
-      if (resendKey) {
-        const resend = new Resend(resendKey);
-        const fullNameEsc = escapeHtml(fullName || email);
-        const addressLine = [
-          validatedData.address,
-          validatedData.address_2,
-        ].filter(Boolean).join(", ");
-        const fullAddress = `${addressLine}, ${validatedData.postal_code} ${validatedData.city}, ${validatedData.country}`;
-        const howHeard = validatedData.how_heard_about_us?.trim() || "(ikke besvart)";
+      if (!resendKey) {
+        throw new Error("RESEND_API_KEY missing");
+      }
+      const resend = new Resend(resendKey);
+      const fullNameEsc = escapeHtml(fullName || email);
 
-        await resend.emails.send({
-          from: "Naturfolk <noreply@naturfolk.org>",
-          to: [NOTIFICATION_RECIPIENT],
-          replyTo: email,
-          subject: `Nytt registrert medlem: ${fullName || email}`,
-          html: `
-            <div style="font-family: 'Open Sans', Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px; background: #fdfaf6; color: #3d3129;">
-              <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; margin-bottom: 16px; color: #3d3129;">Nytt registrert medlem hos Naturfolk</h1>
-              <div style="padding: 20px; border-radius: 8px; background: #ffffff; border: 1px solid #e4dccf;">
-                <p style="margin: 0 0 8px;"><strong>Medlemstype:</strong> ${escapeHtml(validatedData.membership_type)}</p>
-                <p style="margin: 0 0 8px;"><strong>Fullt navn:</strong> ${fullNameEsc}</p>
-                <p style="margin: 0 0 8px;"><strong>E-post:</strong> ${escapeHtml(email)}</p>
-                <p style="margin: 0 0 8px;"><strong>Telefonnummer:</strong> ${escapeHtml(validatedData.phone)}</p>
-                <p style="margin: 0 0 8px;"><strong>Adresse:</strong> ${escapeHtml(fullAddress)}</p>
-                <p style="margin: 16px 0 8px;"><strong>Hvordan hørte du om oss?</strong></p>
-                <p style="margin: 0; line-height: 1.6;">${escapeHtml(howHeard).replace(/\n/g, "<br />")}</p>
-              </div>
-              <p style="margin-top: 16px; font-size: 12px; color: #7a6a5c;">Sendt automatisk når et nytt medlem fullfører registreringsskjemaet og sendes til betaling.</p>
+      const { error: sendError } = await resend.emails.send({
+        from: "Naturfolk <noreply@naturfolk.org>",
+        to: [NOTIFICATION_RECIPIENT],
+        replyTo: email,
+        subject: `Nytt registrert medlem: ${fullName || email}`,
+        html: `
+          <div style="font-family: 'Open Sans', Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px; background: #fdfaf6; color: #3d3129;">
+            <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; margin-bottom: 16px; color: #3d3129;">Nytt registrert medlem hos Naturfolk</h1>
+            <div style="padding: 20px; border-radius: 8px; background: #ffffff; border: 1px solid #e4dccf;">
+              <p style="margin: 0 0 8px;"><strong>Medlemstype:</strong> ${escapeHtml(validatedData.membership_type)}</p>
+              <p style="margin: 0 0 8px;"><strong>Fullt navn:</strong> ${fullNameEsc}</p>
+              <p style="margin: 0 0 8px;"><strong>E-post:</strong> ${escapeHtml(email)}</p>
+              <p style="margin: 0 0 8px;"><strong>Telefonnummer:</strong> ${escapeHtml(validatedData.phone)}</p>
+              <p style="margin: 0 0 8px;"><strong>Adresse:</strong> ${escapeHtml(fullAddress)}</p>
+              <p style="margin: 16px 0 8px;"><strong>Hvordan hørte du om oss?</strong></p>
+              <p style="margin: 0; line-height: 1.6;">${escapeHtml(howHeard).replace(/\n/g, "<br />")}</p>
             </div>
-          `,
-        });
-      } else {
-        console.warn("RESEND_API_KEY missing — skipping member notification email");
+            <p style="margin-top: 16px; font-size: 12px; color: #7a6a5c;">Sendt automatisk når et nytt medlem fullfører registreringsskjemaet og sendes til betaling.</p>
+          </div>
+        `,
+      });
+
+      if (sendError) {
+        throw sendError;
+      }
+
+      if (notificationId) {
+        await supabaseAdmin
+          .from('member_registration_notifications')
+          .update({ email_status: 'sent', email_sent_at: new Date().toISOString(), email_error: null })
+          .eq('id', notificationId);
       }
     } catch (notifyError) {
-      console.error("Member notification email error:", notifyError);
+      const message = notifyError instanceof Error ? notifyError.message : "Ukjent feil ved e-postsending";
+      console.error("Member notification email error:", message);
+      if (notificationId) {
+        await supabaseAdmin
+          .from('member_registration_notifications')
+          .update({ email_status: 'failed', email_error: message, email_sent_at: new Date().toISOString() })
+          .eq('id', notificationId);
+      }
     }
 
     return new Response(JSON.stringify({ url: session.url }), {
