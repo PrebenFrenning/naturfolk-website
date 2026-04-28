@@ -163,7 +163,12 @@ export default function MemberLogin() {
       <div className="min-h-screen flex flex-col">
         <Navbar />
 
-        <main className="flex-1 flex items-center justify-center p-4 pt-24">
+        <main className="flex-1 flex flex-col items-center justify-center p-4 pt-24">
+          <div className="w-full max-w-md mb-4 p-4 rounded-lg border border-primary/30 bg-primary/10 text-center">
+            <p className="text-sm font-medium text-foreground">
+              🚧 Under oppbygging, kommer snart
+            </p>
+          </div>
           <Card className="w-full max-w-md">
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-bold text-center">
