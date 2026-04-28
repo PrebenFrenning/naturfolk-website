@@ -11,9 +11,10 @@ const corsHeaders = {
 // Stripe price ID for annual membership subscription (200 NOK/year)
 const MEMBERSHIP_PRICE_ID = "price_1T4ODKIh8FAjNH79j9LLUocP";
 
-// Server-side validation schema
+// Server-side validation schema (includes email for unauthenticated signups)
 const membershipDataSchema = z.object({
   membership_type: z.enum(['Hovedmedlem', 'Støttemedlem']),
+  email: z.string().trim().email().min(1).max(255),
   first_name: z.string().trim().min(1).max(100),
   middle_name: z.string().trim().max(100).optional().nullable(),
   last_name: z.string().trim().min(1).max(100),
@@ -45,29 +46,11 @@ serve(async (req) => {
   }
 
   try {
-    const supabaseClient = createClient(
+    const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
       { auth: { persistSession: false } }
     );
-
-    const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
-      return new Response(
-        JSON.stringify({ error: "Autentisering kreves", code: "AUTH_REQUIRED" }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 401 }
-      );
-    }
-
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
-    
-    if (userError || !user?.email) {
-      return new Response(
-        JSON.stringify({ error: "Autentisering feilet. Vennligst logg inn på nytt.", code: "AUTH_FAILED" }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 401 }
-      );
-    }
 
     let requestBody;
     try {
@@ -89,6 +72,7 @@ serve(async (req) => {
 
     const validationResult = membershipDataSchema.safeParse(membershipData);
     if (!validationResult.success) {
+      console.error("Validation failed:", validationResult.error.flatten());
       return new Response(
         JSON.stringify({ error: "Ugyldig medlemskapsdata. Vennligst sjekk skjemaet og prøv igjen.", code: "VALIDATION_ERROR" }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
@@ -96,6 +80,53 @@ serve(async (req) => {
     }
 
     const validatedData = validationResult.data;
+    const email = validatedData.email.toLowerCase().trim();
+
+    // Find or create the user in auth.users using the email from the form.
+    // This way the visitor doesn't need to log in before paying.
+    let userId: string | null = null;
+
+    // Try to look up an existing user by email
+    const { data: usersList, error: listError } = await supabaseAdmin.auth.admin.listUsers({
+      page: 1,
+      perPage: 200,
+    });
+
+    if (!listError && usersList?.users) {
+      const existing = usersList.users.find(
+        (u) => u.email?.toLowerCase() === email
+      );
+      if (existing) {
+        userId = existing.id;
+      }
+    }
+
+    // If no existing user, create one (passwordless — they will log in via OTP later)
+    if (!userId) {
+      const { data: created, error: createError } = await supabaseAdmin.auth.admin.createUser({
+        email,
+        email_confirm: true,
+        user_metadata: {
+          full_name: [
+            validatedData.first_name,
+            validatedData.middle_name,
+            validatedData.last_name,
+          ].filter(Boolean).join(' '),
+        },
+      });
+
+      if (createError || !created?.user) {
+        console.error("Could not create user:", createError);
+        return new Response(
+          JSON.stringify({
+            error: "Kunne ikke opprette medlemskonto. Vennligst prøv igjen senere.",
+            code: "USER_CREATE_FAILED",
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 500 }
+        );
+      }
+      userId = created.user.id;
+    }
 
     const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeSecretKey) {
@@ -108,9 +139,9 @@ serve(async (req) => {
     const stripe = new Stripe(stripeSecretKey, { apiVersion: "2025-08-27.basil" });
 
     // Check for existing Stripe customer
-    let customerId;
+    let customerId: string | undefined;
     try {
-      const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+      const customers = await stripe.customers.list({ email, limit: 1 });
       if (customers.data.length > 0) {
         customerId = customers.data[0].id;
 
@@ -122,7 +153,10 @@ serve(async (req) => {
         });
         if (subscriptions.data.length > 0) {
           return new Response(
-            JSON.stringify({ error: "Du har allerede et aktivt medlemskap.", code: "ALREADY_SUBSCRIBED" }),
+            JSON.stringify({
+              error: "Det finnes allerede et aktivt medlemskap registrert på denne e-posten.",
+              code: "ALREADY_SUBSCRIBED",
+            }),
             { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 400 }
           );
         }
@@ -134,7 +168,7 @@ serve(async (req) => {
     // Create subscription checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : user.email,
+      customer_email: customerId ? undefined : email,
       line_items: [
         {
           price: MEMBERSHIP_PRICE_ID,
@@ -145,12 +179,12 @@ serve(async (req) => {
       success_url: `${req.headers.get("origin")}/medlemskap?success=true`,
       cancel_url: `${req.headers.get("origin")}/betaling?canceled=true`,
       metadata: {
-        user_id: user.id,
+        user_id: userId,
         membership_type: validatedData.membership_type,
       },
       subscription_data: {
         metadata: {
-          user_id: user.id,
+          user_id: userId,
           membership_type: validatedData.membership_type,
         },
       },
@@ -164,7 +198,7 @@ serve(async (req) => {
     ].filter(Boolean).join(' ');
 
     try {
-      await supabaseClient
+      await supabaseAdmin
         .from('profiles')
         .update({
           first_name: sanitizeString(validatedData.first_name),
@@ -183,7 +217,7 @@ serve(async (req) => {
           how_heard_about_us: sanitizeString(validatedData.how_heard_about_us),
           membership_type: validatedData.membership_type,
         })
-        .eq('id', user.id);
+        .eq('id', userId);
     } catch (dbError) {
       console.error("Database update error:", dbError);
     }
