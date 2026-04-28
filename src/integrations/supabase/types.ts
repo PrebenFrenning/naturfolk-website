@@ -290,6 +290,63 @@ export type Database = {
           },
         ]
       }
+      member_registration_notifications: {
+        Row: {
+          address: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          email: string
+          email_error: string | null
+          email_sent_at: string | null
+          email_status: string
+          full_name: string
+          how_heard_about_us: string | null
+          id: string
+          membership_type: string
+          phone: string | null
+          postal_code: string | null
+          recipient_email: string
+          user_id: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          email: string
+          email_error?: string | null
+          email_sent_at?: string | null
+          email_status?: string
+          full_name: string
+          how_heard_about_us?: string | null
+          id?: string
+          membership_type: string
+          phone?: string | null
+          postal_code?: string | null
+          recipient_email?: string
+          user_id?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          email?: string
+          email_error?: string | null
+          email_sent_at?: string | null
+          email_status?: string
+          full_name?: string
+          how_heard_about_us?: string | null
+          id?: string
+          membership_type?: string
+          phone?: string | null
+          postal_code?: string | null
+          recipient_email?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       membership_payments: {
         Row: {
           amount: number
