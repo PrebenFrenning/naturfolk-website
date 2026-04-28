@@ -34,6 +34,7 @@ import Events from "./pages/Events";
 import Kalender from "./pages/Kalender.tsx";
 import BliMedlem from "./pages/BliMedlem";
 import Betaling from "./pages/Betaling";
+import TakkForRegistrering from "./pages/TakkForRegistrering";
 import Personvern from "./pages/Personvern";
 import Vilkar from "./pages/Vilkar";
 import BalseremoniSkjema from "./pages/BalseremoniSkjema";
@@ -60,6 +61,7 @@ const AppRoutes = () => (
     <Route path="/kalender" element={<Kalender />} />
     <Route path="/bli-medlem" element={<BliMedlem />} />
     <Route path="/betaling" element={<Betaling />} />
+    <Route path="/takk-for-registrering" element={<TakkForRegistrering />} />
     <Route path="/balseremoni-skjema" element={<BalseremoniSkjema />} />
     <Route path="/personvern" element={<Personvern />} />
     <Route path="/vilkar" element={<Vilkar />} />
