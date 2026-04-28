@@ -51,22 +51,7 @@ export default function Betaling() {
     setProcessingMethod('stripe');
 
     try {
-      // First, check if user is authenticated
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        // User needs to create an account first
-        toast({
-          title: 'Opprett konto',
-          description: 'Du må opprette en konto før du kan betale',
-        });
-        
-        // Store data and redirect to auth page
-        navigate('/auth', { state: { from: '/betaling', membershipData } });
-        return;
-      }
-
-      // Create Stripe checkout session
+      // No login required — the edge function creates the account from the form data
       const { data, error } = await supabase.functions.invoke('create-membership-payment', {
         body: {
           membershipData,
@@ -76,9 +61,18 @@ export default function Betaling() {
 
       if (error) throw error;
 
+      if ((data as any)?.error) {
+        toast({
+          title: 'Kunne ikke starte betaling',
+          description: (data as any).error,
+          variant: 'destructive',
+        });
+        return;
+      }
+
       if (data?.url) {
-        // Redirect to Stripe Checkout
-        window.open(data.url, '_blank');
+        // Redirect to Stripe Checkout in same window for a smoother flow
+        window.location.href = data.url;
       }
     } catch (error) {
       console.error('Stripe payment error:', error);

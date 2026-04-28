@@ -14,3 +14,7 @@ verify_jwt = false
 
 [functions.send-bonfire-ceremony-application]
 verify_jwt = false
+
+[functions.create-membership-payment]
+verify_jwt = false
+
