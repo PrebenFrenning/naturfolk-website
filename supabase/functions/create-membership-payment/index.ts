@@ -233,6 +233,47 @@ serve(async (req) => {
       console.error("Database update error:", dbError);
     }
 
+    // Send notification email to post@naturfolk.org about new member registration
+    try {
+      const resendKey = Deno.env.get("RESEND_API_KEY");
+      if (resendKey) {
+        const resend = new Resend(resendKey);
+        const fullNameEsc = escapeHtml(fullName || email);
+        const addressLine = [
+          validatedData.address,
+          validatedData.address_2,
+        ].filter(Boolean).join(", ");
+        const fullAddress = `${addressLine}, ${validatedData.postal_code} ${validatedData.city}, ${validatedData.country}`;
+        const howHeard = validatedData.how_heard_about_us?.trim() || "(ikke besvart)";
+
+        await resend.emails.send({
+          from: "Naturfolk <noreply@naturfolk.org>",
+          to: [NOTIFICATION_RECIPIENT],
+          replyTo: email,
+          subject: `Nytt registrert medlem: ${fullName || email}`,
+          html: `
+            <div style="font-family: 'Open Sans', Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px; background: #fdfaf6; color: #3d3129;">
+              <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 26px; margin-bottom: 16px; color: #3d3129;">Nytt registrert medlem hos Naturfolk</h1>
+              <div style="padding: 20px; border-radius: 8px; background: #ffffff; border: 1px solid #e4dccf;">
+                <p style="margin: 0 0 8px;"><strong>Medlemstype:</strong> ${escapeHtml(validatedData.membership_type)}</p>
+                <p style="margin: 0 0 8px;"><strong>Fullt navn:</strong> ${fullNameEsc}</p>
+                <p style="margin: 0 0 8px;"><strong>E-post:</strong> ${escapeHtml(email)}</p>
+                <p style="margin: 0 0 8px;"><strong>Telefonnummer:</strong> ${escapeHtml(validatedData.phone)}</p>
+                <p style="margin: 0 0 8px;"><strong>Adresse:</strong> ${escapeHtml(fullAddress)}</p>
+                <p style="margin: 16px 0 8px;"><strong>Hvordan hørte du om oss?</strong></p>
+                <p style="margin: 0; line-height: 1.6;">${escapeHtml(howHeard).replace(/\n/g, "<br />")}</p>
+              </div>
+              <p style="margin-top: 16px; font-size: 12px; color: #7a6a5c;">Sendt automatisk når et nytt medlem fullfører registreringsskjemaet og sendes til betaling.</p>
+            </div>
+          `,
+        });
+      } else {
+        console.warn("RESEND_API_KEY missing — skipping member notification email");
+      }
+    } catch (notifyError) {
+      console.error("Member notification email error:", notifyError);
+    }
+
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
