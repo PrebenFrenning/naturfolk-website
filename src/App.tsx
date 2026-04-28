@@ -61,6 +61,7 @@ const AppRoutes = () => (
     <Route path="/kalender" element={<Kalender />} />
     <Route path="/bli-medlem" element={<BliMedlem />} />
     <Route path="/betaling" element={<Betaling />} />
+    <Route path="/takk-for-registrering" element={<TakkForRegistrering />} />
     <Route path="/balseremoni-skjema" element={<BalseremoniSkjema />} />
     <Route path="/personvern" element={<Personvern />} />
     <Route path="/vilkar" element={<Vilkar />} />
