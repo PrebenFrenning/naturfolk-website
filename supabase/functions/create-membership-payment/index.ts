@@ -176,7 +176,7 @@ serve(async (req) => {
         },
       ],
       mode: "subscription",
-      success_url: `${req.headers.get("origin")}/medlemskap?success=true`,
+      success_url: `${req.headers.get("origin")}/takk-for-registrering?type=${encodeURIComponent(validatedData.membership_type)}`,
       cancel_url: `${req.headers.get("origin")}/betaling?canceled=true`,
       metadata: {
         user_id: userId,
