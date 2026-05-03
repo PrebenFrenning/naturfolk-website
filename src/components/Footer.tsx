@@ -20,7 +20,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/naturfolk.org" className="text-white hover:text-nature-green transition-custom">
                 <Facebook size={20} />
               </a>
-              <a href="https://www.instagram.com/naturfolk/" className="text-white hover:text-nature-green transition-custom">
+              <a href="https://www.instagram.com/naturfolkorg/" className="text-white hover:text-nature-green transition-custom">
                 <Instagram size={20} />
               </a>
             </div>
