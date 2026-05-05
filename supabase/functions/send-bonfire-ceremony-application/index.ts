@@ -72,6 +72,8 @@ serve(async (req: Request) => {
         applicant_full_name: payload.applicantFullName,
         requested_amount: payload.requestedAmount,
         vipps_phone: payload.vippsPhone,
+        theme: payload.theme,
+        short_description: payload.shortDescription,
         additional_info: payload.additionalInfo || null,
         recipient_email: RECIPIENT_EMAIL,
       })
