@@ -20,6 +20,7 @@ const bodySchema = z.object({
   theme: z.string().trim().min(2).max(200),
   shortDescription: z.string().trim().min(10).max(1000),
   additionalInfo: z.string().trim().max(3000).optional().or(z.literal("")),
+  shareConsent: z.literal(true),
 });
 
 const escapeHtml = (value: string) =>

@@ -113,6 +113,9 @@ export const bonfireCeremonyApplicationSchema = z.object({
     .max(3000, { message: "Kommentaren må være kortere enn 3000 tegn" })
     .optional()
     .or(z.literal("")),
+  shareConsent: z.literal(true, {
+    errorMap: () => ({ message: "Du må godta at Naturfolk kan dele arrangementet" }),
+  }),
 });
 
 export type BonfireCeremonyApplicationValues = z.infer<typeof bonfireCeremonyApplicationSchema>;
