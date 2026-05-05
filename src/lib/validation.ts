@@ -98,9 +98,16 @@ export const bonfireCeremonyApplicationSchema = z.object({
     .max(100000, { message: "Beløpet virker for høyt" }),
   vippsPhone: z.string()
     .trim()
-    .min(8, { message: "Oppgi telefonnummer" })
-    .max(20, { message: "Telefonnummeret er for langt" })
-    .regex(/^[0-9+\s]+$/, { message: "Telefonnummer kan kun inneholde tall, mellomrom og +" }),
+    .min(6, { message: "Oppgi telefonnummer eller kontonummer" })
+    .max(40, { message: "Feltet er for langt" }),
+  theme: z.string()
+    .trim()
+    .min(2, { message: "Oppgi tema for bålsamlingen" })
+    .max(200, { message: "Temaet må være kortere enn 200 tegn" }),
+  shortDescription: z.string()
+    .trim()
+    .min(10, { message: "Gi en kort beskrivelse (minst 10 tegn)" })
+    .max(1000, { message: "Beskrivelsen må være kortere enn 1000 tegn" }),
   additionalInfo: z.string()
     .trim()
     .max(3000, { message: "Kommentaren må være kortere enn 3000 tegn" })

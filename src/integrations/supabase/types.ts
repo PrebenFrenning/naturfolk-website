@@ -27,7 +27,9 @@ export type Database = {
           recipient_email: string
           requested_amount: number
           requested_at: string
+          short_description: string | null
           submitted_at: string
+          theme: string | null
           vipps_phone: string
         }
         Insert: {
@@ -42,7 +44,9 @@ export type Database = {
           recipient_email?: string
           requested_amount: number
           requested_at: string
+          short_description?: string | null
           submitted_at?: string
+          theme?: string | null
           vipps_phone: string
         }
         Update: {
@@ -57,7 +61,9 @@ export type Database = {
           recipient_email?: string
           requested_amount?: number
           requested_at?: string
+          short_description?: string | null
           submitted_at?: string
+          theme?: string | null
           vipps_phone?: string
         }
         Relationships: [

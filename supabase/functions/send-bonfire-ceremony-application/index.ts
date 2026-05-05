@@ -16,7 +16,9 @@ const bodySchema = z.object({
   locationAddress: z.string().trim().min(5).max(250),
   applicantFullName: z.string().trim().min(2).max(150),
   requestedAmount: z.coerce.number().positive().max(100000),
-  vippsPhone: z.string().trim().min(8).max(20).regex(/^[0-9+\s]+$/),
+  vippsPhone: z.string().trim().min(6).max(40),
+  theme: z.string().trim().min(2).max(200),
+  shortDescription: z.string().trim().min(10).max(1000),
   additionalInfo: z.string().trim().max(3000).optional().or(z.literal("")),
 });
 
@@ -70,6 +72,8 @@ serve(async (req: Request) => {
         applicant_full_name: payload.applicantFullName,
         requested_amount: payload.requestedAmount,
         vipps_phone: payload.vippsPhone,
+        theme: payload.theme,
+        short_description: payload.shortDescription,
         additional_info: payload.additionalInfo || null,
         recipient_email: RECIPIENT_EMAIL,
       })
@@ -85,6 +89,8 @@ serve(async (req: Request) => {
       const escapedName = escapeHtml(payload.applicantFullName);
       const escapedLocation = escapeHtml(payload.locationAddress);
       const escapedVippsPhone = escapeHtml(payload.vippsPhone);
+      const escapedTheme = escapeHtml(payload.theme);
+      const escapedShortDescription = escapeHtml(payload.shortDescription).replace(/\n/g, "<br />");
       const escapedAdditionalInfo = escapeHtml(payload.additionalInfo || "Ikke oppgitt").replace(/\n/g, "<br />");
       const formattedAmount = new Intl.NumberFormat("nb-NO", { style: "currency", currency: "NOK" }).format(payload.requestedAmount);
       const formattedDate = new Date(payload.requestedAt).toLocaleString("nb-NO", {
@@ -105,9 +111,12 @@ serve(async (req: Request) => {
             <p style="margin: 0 0 8px;"><strong>Navn:</strong> ${escapedName}</p>
             <p style="margin: 0 0 8px;"><strong>Dato og klokkeslett:</strong> ${formattedDate}</p>
             <p style="margin: 0 0 8px;"><strong>Lokasjon:</strong> ${escapedLocation}</p>
+            <p style="margin: 0 0 8px;"><strong>Tema:</strong> ${escapedTheme}</p>
             <p style="margin: 0 0 8px;"><strong>Ønsket beløp:</strong> ${formattedAmount}</p>
-            <p style="margin: 0 0 8px;"><strong>Vipps-nummer:</strong> ${escapedVippsPhone}</p>
+            <p style="margin: 0 0 8px;"><strong>Vipps / kontonummer:</strong> ${escapedVippsPhone}</p>
             <div style="margin-top: 24px; padding: 20px; border-radius: 8px; background: #ffffff; border: 1px solid #e4dccf;">
+              <p style="margin: 0 0 8px;"><strong>Kort beskrivelse av arrangementet:</strong></p>
+              <p style="margin: 0 0 16px; line-height: 1.7;">${escapedShortDescription}</p>
               <p style="margin: 0 0 8px;"><strong>Annen info:</strong></p>
               <p style="margin: 0; line-height: 1.7;">${escapedAdditionalInfo}</p>
             </div>
