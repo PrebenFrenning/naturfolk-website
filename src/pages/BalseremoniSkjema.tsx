@@ -52,9 +52,11 @@ export default function BalseremoniSkjema() {
         form.reset({
           requestedAt: "",
           locationAddress: "",
-            applicantFullName: "",
+          applicantFullName: "",
           requestedAmount: undefined as unknown as number,
-            vippsPhone: "",
+          vippsPhone: "",
+          theme: "",
+          shortDescription: "",
           additionalInfo: "",
         });
         return;
