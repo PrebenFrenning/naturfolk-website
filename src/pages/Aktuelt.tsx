@@ -79,7 +79,11 @@ const Aktuelt = () => {
               <h2 className="text-3xl font-bold text-nature-brown mb-8 text-center">{t('aktueltPage.upcomingEvents')}</h2>
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 {events.map((event) => (
-                  <Card key={event.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                  <Card
+                    key={event.id}
+                    className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                    onClick={() => { setSelectedEvent(event); setDialogOpen(true); }}
+                  >
                     <div className="relative h-64">
                       <img src={event.image_url || '/images/fallback-bonfire.jpg'} alt={event.title} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
