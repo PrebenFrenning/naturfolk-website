@@ -88,6 +88,9 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
   const eventDate = new Date(event.start_date);
   const endTime = event.end_date ? new Date(event.end_date) : null;
   const deadline = event.registration_deadline ? new Date(event.registration_deadline) : null;
+  const isMultiDay = endTime
+    ? eventDate.toDateString() !== endTime.toDateString()
+    : false;
   const registeredCount = 0; // TODO: Track registrations in database
   const availableSpots = event.max_participants 
     ? event.max_participants - registeredCount 
@@ -100,7 +103,11 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
           <DialogTitle className="text-2xl font-serif">{event.title}</DialogTitle>
           <DialogDescription className="flex items-center gap-2 text-sm text-nature-green">
             <CalendarDays size={14} />
-            {format(eventDate, 'PPP')} {endTime && `- ${format(eventDate, 'HH:mm')} - ${format(endTime, 'HH:mm')}`}
+            {endTime && isMultiDay
+              ? `${format(eventDate, 'PPP')} ${format(eventDate, 'HH:mm')} – ${format(endTime, 'PPP')} ${format(endTime, 'HH:mm')}`
+              : endTime
+                ? `${format(eventDate, 'PPP')} · ${format(eventDate, 'HH:mm')} – ${format(endTime, 'HH:mm')}`
+                : format(eventDate, 'PPP')}
           </DialogDescription>
         </DialogHeader>
         
@@ -121,8 +128,9 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                 <div className="flex items-center gap-2">
                   <Clock size={16} className="text-nature-green" />
                   <span>
-                    {format(eventDate, 'HH:mm')}
-                    {endTime && ` - ${format(endTime, 'HH:mm')}`}
+                    {endTime && isMultiDay
+                      ? `${format(eventDate, 'd. MMM HH:mm')} – ${format(endTime, 'd. MMM HH:mm')}`
+                      : `${format(eventDate, 'HH:mm')}${endTime ? ` – ${format(endTime, 'HH:mm')}` : ''}`}
                   </span>
                 </div>
                 {event.location && (
