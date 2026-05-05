@@ -29,6 +29,8 @@ export default function BalseremoniSkjema() {
       applicantFullName: "",
       requestedAmount: undefined as unknown as number,
       vippsPhone: "",
+      theme: "",
+      shortDescription: "",
       additionalInfo: "",
     },
   });
