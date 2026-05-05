@@ -218,6 +218,24 @@ export default function BalseremoniSkjema() {
                     <p className="text-sm text-destructive">{form.formState.errors.additionalInfo?.message}</p>
                   </div>
 
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-3 rounded-md border border-border bg-muted/30 p-3">
+                      <Checkbox
+                        id="shareConsent"
+                        checked={form.watch("shareConsent") === true}
+                        onCheckedChange={(checked) =>
+                          form.setValue("shareConsent", checked === true ? true : (false as unknown as true), {
+                            shouldValidate: true,
+                          })
+                        }
+                      />
+                      <Label htmlFor="shareConsent" className="text-sm leading-relaxed font-normal cursor-pointer">
+                        Jeg godtar at Naturfolk kan dele mitt arrangement så flere kan delta, og at det er åpent for alle.
+                      </Label>
+                    </div>
+                    <p className="text-sm text-destructive">{form.formState.errors.shareConsent?.message}</p>
+                  </div>
+
                   <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                     {isSubmitting ? "Sender søknad..." : "Send søknad"}
                   </Button>
