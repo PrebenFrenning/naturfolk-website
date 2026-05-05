@@ -259,6 +259,7 @@ export default function BalseremoniSkjema() {
             </Card>
           </div>
         </section>
+        </div>
       </main>
 
       <Footer />
