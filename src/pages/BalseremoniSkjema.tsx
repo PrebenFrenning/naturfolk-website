@@ -133,7 +133,7 @@ export default function BalseremoniSkjema() {
                   </div>
                   <div className="flex items-start gap-3">
                     <Wallet className="mt-0.5 h-4 w-4 text-primary" />
-                    <p>Ønsket beløp i kroner og et telefonnummer som kan motta Vipps.</p>
+                    <p>Ønsket beløp i kroner og et telefonnummer for Vipps, eller kontonummer.</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <Phone className="mt-0.5 h-4 w-4 text-primary" />
