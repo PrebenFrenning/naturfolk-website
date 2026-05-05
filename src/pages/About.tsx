@@ -89,7 +89,9 @@ const About = () => {
                 <p className="text-lg leading-relaxed mb-2">
                   {t('aboutPage.contact.readFaith')} <a href={localePath('/trosgrunnlag')} className="text-nature-green underline hover:no-underline">{t('aboutPage.contact.faithLink')}</a>
                 </p>
-                <p className="text-lg leading-relaxed">{t('aboutPage.contact.membershipText')}</p>
+                <p className="text-lg leading-relaxed">
+                  {t('aboutPage.contact.membershipPrefix')} <a href={localePath('/medlemskap')} className="text-nature-green underline hover:no-underline">{t('aboutPage.contact.membershipLink')}</a>
+                </p>
               </CardContent>
             </Card>
 
