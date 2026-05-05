@@ -1,0 +1,1 @@
+UPDATE public.events SET image_url = 'https://xcsaugiprqnzfuvmeojm.supabase.co/storage/v1/object/public/event-images/urfestivalen-2026-cover.png' WHERE id = '88858c16-4d40-4baa-a787-bfd0f2059c3c';
