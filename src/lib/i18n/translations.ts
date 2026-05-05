@@ -167,6 +167,8 @@ export const translations = {
   'aboutPage.contact.readFaith': { no: 'Du kan lese', en: 'You can read' },
   'aboutPage.contact.faithLink': { no: 'vårt trosgrunnlag her', en: 'our faith foundation here' },
   'aboutPage.contact.membershipText': { no: 'Du kan lese om medlemskap her', en: 'You can read about membership here' },
+  'aboutPage.contact.membershipPrefix': { no: 'Du kan lese om medlemskap', en: 'You can read about membership' },
+  'aboutPage.contact.membershipLink': { no: 'her', en: 'here' },
   'aboutPage.board.title': { no: 'Styret', en: 'The Board' },
   'aboutPage.board.chair': { no: 'Styreleder', en: 'Chair' },
   'aboutPage.board.member': { no: 'Styremedlem', en: 'Board member' },
