@@ -115,6 +115,9 @@ export default function BalseremoniSkjema() {
                   <p className="text-lg text-muted-foreground leading-relaxed">
                     Send inn ønsket tidspunkt, lokasjon og praktisk info, så går søknaden direkte til Naturfolk for vurdering.
                   </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Merk: Det er kun registrerte medlemmer av Naturfolk som kan søke om midler til bålsamling.
+                  </p>
                 </div>
               </div>
 
