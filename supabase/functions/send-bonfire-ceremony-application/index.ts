@@ -16,7 +16,9 @@ const bodySchema = z.object({
   locationAddress: z.string().trim().min(5).max(250),
   applicantFullName: z.string().trim().min(2).max(150),
   requestedAmount: z.coerce.number().positive().max(100000),
-  vippsPhone: z.string().trim().min(8).max(20).regex(/^[0-9+\s]+$/),
+  vippsPhone: z.string().trim().min(6).max(40),
+  theme: z.string().trim().min(2).max(200),
+  shortDescription: z.string().trim().min(10).max(1000),
   additionalInfo: z.string().trim().max(3000).optional().or(z.literal("")),
 });
 
