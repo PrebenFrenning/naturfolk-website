@@ -162,6 +162,7 @@ const Aktuelt = () => {
 
         <Footer />
         <ScrollToTop />
+        <EventDialog event={selectedEvent} open={dialogOpen} onOpenChange={setDialogOpen} />
       </div>
     </>
   );
