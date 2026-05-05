@@ -78,6 +78,7 @@ export default function BalseremoniSkjema() {
           theme: "",
           shortDescription: "",
           additionalInfo: "",
+          shareConsent: false as unknown as true,
         });
         return;
       }
