@@ -106,7 +106,21 @@ export default function BalseremoniSkjema() {
 
       <Navbar />
 
-      <main className="flex-1 pt-28 pb-16">
+      <main className="flex-1 pb-16">
+        <section
+          className="relative h-[40vh] min-h-[280px] w-full bg-cover bg-center flex items-end"
+          style={{ backgroundImage: `url(${balseremoniHero})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-background/10" />
+          <div className="relative container mx-auto px-4 max-w-5xl pb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/90 backdrop-blur px-4 py-2 text-sm text-muted-foreground">
+              <Flame className="h-4 w-4 text-primary" />
+              Bålseremoni-søknad for medlemmer
+            </div>
+          </div>
+        </section>
+
+        <div className="pt-12">
         <section className="container mx-auto px-4 max-w-5xl">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.25fr] items-start">
             <div className="space-y-6">
