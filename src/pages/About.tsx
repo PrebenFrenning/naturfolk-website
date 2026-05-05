@@ -108,8 +108,7 @@ const About = () => {
                   </div>
                   <div className="space-y-2">
                     <p className="text-lg"><strong>Trine Lise I. Eilertsen</strong> - {t('aboutPage.board.member')}</p>
-                    <p className="text-lg"><strong>Christer T. Norman</strong> - {t('aboutPage.board.member')}</p>
-                    <p className="text-lg"><strong>André Fagerheim</strong> - {t('aboutPage.board.deputy')}</p>
+                    <p className="text-lg"><strong>André Fagerheim</strong> - {t('aboutPage.board.member')}</p>
                     <p className="text-lg"><strong>Jorunn Iren Husby</strong> - {t('aboutPage.board.deputy')}</p>
                   </div>
                 </div>
