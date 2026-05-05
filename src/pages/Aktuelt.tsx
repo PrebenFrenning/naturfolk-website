@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import EventDialog from '@/components/EventDialog';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,8 @@ const Aktuelt = () => {
   const { t, localePath, language } = useLanguage();
   const dateLocale = language === 'en' ? enUS : nb;
   const dateFormat = language === 'en' ? 'MMMM d, yyyy' : 'd. MMMM yyyy';
+  const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const { data: events = [] } = useQuery({
     queryKey: ['upcoming-events'],
@@ -76,7 +79,11 @@ const Aktuelt = () => {
               <h2 className="text-3xl font-bold text-nature-brown mb-8 text-center">{t('aktueltPage.upcomingEvents')}</h2>
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 {events.map((event) => (
-                  <Card key={event.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                  <Card
+                    key={event.id}
+                    className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                    onClick={() => { setSelectedEvent(event); setDialogOpen(true); }}
+                  >
                     <div className="relative h-64">
                       <img src={event.image_url || '/images/fallback-bonfire.jpg'} alt={event.title} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -155,6 +162,7 @@ const Aktuelt = () => {
 
         <Footer />
         <ScrollToTop />
+        <EventDialog event={selectedEvent} open={dialogOpen} onOpenChange={setDialogOpen} />
       </div>
     </>
   );
