@@ -181,8 +181,25 @@ export default function BalseremoniSkjema() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="vippsPhone">Telefonnummer for Vipps</Label>
-                    <Input id="vippsPhone" type="tel" {...form.register("vippsPhone")} />
+                    <Label htmlFor="theme">Tema for bålsamlingen</Label>
+                    <Input id="theme" placeholder="F.eks. vårjevndøgn, sorgseremoni, takknemlighet" {...form.register("theme")} />
+                    <p className="text-sm text-destructive">{form.formState.errors.theme?.message}</p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="shortDescription">Gi en kort beskrivelse av arrangementet</Label>
+                    <Textarea
+                      id="shortDescription"
+                      rows={4}
+                      placeholder="Hva skal skje på samlingen, hvem er den for, og hva er intensjonen?"
+                      {...form.register("shortDescription")}
+                    />
+                    <p className="text-sm text-destructive">{form.formState.errors.shortDescription?.message}</p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="vippsPhone">Telefonnummer for Vipps, eller kontonummer</Label>
+                    <Input id="vippsPhone" type="text" {...form.register("vippsPhone")} />
                     <p className="text-sm text-destructive">{form.formState.errors.vippsPhone?.message}</p>
                   </div>
 
