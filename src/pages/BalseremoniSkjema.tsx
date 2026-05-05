@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
+import balseremoniHero from "@/assets/balseremoni-hero.jpg";
 import {
   bonfireCeremonyApplicationSchema,
   type BonfireCeremonyApplicationValues,
@@ -105,15 +106,25 @@ export default function BalseremoniSkjema() {
 
       <Navbar />
 
-      <main className="flex-1 pt-28 pb-16">
+      <main className="flex-1 pb-16">
+        <section
+          className="relative h-[40vh] min-h-[280px] w-full bg-cover bg-center flex items-end"
+          style={{ backgroundImage: `url(${balseremoniHero})` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-background/10" />
+          <div className="relative container mx-auto px-4 max-w-5xl pb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/90 backdrop-blur px-4 py-2 text-sm text-muted-foreground">
+              <Flame className="h-4 w-4 text-primary" />
+              Bålseremoni-søknad for medlemmer
+            </div>
+          </div>
+        </section>
+
+        <div className="pt-12">
         <section className="container mx-auto px-4 max-w-5xl">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.25fr] items-start">
             <div className="space-y-6">
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-muted-foreground">
-                  <Flame className="h-4 w-4 text-primary" />
-                  Skjult underside for søknader om bålsamling
-                </div>
                 <div className="space-y-3">
                   <h1 className="text-4xl md:text-5xl font-semibold text-foreground">Søk om midler til bålseremoni</h1>
                   <p className="text-lg text-muted-foreground leading-relaxed">
@@ -244,6 +255,7 @@ export default function BalseremoniSkjema() {
             </Card>
           </div>
         </section>
+        </div>
       </main>
 
       <Footer />
