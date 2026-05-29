@@ -5,7 +5,7 @@
 ## Pages
 
 - [Forside](/): Introduksjon til Naturfolk og trossamfunnet.
-- [Om oss](/om-oss): Hvem vi er, vår historie og vårt styre.
+- [Om oss](/about): Hvem vi er, vår historie og vårt styre.
 - [Trosgrunnlag](/trosgrunnlag): Vårt åndelige fundament og Naturfolkets Ed.
 - [Medlemskap](/medlemskap): Informasjon om medlemskap og hvordan du blir medlem.
 - [Bli medlem](/bli-medlem): Registreringsskjema for nye medlemmer.
