@@ -56,7 +56,13 @@ const Aktuelt = () => {
   return (
     <>
       <Helmet>
-        <title>{t('aktueltPage.title')} - Naturfolk</title>
+        <title>{t('aktueltPage.title')} – Naturfolk</title>
+        <meta name="description" content="Siste nytt, arrangementer og aktuelle saker fra Naturfolk – trossamfunnet basert på urnordisk, førkristen tro." />
+        <link rel="canonical" href={`https://naturfolk.org${language === 'en' ? '/en/news' : '/aktuelt'}`} />
+        <meta property="og:title" content={`${t('aktueltPage.title')} – Naturfolk`} />
+        <meta property="og:description" content="Siste nytt, arrangementer og aktuelle saker fra Naturfolk." />
+        <meta property="og:url" content={`https://naturfolk.org${language === 'en' ? '/en/news' : '/aktuelt'}`} />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-b from-nature-light to-background">

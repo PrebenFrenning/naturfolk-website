@@ -145,8 +145,25 @@ export default function BlogPost() {
   return (
     <>
       <Helmet>
-        <title>{post.title} - Nettverket i Norge</title>
-        <meta name="description" content={post.excerpt} />
+        <title>{post.title} – Naturfolk</title>
+        <meta name="description" content={(post.excerpt || '').slice(0, 160)} />
+        <link rel="canonical" href={`https://naturfolk.org/blogg/${post.slug}`} />
+        <meta property="og:title" content={`${post.title} – Naturfolk`} />
+        <meta property="og:description" content={(post.excerpt || '').slice(0, 160)} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://naturfolk.org/blogg/${post.slug}`} />
+        {post.featured_image && <meta property="og:image" content={post.featured_image} />}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.excerpt,
+          image: post.featured_image || undefined,
+          datePublished: post.publish_date || post.created_at,
+          author: { "@type": "Organization", name: "Naturfolk" },
+          publisher: { "@type": "Organization", name: "Naturfolk", logo: { "@type": "ImageObject", url: "https://naturfolk.org/og-image.png" } },
+          mainEntityOfPage: `https://naturfolk.org/blogg/${post.slug}`,
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
