@@ -1,0 +1,23 @@
+# Naturfolk
+
+> Naturfolk er et norsk trossamfunn basert på urnordisk, førkristen tro – hvor menneske, ånd og natur er ett. Vi forener fortidens visdom med samtidens livsutfordringer.
+
+## Pages
+
+- [Forside](/): Introduksjon til Naturfolk og trossamfunnet.
+- [Om oss](/om-oss): Hvem vi er, vår historie og vårt styre.
+- [Trosgrunnlag](/trosgrunnlag): Vårt åndelige fundament og Naturfolkets Ed.
+- [Medlemskap](/medlemskap): Informasjon om medlemskap og hvordan du blir medlem.
+- [Bli medlem](/bli-medlem): Registreringsskjema for nye medlemmer.
+- [Aktuelt](/aktuelt): Nyheter og siste oppdateringer.
+- [Blogg](/blogg): Artikler og refleksjoner fra fellesskapet.
+- [Arrangementer](/events): Kommende samlinger og arrangementer.
+- [Kalender](/kalender): Oversikt over alle arrangementer i kalenderform.
+- [Temagrupper](/temagrupper): Våre fire temagrupper for fordypning.
+- [Kontakt](/contact): Kontakt Naturfolk.
+
+## Optional
+
+- [Personvern](/personvern): Personvernerklæring.
+- [Vilkår](/vilkar): Vilkår for bruk og medlemskap.
+- [English homepage](/en): English version of the site.

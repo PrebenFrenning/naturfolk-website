@@ -23,8 +23,12 @@ const NewsletterSection = () => {
                   placeholder={t('newsletter.placeholder')} 
                   className="flex-grow px-4 py-3 border border-gray-200 focus:border-nature-green focus:ring-1 focus:ring-nature-green outline-none rounded-l"
                 />
-                <button className="bg-nature-green text-white px-4 py-3 rounded-r hover:bg-nature-green/90 transition-custom">
-                  <Send size={18} />
+                <button
+                  type="submit"
+                  aria-label={t('newsletter.submitAria') || 'Meld meg på nyhetsbrevet'}
+                  className="bg-nature-green text-white px-4 py-3 rounded-r hover:bg-nature-green/90 transition-custom"
+                >
+                  <Send size={18} aria-hidden="true" />
                 </button>
               </div>
             </div>
