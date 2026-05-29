@@ -14,6 +14,7 @@ import { toast } from "@/hooks/use-toast";
 import { membershipSignupSchema, type MembershipSignupData } from "@/lib/membershipValidation";
 import { Users } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 const COUNTRIES = [
   "Norge",
@@ -77,6 +78,20 @@ export default function BliMedlem() {
     try {
       // Store the membership data in sessionStorage to pass to payment page
       sessionStorage.setItem("membershipData", JSON.stringify(data));
+
+      // If user opted in to newsletter, add them to Mailchimp (fire and forget)
+      if (data.newsletter_subscribed) {
+        supabase.functions
+          .invoke("mailchimp-subscribe", {
+            body: {
+              email: data.email,
+              tag: "lovable-member-signup",
+              first_name: data.first_name,
+              last_name: data.last_name,
+            },
+          })
+          .catch((err) => console.error("Mailchimp subscribe failed:", err));
+      }
 
       // Navigate to payment page
       navigate("/betaling");
