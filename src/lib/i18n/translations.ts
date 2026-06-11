@@ -230,6 +230,32 @@ export const translations = {
     en: 'Feel free to contact us if you have questions about membership or Naturfolk in general.'
   },
   'membershipPage.questions.cta': { no: 'Kontakt', en: 'Contact' },
+  'membershipPage.faq.title': { no: 'Ofte stilte spørsmål', en: 'Frequently asked questions' },
+  'membershipPage.faq.q1': { no: 'Hva koster medlemskap i Naturfolk?', en: 'What does Naturfolk membership cost?' },
+  'membershipPage.faq.a1': {
+    no: 'Innmeldingsavgiften i 2025 er kr 200,- for både hovedmedlem og støttemedlem. For hovedmedlemmer blir årsavgiften gratis så snart vi får godkjent statsstøtte. Støttemedlemmer betaler en liten årsavgift etter eget valg, enten årlig eller månedlig.',
+    en: 'The registration fee in 2025 is NOK 200 for both full and supporting members. For full members, the annual fee becomes free as soon as we receive approved state support. Supporting members pay a small annual fee of their choice, either annually or monthly.'
+  },
+  'membershipPage.faq.q2': { no: 'Kan jeg være medlem i Naturfolk og et annet trossamfunn samtidig?', en: 'Can I be a member of Naturfolk and another faith community at the same time?' },
+  'membershipPage.faq.a2': {
+    no: 'Som hovedmedlem kan du ikke være medlem i flere tros- eller livssynssamfunn som mottar offentlig tilskudd samtidig. Som støttemedlem kan du derimot stå som hovedmedlem i et annet trossamfunn og likevel få tilgang til seremonier, samlinger og medlemsgrupper hos Naturfolk.',
+    en: 'As a full member, you cannot be a member of multiple faith or life stance communities receiving public funding simultaneously. As a supporting member, however, you can remain a full member of another faith community while still enjoying access to ceremonies, gatherings and member groups at Naturfolk.'
+  },
+  'membershipPage.faq.q3': { no: 'Hva er forskjellen på hovedmedlem og støttemedlem?', en: 'What is the difference between a full member and a supporting member?' },
+  'membershipPage.faq.a3': {
+    no: 'Hovedmedlemmer må være utmeldt av andre trossamfunn og oppgi personnummer (11 siffer). Støttemedlemmer kan være medlem i et annet trossamfunn samtidig, og oppgir navn/adresse/kontaktinfo. Begge typer får tilgang til seremonier, samlinger og digitale grupper, men bare hovedmedlemmer teller med i trossamfunnets medlemstall for statsstøtte.',
+    en: 'Full members must have left other faith communities and provide a Norwegian personal ID number (11 digits). Supporting members can be members of another faith community simultaneously, and provide name/address/contact info. Both types get access to ceremonies, gatherings and digital groups, but only full members count towards the faith community\'s membership numbers for state support.'
+  },
+  'membershipPage.faq.q4': { no: 'Kan jeg melde inn barn under 15 år?', en: 'Can I register children under 15?' },
+  'membershipPage.faq.a4': {
+    no: 'Ja, foreldre kan melde inn egne barn under 15 år. For barn under 15 kreves samtykke fra foreldre med foreldreansvar (begge ved felles foreldreansvar). Barn over 12 år skal høres.',
+    en: 'Yes, parents can register their own children under 15. For children under 15, consent from parents with parental responsibility is required (both parents if shared). Children over 12 shall be heard.'
+  },
+  'membershipPage.faq.q5': { no: 'Hvordan melder jeg meg ut av Naturfolk?', en: 'How do I cancel my Naturfolk membership?' },
+  'membershipPage.faq.a5': {
+    no: 'For utmelding, send en e-post med navn og registrert e-postadresse til post@naturfolk.org. Oppgi gjerne årsak om ønskelig.',
+    en: 'To cancel your membership, send an email with your name and registered email address to post@naturfolk.org. You may include a reason if you wish.'
+  },
 
   // Kalender Page
   'kalenderPage.title': { no: 'Kalender', en: 'Calendar' },

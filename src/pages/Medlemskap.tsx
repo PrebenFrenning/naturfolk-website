@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
@@ -10,9 +11,35 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const Medlemskap = () => {
   const { t, localePath } = useLanguage();
+
+  const faqData = [
+    { q: t('membershipPage.faq.q1'), a: t('membershipPage.faq.a1') },
+    { q: t('membershipPage.faq.q2'), a: t('membershipPage.faq.a2') },
+    { q: t('membershipPage.faq.q3'), a: t('membershipPage.faq.a3') },
+    { q: t('membershipPage.faq.q4'), a: t('membershipPage.faq.a4') },
+    { q: t('membershipPage.faq.q5'), a: t('membershipPage.faq.a5') },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqData.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    })),
+  };
   
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{t('membershipPage.hero.title')} – Naturfolk</title>
+        <meta name="description" content={t('membershipPage.welcome.p1')} />
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       <Navbar />
       
       <section className="relative min-h-[50vh] flex items-center justify-center">
@@ -133,6 +160,20 @@ const Medlemskap = () => {
                   <a href="mailto:post@naturfolk.org" className="text-primary underline hover:no-underline">post@naturfolk.org</a>.
                   Oppgi gjerne årsak om ønskelig.
                 </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">{t('membershipPage.faq.title')}</h2>
+                <div className="space-y-6">
+                  {faqData.map((item, i) => (
+                    <div key={i}>
+                      <h3 className="text-lg font-semibold text-nature-brown mb-2">{item.q}</h3>
+                      <p className="text-base leading-relaxed text-muted-foreground">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
 
