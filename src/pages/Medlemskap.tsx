@@ -11,9 +11,35 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const Medlemskap = () => {
   const { t, localePath } = useLanguage();
+
+  const faqData = [
+    { q: t('membershipPage.faq.q1'), a: t('membershipPage.faq.a1') },
+    { q: t('membershipPage.faq.q2'), a: t('membershipPage.faq.a2') },
+    { q: t('membershipPage.faq.q3'), a: t('membershipPage.faq.a3') },
+    { q: t('membershipPage.faq.q4'), a: t('membershipPage.faq.a4') },
+    { q: t('membershipPage.faq.q5'), a: t('membershipPage.faq.a5') },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqData.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    })),
+  };
   
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{t('membershipPage.hero.title')} – Naturfolk</title>
+        <meta name="description" content={t('membershipPage.welcome.p1')} />
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       <Navbar />
       
       <section className="relative min-h-[50vh] flex items-center justify-center">
