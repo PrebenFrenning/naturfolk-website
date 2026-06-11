@@ -38,6 +38,19 @@ const Medlemskap = () => {
       <Helmet>
         <title>{t('membershipPage.hero.title')} – Naturfolk</title>
         <meta name="description" content={t('membershipPage.welcome.p1')} />
+        <link rel="canonical" href={`https://naturfolk.org${localePath('/medlemskap')}`} />
+        <meta property="og:title" content={`${t('membershipPage.hero.title')} – Naturfolk`} />
+        <meta property="og:description" content={t('membershipPage.welcome.p1')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://naturfolk.org${localePath('/medlemskap')}`} />
+        <meta property="og:image" content="https://naturfolk.org/og-image.png" />
+        <meta property="og:site_name" content="Naturfolk" />
+        <meta property="og:locale" content="nb_NO" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@naturfolk" />
+        <meta name="twitter:title" content={`${t('membershipPage.hero.title')} – Naturfolk`} />
+        <meta name="twitter:description" content={t('membershipPage.welcome.p1')} />
+        <meta name="twitter:image" content="https://naturfolk.org/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <Navbar />
