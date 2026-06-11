@@ -9,6 +9,7 @@ import helligeStederImage from '@/assets/temagruppe-hellige-steder.jpg';
 import natursamfunnImage from '@/assets/temagruppe-natursamfunn.jpg';
 import ritualerImage from '@/assets/temagruppe-ritualer.jpg';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { PageSEO } from '@/components/PageSEO';
 
 const Temagrupper = () => {
   const { t, localePath } = useLanguage();
@@ -46,10 +47,11 @@ const Temagrupper = () => {
 
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>{t('themeGroups.hero.title')} - Naturfolk</title>
-      </Helmet>
-
+      <PageSEO
+        title={`${t('themeGroups.hero.title')} – Naturfolk`}
+        description={t('themeGroups.hero.subtitle')}
+        canonicalPath={localePath('/temagrupper')}
+      />
       <Navbar />
 
       <section className="relative pt-32 pb-16 bg-gradient-to-b from-nature-sage/30 to-white">
