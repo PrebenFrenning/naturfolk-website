@@ -25,13 +25,26 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "NGO"],
         "name": "Naturfolk",
         "url": "https://naturfolk.org",
         "logo": "https://naturfolk.org/og-image.png",
-        "description": "Et trossamfunn basert på urnordisk, førkristen tro.",
+        "description": "Et trossamfunn basert på urnordisk, førkristen tro. Hvor menneske, ånd og natur er ett.",
         "email": "post@naturfolk.org",
-        "sameAs": []
+        "sameAs": [
+          "https://www.facebook.com/naturfolk.org",
+          "https://www.instagram.com/naturfolkorg/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "post@naturfolk.org",
+          "availableLanguage": ["Norwegian", "English"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "NO"
+        }
       }
     </script>
     <script type="application/ld+json">
@@ -40,7 +53,12 @@
         "@type": "WebSite",
         "name": "Naturfolk",
         "url": "https://naturfolk.org",
-        "inLanguage": "nb-NO"
+        "inLanguage": "nb-NO",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Naturfolk",
+          "url": "https://naturfolk.org"
+        }
       }
     </script>
   </head>
