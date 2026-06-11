@@ -219,15 +219,6 @@ const Navbar = () => {
                 >
                   English
                 </button>
-                <button
-                  onClick={() => switchLanguage('sa')}
-                  className={cn(
-                    "py-2 font-medium transition-custom",
-                    language === 'sa' ? "text-nature-green" : "text-nature-brown"
-                  )}
-                >
-                  Davvisámegiella
-                </button>
               </div>
             </div>
           </div>
