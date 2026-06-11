@@ -6,12 +6,18 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import kontaktHero from '@/assets/kontakt-hero-new.jpg';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { PageSEO } from '@/components/PageSEO';
 
 const Contact = () => {
   const { t } = useLanguage();
   
   return (
     <div className="min-h-screen">
+      <PageSEO
+        title={`${t('contact.hero.title')} – Naturfolk`}
+        description="Har du spørsmål til Naturfolk? Ta kontakt med oss."
+        canonicalPath="/contact"
+      />
       <Navbar />
       
       <section className="relative h-[40vh] min-h-[280px] flex items-center justify-center pt-16">

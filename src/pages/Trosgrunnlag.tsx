@@ -5,8 +5,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
 import heroImage from '@/assets/trosgrunnlag-hero.jpg';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { PageSEO } from '@/components/PageSEO';
 
 const Trosgrunnlag = () => {
+  const { localePath } = useLanguage();
   const [activeSection, setActiveSection] = useState('');
   const [showToc, setShowToc] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
