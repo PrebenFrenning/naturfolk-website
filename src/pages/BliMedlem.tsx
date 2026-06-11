@@ -117,6 +117,11 @@ export default function BliMedlem() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <PageSEO
+        title="Meld deg inn – Naturfolk"
+        description="Bli medlem i Naturfolk – et trossamfunn basert på urnordisk, førkristen tro."
+        canonicalPath={localePath('/bli-medlem')}
+      />
       <Navbar />
 
       <main className="flex-1 pt-24 pb-12">
