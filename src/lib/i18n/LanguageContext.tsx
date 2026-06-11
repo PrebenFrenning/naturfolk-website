@@ -6,7 +6,7 @@ interface LanguageContextType {
   language: Language;
   t: (key: TranslationKey) => string;
   localePath: (path: string) => string;
-  /** Strips the /en or /se prefix from a path to get the base Norwegian path */
+  /** Strips the /en or /sa prefix from a path to get the base Norwegian path */
   basePath: (path: string) => string;
 }
 
@@ -62,12 +62,12 @@ export function getNorwegianPath(englishPath: string): string {
   return englishPath;
 }
 
-/** Strip a /en or /se locale prefix to the underlying Norwegian path */
+/** Strip a /en or /sa locale prefix to the underlying Norwegian path */
 export function stripLocalePrefix(pathname: string): string {
   if (pathname.startsWith('/en/')) return pathname.slice(3);
   if (pathname === '/en') return '/';
-  if (pathname.startsWith('/se/')) return pathname.slice(3);
-  if (pathname === '/se') return '/';
+  if (pathname.startsWith('/sa/')) return pathname.slice(3);
+  if (pathname === '/sa') return '/';
   return pathname;
 }
 
@@ -76,8 +76,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const language: Language = location.pathname.startsWith('/en')
     ? 'en'
-    : location.pathname.startsWith('/se')
-    ? 'se'
+    : location.pathname.startsWith('/sa')
+    ? 'sa'
     : 'no';
 
   const value = useMemo(() => {
@@ -94,9 +94,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const englishPath = getEnglishPath(path);
         return '/en' + englishPath;
       }
-      if (language === 'se') {
-        // Sami uses the same slugs as Norwegian, just prefixed with /se
-        return '/se' + (path === '/' ? '' : path);
+      if (language === 'sa') {
+        // Sami uses the same slugs as Norwegian, just prefixed with /sa
+        return '/sa' + (path === '/' ? '' : path);
       }
       return path;
     };
