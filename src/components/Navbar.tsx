@@ -14,7 +14,8 @@ import {
 
 // Pages that have hero images (transparent navbar looks good)
 const PAGES_WITH_HERO = ['/', '/about', '/trosgrunnlag', '/medlemskap', '/temagrupper', '/bli-medlem', '/betaling', '/kalender', '/aktuelt', '/contact',
-  '/en', '/en/about', '/en/faith', '/en/membership', '/en/theme-groups', '/en/join', '/en/payment', '/en/calendar', '/en/news', '/en/contact'];
+  '/en', '/en/about', '/en/faith', '/en/membership', '/en/theme-groups', '/en/join', '/en/payment', '/en/calendar', '/en/news', '/en/contact',
+  '/se', '/se/about', '/se/trosgrunnlag', '/se/medlemskap', '/se/temagrupper', '/se/bli-medlem', '/se/betaling', '/se/kalender', '/se/aktuelt', '/se/contact'];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,20 +70,31 @@ const Navbar = () => {
   };
 
   // Switch language: navigate to equivalent path in the other language
-  const switchLanguage = (targetLang: 'en' | 'no') => {
+  const switchLanguage = (targetLang: 'en' | 'no' | 'se') => {
     if (targetLang === language) return;
-    
+
     const currentPath = location.pathname;
-    
-    if (targetLang === 'en') {
-      // Going from NO to EN
-      const englishPath = getEnglishPath(currentPath);
-      navigate('/en' + englishPath);
+
+    // First, strip any existing locale prefix to get the Norwegian base path
+    let noPath: string;
+    if (currentPath.startsWith('/en/')) {
+      noPath = getNorwegianPath(currentPath.slice(3));
+    } else if (currentPath === '/en') {
+      noPath = '/';
+    } else if (currentPath.startsWith('/se/')) {
+      noPath = currentPath.slice(3);
+    } else if (currentPath === '/se') {
+      noPath = '/';
     } else {
-      // Going from EN to NO
-      const stripped = currentPath.startsWith('/en/') ? currentPath.slice(3) : currentPath === '/en' ? '/' : currentPath;
-      const norwegianPath = getNorwegianPath(stripped);
-      navigate(norwegianPath);
+      noPath = currentPath;
+    }
+
+    if (targetLang === 'en') {
+      navigate('/en' + getEnglishPath(noPath));
+    } else if (targetLang === 'se') {
+      navigate('/se' + (noPath === '/' ? '' : noPath));
+    } else {
+      navigate(noPath);
     }
     setIsMenuOpen(false);
   };
@@ -146,11 +158,14 @@ const Navbar = () => {
               <ChevronDown size={16} />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => switchLanguage('no')} className={language === 'no' ? 'bg-muted' : ''}>
+                Norsk
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={() => switchLanguage('en')} className={language === 'en' ? 'bg-muted' : ''}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => switchLanguage('no')} className={language === 'no' ? 'bg-muted' : ''}>
-                Norsk
+              <DropdownMenuItem onClick={() => switchLanguage('se')} className={language === 'se' ? 'bg-muted' : ''}>
+                Davvisámegiella
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -188,9 +203,18 @@ const Navbar = () => {
               ))}
               
               {/* Mobile Language Selector */}
-              <div className="flex gap-4 pt-4 border-t border-gray-100">
-                <button 
-                  onClick={() => switchLanguage('en')} 
+              <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-100">
+                <button
+                  onClick={() => switchLanguage('no')}
+                  className={cn(
+                    "py-2 font-medium transition-custom",
+                    language === 'no' ? "text-nature-green" : "text-nature-brown"
+                  )}
+                >
+                  Norsk
+                </button>
+                <button
+                  onClick={() => switchLanguage('en')}
                   className={cn(
                     "py-2 font-medium transition-custom",
                     language === 'en' ? "text-nature-green" : "text-nature-brown"
@@ -198,14 +222,14 @@ const Navbar = () => {
                 >
                   English
                 </button>
-                <button 
-                  onClick={() => switchLanguage('no')} 
+                <button
+                  onClick={() => switchLanguage('se')}
                   className={cn(
                     "py-2 font-medium transition-custom",
-                    language === 'no' ? "text-nature-green" : "text-nature-brown"
+                    language === 'se' ? "text-nature-green" : "text-nature-brown"
                   )}
                 >
-                  Norsk
+                  Davvisámegiella
                 </button>
               </div>
             </div>
