@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/PageSEO';
 import { Calendar } from 'lucide-react';
 
 interface Post {
@@ -42,10 +42,11 @@ export default function Blog() {
 
   return (
     <>
-      <Helmet>
-        <title>Blogg - Nettverket i Norge</title>
-        <meta name="description" content="Les våre siste innlegg og oppdateringer" />
-      </Helmet>
+      <PageSEO
+        title="Blogg – Naturfolk"
+        description="Les våre siste innlegg og oppdateringer fra trossamfunnet Naturfolk."
+        canonicalPath="/blogg"
+      />
 
       <div className="min-h-screen flex flex-col">
         <Navbar />
