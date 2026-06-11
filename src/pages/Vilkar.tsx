@@ -3,14 +3,16 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/PageSEO';
 
 const Vilkar = () => {
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>Vilkår – Naturfolk</title>
-        <meta name="description" content="Vilkår for medlemskap og bruk av tjenester i trossamfunnet Naturfolk." />
-      </Helmet>
+      <PageSEO
+        title="Vilkår – Naturfolk"
+        description="Vilkår for medlemskap og bruk av tjenester i trossamfunnet Naturfolk."
+        canonicalPath="/vilkar"
+      />
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container-custom max-w-3xl">

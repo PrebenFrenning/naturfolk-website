@@ -153,6 +153,13 @@ export default function BlogPost() {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://naturfolk.org/blogg/${post.slug}`} />
         {post.featured_image && <meta property="og:image" content={post.featured_image} />}
+        <meta property="og:site_name" content="Naturfolk" />
+        <meta property="og:locale" content="nb_NO" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@naturfolk" />
+        <meta name="twitter:title" content={`${post.title} – Naturfolk`} />
+        <meta name="twitter:description" content={(post.excerpt || '').slice(0, 160)} />
+        {post.featured_image && <meta name="twitter:image" content={post.featured_image} />}
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",

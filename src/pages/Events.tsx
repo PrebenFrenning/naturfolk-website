@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/PageSEO';
 import { Calendar, MapPin } from 'lucide-react';
 import { sanitizeHtml } from '@/lib/sanitize';
 
@@ -42,10 +42,11 @@ export default function Events() {
 
   return (
     <>
-      <Helmet>
-        <title>Events - Nettverket i Norge</title>
-        <meta name="description" content="Upcoming events from Nettverket i Norge" />
-      </Helmet>
+      <PageSEO
+        title="Arrangementer – Naturfolk"
+        description="Kommende arrangementer og samlinger i trossamfunnet Naturfolk."
+        canonicalPath="/events"
+      />
 
       <div className="min-h-screen flex flex-col">
         <Navbar />

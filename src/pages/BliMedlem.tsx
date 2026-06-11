@@ -15,6 +15,8 @@ import { membershipSignupSchema, type MembershipSignupData } from "@/lib/members
 import { Users } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { PageSEO } from "@/components/PageSEO";
 
 const COUNTRIES = [
   "Norge",
@@ -40,6 +42,7 @@ const COUNTRIES = [
 
 export default function BliMedlem() {
   const navigate = useNavigate();
+  const { localePath } = useLanguage();
   const [loading, setLoading] = useState(false);
 
   const {
@@ -114,6 +117,11 @@ export default function BliMedlem() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <PageSEO
+        title="Meld deg inn – Naturfolk"
+        description="Bli medlem i Naturfolk – et trossamfunn basert på urnordisk, førkristen tro."
+        canonicalPath={localePath('/bli-medlem')}
+      />
       <Navbar />
 
       <main className="flex-1 pt-24 pb-12">

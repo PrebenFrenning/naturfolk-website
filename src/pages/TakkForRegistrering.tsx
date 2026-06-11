@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { PageSEO } from "@/components/PageSEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -20,10 +20,11 @@ export default function TakkForRegistrering() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Takk for din registrering – Naturfolk</title>
-        <meta name="description" content="Takk for din registrering som medlem i Naturfolk." />
-      </Helmet>
+      <PageSEO
+        title="Takk for din registrering – Naturfolk"
+        description="Takk for din registrering som medlem i Naturfolk."
+        canonicalPath="/takk-for-registrering"
+      />
 
       <Navbar />
 

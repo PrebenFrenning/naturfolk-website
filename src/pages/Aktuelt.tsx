@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/PageSEO';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
@@ -55,15 +55,11 @@ const Aktuelt = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{t('aktueltPage.title')} – Naturfolk</title>
-        <meta name="description" content="Siste nytt, arrangementer og aktuelle saker fra Naturfolk – trossamfunnet basert på urnordisk, førkristen tro." />
-        <link rel="canonical" href={`https://naturfolk.org${language === 'en' ? '/en/news' : '/aktuelt'}`} />
-        <meta property="og:title" content={`${t('aktueltPage.title')} – Naturfolk`} />
-        <meta property="og:description" content="Siste nytt, arrangementer og aktuelle saker fra Naturfolk." />
-        <meta property="og:url" content={`https://naturfolk.org${language === 'en' ? '/en/news' : '/aktuelt'}`} />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <PageSEO
+        title={`${t('aktueltPage.title')} – Naturfolk`}
+        description="Siste nytt, arrangementer og aktuelle saker fra Naturfolk – trossamfunnet basert på urnordisk, førkristen tro."
+        canonicalPath={language === 'en' ? '/en/news' : '/aktuelt'}
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-nature-light to-background">
         <Navbar />

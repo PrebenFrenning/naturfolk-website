@@ -5,8 +5,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
 import heroImage from '@/assets/trosgrunnlag-hero.jpg';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { PageSEO } from '@/components/PageSEO';
 
 const Trosgrunnlag = () => {
+  const { localePath } = useLanguage();
   const [activeSection, setActiveSection] = useState('');
   const [showToc, setShowToc] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -76,6 +79,11 @@ const Trosgrunnlag = () => {
 
   return (
     <div className="min-h-screen bg-nature-offwhite">
+      <PageSEO
+        title="Trosgrunnlag – Naturfolk"
+        description="Les Naturfolks trosgrunnlag – vår erklæring om urnordisk, førkristen tro hvor menneske, ånd og natur er ett."
+        canonicalPath={localePath('/trosgrunnlag')}
+      />
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-nature-beige/30 z-[100]">
         <div 

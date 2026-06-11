@@ -6,6 +6,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Leaf } from 'lucide-react';
 import heroImage from '@/assets/vision-gathering.jpg';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { PageSEO } from '@/components/PageSEO';
 
 const NatureDivider = () => (
   <div className="flex items-center justify-center gap-3">
@@ -20,6 +21,11 @@ const About = () => {
   
   return (
     <div className="min-h-screen">
+      <PageSEO
+        title={`${t('aboutPage.hero.title')} – Naturfolk`}
+        description={t('aboutPage.hero.subtitle')}
+        canonicalPath={localePath('/about')}
+      />
       <Navbar />
       
       <section className="relative min-h-[50vh] flex items-center justify-center">

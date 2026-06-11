@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { PageSEO } from "@/components/PageSEO";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Flame, MapPinned, Phone, Wallet } from "lucide-react";
@@ -96,13 +96,11 @@ export default function BalseremoniSkjema() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
-        <title>Bålseremoni-skjema | Naturfolk</title>
-        <meta
-          name="description"
-          content="Skjema for medlemmer som vil søke om midler til å holde egne bålsamlinger i Naturfolk."
-        />
-      </Helmet>
+      <PageSEO
+        title="Bålseremoni-skjema – Naturfolk"
+        description="Skjema for medlemmer som vil søke om midler til å holde egne bålsamlinger i Naturfolk."
+        canonicalPath="/balseremoni-skjema"
+      />
 
       <Navbar />
 

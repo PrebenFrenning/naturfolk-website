@@ -3,14 +3,16 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { Helmet } from 'react-helmet-async';
+import { PageSEO } from '@/components/PageSEO';
 
 const Personvern = () => {
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>Personvern – Naturfolk</title>
-        <meta name="description" content="Personvernerklæring for trossamfunnet Naturfolk. Les om hvordan vi behandler dine personopplysninger." />
-      </Helmet>
+      <PageSEO
+        title="Personvern – Naturfolk"
+        description="Personvernerklæring for trossamfunnet Naturfolk. Les om hvordan vi behandler dine personopplysninger."
+        canonicalPath="/personvern"
+      />
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container-custom max-w-3xl">
