@@ -90,6 +90,29 @@ const AppRoutes = () => (
     <Route path="/en/member-login" element={<MemberLogin />} />
     <Route path="/en/member" element={<ProtectedRoute><MemberOverview /></ProtectedRoute>} />
     <Route path="/en/member/profile" element={<ProtectedRoute><MemberProfile /></ProtectedRoute>} />
+
+    {/* Northern Sami (davvisámegiella) routes — same slugs as Norwegian, prefixed with /se */}
+    <Route path="/se" element={<Index />} />
+    <Route path="/se/contact" element={<Contact />} />
+    <Route path="/se/about" element={<About />} />
+    <Route path="/se/medlemskap" element={<Medlemskap />} />
+    <Route path="/se/trosgrunnlag" element={<Trosgrunnlag />} />
+    <Route path="/se/aktuelt" element={<Aktuelt />} />
+    <Route path="/se/temagrupper" element={<Temagrupper />} />
+    <Route path="/se/blogg" element={<Blog />} />
+    <Route path="/se/blogg/:slug" element={<BlogPost />} />
+    <Route path="/se/events" element={<Events />} />
+    <Route path="/se/kalender" element={<Kalender />} />
+    <Route path="/se/bli-medlem" element={<BliMedlem />} />
+    <Route path="/se/betaling" element={<Betaling />} />
+    <Route path="/se/takk-for-registrering" element={<TakkForRegistrering />} />
+    <Route path="/se/personvern" element={<Personvern />} />
+    <Route path="/se/vilkar" element={<Vilkar />} />
+    <Route path="/se/auth" element={<Auth />} />
+    <Route path="/se/medlem-login" element={<MemberLogin />} />
+    <Route path="/se/medlem" element={<ProtectedRoute><MemberOverview /></ProtectedRoute>} />
+    <Route path="/se/medlem/profil" element={<ProtectedRoute><MemberProfile /></ProtectedRoute>} />
+      
       
     {/* Admin Routes (no English version) */}
     <Route path="/admin" element={
