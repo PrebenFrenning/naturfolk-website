@@ -6,7 +6,7 @@ interface LanguageContextType {
   language: Language;
   t: (key: TranslationKey) => string;
   localePath: (path: string) => string;
-  /** Strips the /en prefix from a path to get the base Norwegian path */
+  /** Strips the /en or /se prefix from a path to get the base Norwegian path */
   basePath: (path: string) => string;
 }
 
@@ -62,15 +62,31 @@ export function getNorwegianPath(englishPath: string): string {
   return englishPath;
 }
 
+/** Strip a /en or /se locale prefix to the underlying Norwegian path */
+export function stripLocalePrefix(pathname: string): string {
+  if (pathname.startsWith('/en/')) return pathname.slice(3);
+  if (pathname === '/en') return '/';
+  if (pathname.startsWith('/se/')) return pathname.slice(3);
+  if (pathname === '/se') return '/';
+  return pathname;
+}
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
-  
-  const language: Language = location.pathname.startsWith('/en') ? 'en' : 'no';
+
+  const language: Language = location.pathname.startsWith('/en')
+    ? 'en'
+    : location.pathname.startsWith('/se')
+    ? 'se'
+    : 'no';
 
   const value = useMemo(() => {
     const t = (key: TranslationKey): string => {
       const entry = translations[key];
-      return entry ? entry[language] : key;
+      if (!entry) return key;
+      const val = (entry as Record<string, string>)[language];
+      // Fallback to Norwegian if a specific translation is missing
+      return val ?? entry.no ?? key;
     };
 
     const localePath = (path: string): string => {
@@ -78,14 +94,14 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const englishPath = getEnglishPath(path);
         return '/en' + englishPath;
       }
+      if (language === 'se') {
+        // Sami uses the same slugs as Norwegian, just prefixed with /se
+        return '/se' + (path === '/' ? '' : path);
+      }
       return path;
     };
 
-    const basePath = (path: string): string => {
-      if (path.startsWith('/en/')) return path.slice(3);
-      if (path === '/en') return '/';
-      return path;
-    };
+    const basePath = (path: string): string => stripLocalePrefix(path);
 
     return { language, t, localePath, basePath };
   }, [language]);
