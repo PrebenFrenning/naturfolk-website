@@ -164,9 +164,6 @@ const Navbar = () => {
               <DropdownMenuItem onClick={() => switchLanguage('en')} className={language === 'en' ? 'bg-muted' : ''}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => switchLanguage('sa')} className={language === 'sa' ? 'bg-muted' : ''}>
-                Davvisámegiella
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
