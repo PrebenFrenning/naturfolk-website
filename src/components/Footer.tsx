@@ -56,9 +56,12 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="opacity-70 text-sm mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Naturfolk. All rights reserved.
+          </p>
+          <p className="opacity-70 text-sm">
+            Nettside og medlemsløsning levert av <a href="https://organia.no/?utm_source=naturfolk.org&utm_medium=footer&utm_campaign=partner" target="_blank" rel="noopener noreferrer" className="underline hover:text-nature-green transition-custom">Organia.no</a>
           </p>
           <div className="flex gap-6 text-sm opacity-70">
             <Link to={localePath('/personvern')} className="hover:text-nature-green transition-custom">{t('footer.privacy')}</Link>
