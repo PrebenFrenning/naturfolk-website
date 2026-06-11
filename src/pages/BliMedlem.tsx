@@ -15,8 +15,8 @@ import { membershipSignupSchema, type MembershipSignupData } from "@/lib/members
 import { Users } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-
-const COUNTRIES = [
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { PageSEO } from "@/components/PageSEO";
   "Norge",
   "Sverige",
   "Danmark",
