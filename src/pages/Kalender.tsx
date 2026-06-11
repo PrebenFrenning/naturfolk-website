@@ -14,6 +14,7 @@ import EventDialog from '@/components/EventDialog';
 import { cn } from '@/lib/utils';
 import kalenderHero from '@/assets/kalender-hero.jpg';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { PageSEO } from '@/components/PageSEO';
 
 interface Event {
   id: string;
@@ -83,9 +84,11 @@ export default function Kalender() {
 
   return (
     <>
-      <Helmet>
-        <title>{t('kalenderPage.title')} - Naturfolk</title>
-      </Helmet>
+      <PageSEO
+        title={`${t('kalenderPage.title')} – Naturfolk`}
+        description={t('kalenderPage.intro')}
+        canonicalPath={language === 'en' ? '/en/calendar' : '/kalender'}
+      />
 
       <div className="min-h-screen flex flex-col bg-background">
         <Navbar />
