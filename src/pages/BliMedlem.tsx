@@ -42,6 +42,7 @@ const COUNTRIES = [
 
 export default function BliMedlem() {
   const navigate = useNavigate();
+  const { localePath } = useLanguage();
   const [loading, setLoading] = useState(false);
 
   const {
