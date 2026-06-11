@@ -164,6 +164,20 @@ const Medlemskap = () => {
             </Card>
 
             <Card>
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-serif font-semibold mb-8 text-nature-green">{t('membershipPage.faq.title')}</h2>
+                <div className="space-y-6">
+                  {faqData.map((item, i) => (
+                    <div key={i}>
+                      <h3 className="text-lg font-semibold text-nature-brown mb-2">{item.q}</h3>
+                      <p className="text-base leading-relaxed text-muted-foreground">{item.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
               <CardContent className="p-8 text-center">
                 <h2 className="text-3xl font-serif font-semibold mb-6 text-nature-green">{t('membershipPage.questions.title')}</h2>
                 <p className="text-lg leading-relaxed mb-6">{t('membershipPage.questions.text')}</p>
