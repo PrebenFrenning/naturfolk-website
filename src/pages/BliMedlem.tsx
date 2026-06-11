@@ -17,6 +17,8 @@ import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { PageSEO } from "@/components/PageSEO";
+
+const COUNTRIES = [
   "Norge",
   "Sverige",
   "Danmark",
