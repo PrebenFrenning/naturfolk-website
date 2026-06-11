@@ -15,7 +15,7 @@ import {
 // Pages that have hero images (transparent navbar looks good)
 const PAGES_WITH_HERO = ['/', '/about', '/trosgrunnlag', '/medlemskap', '/temagrupper', '/bli-medlem', '/betaling', '/kalender', '/aktuelt', '/contact',
   '/en', '/en/about', '/en/faith', '/en/membership', '/en/theme-groups', '/en/join', '/en/payment', '/en/calendar', '/en/news', '/en/contact',
-  '/se', '/se/about', '/se/trosgrunnlag', '/se/medlemskap', '/se/temagrupper', '/se/bli-medlem', '/se/betaling', '/se/kalender', '/se/aktuelt', '/se/contact'];
+  '/sa', '/sa/about', '/sa/trosgrunnlag', '/sa/medlemskap', '/sa/temagrupper', '/sa/bli-medlem', '/sa/betaling', '/sa/kalender', '/sa/aktuelt', '/sa/contact'];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,7 +70,7 @@ const Navbar = () => {
   };
 
   // Switch language: navigate to equivalent path in the other language
-  const switchLanguage = (targetLang: 'en' | 'no' | 'se') => {
+  const switchLanguage = (targetLang: 'en' | 'no' | 'sa') => {
     if (targetLang === language) return;
 
     const currentPath = location.pathname;
@@ -81,9 +81,9 @@ const Navbar = () => {
       noPath = getNorwegianPath(currentPath.slice(3));
     } else if (currentPath === '/en') {
       noPath = '/';
-    } else if (currentPath.startsWith('/se/')) {
+    } else if (currentPath.startsWith('/sa/')) {
       noPath = currentPath.slice(3);
-    } else if (currentPath === '/se') {
+    } else if (currentPath === '/sa') {
       noPath = '/';
     } else {
       noPath = currentPath;
@@ -91,8 +91,8 @@ const Navbar = () => {
 
     if (targetLang === 'en') {
       navigate('/en' + getEnglishPath(noPath));
-    } else if (targetLang === 'se') {
-      navigate('/se' + (noPath === '/' ? '' : noPath));
+    } else if (targetLang === 'sa') {
+      navigate('/sa' + (noPath === '/' ? '' : noPath));
     } else {
       navigate(noPath);
     }
@@ -164,7 +164,7 @@ const Navbar = () => {
               <DropdownMenuItem onClick={() => switchLanguage('en')} className={language === 'en' ? 'bg-muted' : ''}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => switchLanguage('se')} className={language === 'se' ? 'bg-muted' : ''}>
+              <DropdownMenuItem onClick={() => switchLanguage('sa')} className={language === 'sa' ? 'bg-muted' : ''}>
                 Davvisámegiella
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -223,10 +223,10 @@ const Navbar = () => {
                   English
                 </button>
                 <button
-                  onClick={() => switchLanguage('se')}
+                  onClick={() => switchLanguage('sa')}
                   className={cn(
                     "py-2 font-medium transition-custom",
-                    language === 'se' ? "text-nature-green" : "text-nature-brown"
+                    language === 'sa' ? "text-nature-green" : "text-nature-brown"
                   )}
                 >
                   Davvisámegiella
