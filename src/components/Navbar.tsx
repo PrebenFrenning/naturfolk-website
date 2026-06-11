@@ -164,9 +164,6 @@ const Navbar = () => {
               <DropdownMenuItem onClick={() => switchLanguage('en')} className={language === 'en' ? 'bg-muted' : ''}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => switchLanguage('sa')} className={language === 'sa' ? 'bg-muted' : ''}>
-                Davvisámegiella
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -221,15 +218,6 @@ const Navbar = () => {
                   )}
                 >
                   English
-                </button>
-                <button
-                  onClick={() => switchLanguage('sa')}
-                  className={cn(
-                    "py-2 font-medium transition-custom",
-                    language === 'sa' ? "text-nature-green" : "text-nature-brown"
-                  )}
-                >
-                  Davvisámegiella
                 </button>
               </div>
             </div>
